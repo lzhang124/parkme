@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="FulfillProductOrder-1.6" name="FulfillProductOrder-1.6" isExecutable="true">
+    <userTask id="_34" name="Validate Billing - ${group.name}" activiti:candidateGroups="billing">
+      <documentation>${group.id}, ${productOrder.id}</documentation>
+      <extensionElements>
+        <activiti:formProperty id="validateBillingActivateBillingLabel" name="Activate Billing:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingResellerLabel" name="Reseller" type="string" expression="${processVariables.reseller}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingAutoProvisionDataLabel" name="Order Configuration" type="string" expression="${processVariables.autoProvisionData}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingCustomerInformationLabel" name="Customer Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingGroupInformationLabel" name="Group information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingGroupId" name="Group Id" type="string" expression="${group.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingGroupName" name="Group Name" type="string" expression="${group.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingUserInformationLabel" name="User information: " type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingUserName:" name="User Name" type="string" expression="${user.firstName} ${user.lastName}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingUserEmail" name="User Email" type="string" expression="${user.email}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingPhoneNumber" name="Phone Number" type="string" expression="${user.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingOrderInformationLabel" name="Order information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingProductOrderId" name="Purchase Order ID" type="string" expression="${productOrder.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingInformationLabel" name="Billing Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingAccountPhoneNumber" name="Phone Number" type="string" expression="${billingAccount.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingAddress" name="Address" type="string" expression="${billingAccount.addressLine1}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingAccountCity" name="City" type="string" expression="${billingAccount.city}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingAccountState" name="State" type="string" expression="${billingAccount.state}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingAccountZipCode" name="Zip Code" type="string" expression="${billingAccount.zipCode}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingAccountCountry" name="Country" type="string" expression="${billingAccount.country}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingAccountPaymentMethodType" name="Payment Type" type="string" expression="${billingAccount.paymentMethodType}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingProductInformationLabel" name="Product Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingProductId" name="Product ID" type="string" expression="${product.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingProductName" name="Product Name" type="string" expression="${product.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingProductOfferId" name="Product Offer ID" type="string" expression="${productOffer.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingProductOfferName" name="Product Offer Name" type="string" expression="${productOffer.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingServiceInstanceID" name="Service Instance ID" type="string" expression="${processVariables.productInstanceServiceInstanceIds}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingProvisioningNotes" name="Provisioning notes" type="string" expression="${processVariables.productOrderProvisioningNotes}"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingBillingNotes" name="Billing notes" type="string" expression="${processVariables.productOrderBillingNotes}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="_35" name="Gateway"></exclusiveGateway>
+    <startEvent id="_1" name="Start"></startEvent>
+    <exclusiveGateway id="_39" name="Gateway"></exclusiveGateway>
+    <exclusiveGateway id="_36" name="Gateway"></exclusiveGateway>
+    <exclusiveGateway id="_24" name="Gateway"></exclusiveGateway>
+    <userTask id="_29" name="Validate - ${group.name}" activiti:candidateGroups="sales">
+      <documentation>${group.id}, ${productOrder.id}</documentation>
+      <extensionElements>
+        <activiti:formProperty id="validateValidateProductOrderLabel" name="Validate Product Order:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateValidateResellerLabel" name="Reseller" type="string" expression="${processVariables.reseller}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateAutoProvisionDataLabel" name="Order Configuration" type="string" expression="${processVariables.autoProvisionData}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateCustomerInformationLabel" name="Customer Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateGroupInformationLabel" name="Group information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateGroupId" name="Group Id" type="string" expression="${group.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateGroupName" name="Group Name" type="string" expression="${group.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateGroupIntegrationKey" name="Existing Account Id" type="string" expression="${processVariables.groupIntegrationKey}"></activiti:formProperty>
+        <activiti:formProperty id="validateUserInformationLabel" name="User information: " type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateUserName" name="User Name" type="string" expression="${user.firstName} ${user.lastName}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateUserEmail" name="User Email" type="string" expression="${user.email}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validatePhoneNumber" name="Phone Number" type="string" expression="${user.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateValidateOrderInformationLabel" name="Order information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateValidateProductOrderId" name="Purchase Order ID" type="string" expression="${productOrder.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingInformationLabel" name="Billing Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingAccountPhoneNumber" name="Phone Number" type="string" expression="${billingAccount.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingAddress" name="Address" type="string" expression="${billingAccount.addressLine1}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingAccountCity" name="City" type="string" expression="${billingAccount.city}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingAccountState" name="State" type="string" expression="${billingAccount.state}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingAccountZipCode" name="Zip Code" type="string" expression="${billingAccount.zipCode}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingAccountCountry" name="Country" type="string" expression="${billingAccount.country}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingAccountPaymentMethodType" name="Payment Type" type="string" expression="${billingAccount.paymentMethodType}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateProductInformationLabel" name="Product Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateProductId" name="Product ID" type="string" expression="${product.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateProductName" name="Product Name" type="string" expression="${product.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateProductOfferId" name="Product Offer Id" type="string" expression="${productOffer.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateProductOfferName" name="Product Offer Name" type="string" expression="${productOffer.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="validateProvisioningNotes" name="Provisioning notes" type="string" expression="${processVariables.productOrderProvisioningNotes}"></activiti:formProperty>
+        <activiti:formProperty id="validateBillingNotes" name="Billing notes" type="string" expression="${processVariables.productOrderBillingNotes}"></activiti:formProperty>
+        <activiti:formProperty id="provisionMode" name="provision Mode" type="string" expression="${provisionMode}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="cancelOrderFromValidate" name="Cancel Order" type="enum" default="no" required="true">
+          <activiti:value id="no" name="No"></activiti:value>
+          <activiti:value id="yes" name="Yes"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="_31" name="Activate Retail Billing Manually - ${group.name}" activiti:candidateGroups="billing">
+      <documentation>${group.id}, ${productOrder.id}</documentation>
+      <extensionElements>
+        <activiti:formProperty id="activateManualActivateBillingLabel" name="Activate Billing:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualResellerLabel" name="Reseller" type="string" expression="${processVariables.reseller}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualAutoProvisionDataLabel" name="Order Configuration" type="string" expression="${processVariables.autoProvisionData}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualCustomerInformationLabel" name="Customer Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualGroupInformationLabel" name="Group information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualGroupID" name="Group ID" type="string" expression="${group.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualGroupName" name="Group Name" type="string" expression="${group.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualUserInformationLabel" name="User information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualUserName" name="User Name" type="string" expression="${user.firstName} ${user.lastName}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualUserEmail" name="User Email" type="string" expression="${user.email}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualPhoneNumber" name="Phone Number" type="string" expression="${user.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualOrderInformationLabel" name="Order information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualProductOrderId" name="Purchase Order ID" type="string" expression="${productOrder.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualBillingInformationLabel" name="Billing Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualPhoneNumber" name="Phone Number" type="string" expression="${billingAccount.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualAddressLine1" name="Address" type="string" expression="${billingAccount.addressLine1}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualCity" name="City" type="string" expression="${billingAccount.city}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualState" name="Sate" type="string" expression="${billingAccount.state}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualZipCode" name="Zip Code" type="string" expression="${billingAccount.zipCode}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualCountry" name="Country" type="string" expression="${billingAccount.country}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualPaymentMethodType" name="Payment Type" type="string" expression="${billingAccount.paymentMethodType}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualProductInformationLabel" name="Product Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualProductId" name="Product ID" type="string" expression="${product.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualProductName" name="Product Name" type="string" expression="${product.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualProductOfferId" name="Product Offer ID" type="string" expression="${productOffer.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualProductOfferName" name="Product Offer Name" type="string" expression="${productOffer.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualServiceInstanceID" name="Service Instance ID" type="string" expression="${processVariables.productInstanceServiceInstanceIds}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualPurchaseOrdersLabel" name="Purchase Orders" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualDescriptionPoCode1" name="Description 1" type="string"></activiti:formProperty>
+        <activiti:formProperty id="activateManualPurchaseOrderIDPoCode1" name="Purchase Order ID 1" type="string"></activiti:formProperty>
+        <activiti:formProperty id="activateManualDescriptionPoCode2" name="Description 2" type="string"></activiti:formProperty>
+        <activiti:formProperty id="activateManualPurchaseOrderIDPoCode2" name="Purchase Order ID 2" type="string"></activiti:formProperty>
+        <activiti:formProperty id="activateManualDescriptionPoCode3" name="Description 3" type="string"></activiti:formProperty>
+        <activiti:formProperty id="activateManualPurchaseOrderIDPoCode3" name="Purchase Order ID 3" type="string"></activiti:formProperty>
+        <activiti:formProperty id="activateManualDescriptionPoCode4" name="Description 4" type="string"></activiti:formProperty>
+        <activiti:formProperty id="activateManualPurchaseOrderIDPoCode4" name="Purchase Order ID 4" type="string"></activiti:formProperty>
+        <activiti:formProperty id="activateManualProvisioningNotes" name="Provisioning notes" type="string" expression="${processVariables.productOrderProvisioningNotes}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="activateManualBillingNotes" name="Billing notes" type="string" expression="${processVariables.productOrderBillingNotes}"></activiti:formProperty>
+        <activiti:formProperty id="activateManualComplete" name="Complete" type="enum" default="yes" required="true">
+          <activiti:value id="yes" name="Yes"></activiti:value>
+          <activiti:value id="no" name="No"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="_30" name="Provision - ${group.name}" activiti:candidateGroups="sales">
+      <documentation>${group.id}, ${productOrder.id}</documentation>
+      <extensionElements>
+        <activiti:formProperty id="provisioningProvisionServiceLabel" name="Provision Service:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningResellerLabel" name="Reseller" type="string" expression="${processVariables.reseller}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningAutoProvisionDataLabel" name="Order Configuration" type="string" expression="${processVariables.autoProvisionData}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningCustomerInformationLabel" name="Customer Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningGroupInformationLabel" name="Group information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningGroupId" name="Group ID" type="string" expression="${group.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningGroupName" name="Group Name" type="string" expression="${group.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningUserInformationLabel" name="User information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningUserName" name="User Name" type="string" expression="${user.firstName} ${user.lastName}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningUserEmail" name="User Email" type="string" expression="${user.email}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningUserPhoneNumber" name="Phone number" type="string" expression="${user.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningValidateOrderInformationLabel" name="Order information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductOrderId" name="Purchase Order ID" type="string" expression="${productOrder.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingInformationLabel " name="Billing Information: " type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountPhoneNumber" name="Phone Number" type="string" expression="${billingAccount.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountAddressLine1 " name="Address" type="string" expression=" ${billingAccount.addressLine1}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountState " name="State" type="string" expression="${billingAccount.state}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountZipCode " name="Zip Code" type="string" expression="${billingAccount.zipCode}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountCountry " name="Country" type="string" expression="${billingAccount.country}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountPaymentMethodType " name="Payment Type" type="string" expression="${billingAccount.paymentMethodType}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductInformationLabel" name="Product Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductId" name="Product ID" type="string" expression="${product.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductName" name="Product Name" type="string" expression="${product.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductOfferId" name="Product Offer ID" type="string" expression="${productOffer.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductOfferName" name="Product Offer Name" type="string" expression="${productOffer.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningNotes" name="Provisioning Notes" type="string" expression="${processVariables.productOrderProvisioningNotes}"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingNotes" name="Billing Notes" type="string" expression="${processVariables.productOrderBillingNotes}" required="true"></activiti:formProperty>
+        <activiti:formProperty id="provisioningServiceInstanceIdsLabel" name="Please, provide GSI if Provision Mode is Manual" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="serviceInstanceIds" name="Group Services Instance IDs (comma separated)" type="string" expression="${processVariables.productInstanceServiceInstanceIds}"></activiti:formProperty>
+        <activiti:formProperty id="provisioningServiceProvisioningDate" name="Indicate the date the service was provisioned:" type="date" datePattern="dd-MMM-yyyy" required="true"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProvisionMode" name="Select a Provision Mode" type="enum" default="auto" required="true">
+          <activiti:value id="auto" name="Automatic Provision"></activiti:value>
+          <activiti:value id="manual" name="Manual Provision"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="goBackProvision" name="Go Back To Validation" type="enum" default="no" required="true">
+          <activiti:value id="no" name="No"></activiti:value>
+          <activiti:value id="yes" name="Yes"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="_33-_34" sourceRef="_33" targetRef="_34"></sequenceFlow>
+    <sequenceFlow id="_25-_32" sourceRef="_25" targetRef="_32"></sequenceFlow>
+    <sequenceFlow id="_35-_33" name="Automatic" sourceRef="_35" targetRef="_33">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isBillingAutomated == 'true'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_36-_38" sourceRef="_36" targetRef="_38"></sequenceFlow>
+    <sequenceFlow id="_31-_39" sourceRef="_31" targetRef="_39"></sequenceFlow>
+    <sequenceFlow id="_34-_36" sourceRef="_34" targetRef="_36"></sequenceFlow>
+    <sequenceFlow id="_37-_36" sourceRef="_37" targetRef="_36"></sequenceFlow>
+    <sequenceFlow id="_39-_37" name="Proceed" sourceRef="_39" targetRef="_37">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${activateManualComplete == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_18-_19" sourceRef="_18" targetRef="_19"></sequenceFlow>
+    <sequenceFlow id="_29-_20" sourceRef="usertask1" targetRef="_20"></sequenceFlow>
+    <sequenceFlow id="flow4" name="Complete" sourceRef="_30" targetRef="_23"></sequenceFlow>
+    <sequenceFlow id="_24-_25" name="Go back" sourceRef="_24" targetRef="_25">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${goBackProvision == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_1-_25" sourceRef="_1" targetRef="_25"></sequenceFlow>
+    <sequenceFlow id="_39-_25" name="Go back" sourceRef="_39" targetRef="_25">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${activateManualComplete == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_23-_24" sourceRef="_23" targetRef="_24"></sequenceFlow>
+    <sequenceFlow id="_24-_26" name="Proceed" sourceRef="_24" targetRef="_26">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${goBackProvision == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_32-_29" sourceRef="_32" targetRef="_29"></sequenceFlow>
+    <sequenceFlow id="_38-_28" sourceRef="_38" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="_35-_31" name="Manual" sourceRef="_35" targetRef="_31">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isBillingAutomated == 'false'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="_32" name="Load Data" activiti:class="com.verecloud.nimbus.activiti.helpers.delegate.fulfill.LoadDataDelegate"></serviceTask>
+    <serviceTask id="_20" name="Update Order" activiti:class="com.verecloud.nimbus.activiti.helpers.delegate.fulfill.UpdateOrderDelegate"></serviceTask>
+    <serviceTask id="_23" name="Update Order" activiti:class="com.verecloud.nimbus.activiti.helpers.delegate.fulfill.UpdateOrderAfterProvisionDelegate"></serviceTask>
+    <serviceTask id="_18" name="Cancel Order" activiti:class="com.verecloud.nimbus.activiti.helpers.delegate.fulfill.CancelOrderDelegate"></serviceTask>
+    <serviceTask id="_26" name="Update Instance" activiti:class="com.verecloud.nimbus.activiti.helpers.delegate.fulfill.UpdateInstanceDelegate"></serviceTask>
+    <serviceTask id="_33" name="Activate Retail Billing" activiti:class="com.verecloud.nimbus.activiti.helpers.delegate.fulfill.ActivateBillingDelegate"></serviceTask>
+    <serviceTask id="_37" name="Update Subscriptions" activiti:class="com.verecloud.nimbus.activiti.helpers.delegate.fulfill.UpdateSubscriptionsDelegate"></serviceTask>
+    <serviceTask id="_38" name="Update Order/Instance" activiti:class="com.verecloud.nimbus.activiti.helpers.delegate.fulfill.UpdateOrderInstanceDelegate"></serviceTask>
+    <exclusiveGateway id="_25" name="Gateway"></exclusiveGateway>
+    <endEvent id="_28" name="End">
+      <terminateEventDefinition></terminateEventDefinition>
+    </endEvent>
+    <endEvent id="_19" name="End">
+      <terminateEventDefinition></terminateEventDefinition>
+    </endEvent>
+    <exclusiveGateway id="_17" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow1" sourceRef="_20" targetRef="_17"></sequenceFlow>
+    <sequenceFlow id="flow2" name="Cancel" sourceRef="_17" targetRef="_18">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${cancelOrder == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow3" name="Proceed" sourceRef="_17" targetRef="_30">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${cancelOrder == 'no' && hasAutoProvision == 'true'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask1" name="Enter Wholesale Purchase Order - ${group.name}" activiti:candidateGroups="sales">
+      <documentation>${group.id}, ${productOrder.id}</documentation>
+      <extensionElements>
+        <activiti:formProperty id="wholesalePurchaseOrderValidateProductOrderLabel" name="Validate Product Order:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderResellerLabel" name="Reseller" type="string" expression="${processVariables.reseller}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderAutoProvisionDataLabel" name="Order Configuration" type="string" expression="${processVariables.autoProvisionData}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderCustomerInformationLabel" name="Customer Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderGroupInformationLabel" name="Group information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderGroupId" name="Group Id" type="string" expression="${group.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderGroupName" name="Group Name" type="string" expression="${group.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderGroupIntegrationKey" name="Existing Account Id" type="string" expression="${processVariables.groupIntegrationKey}"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderUserInformationLabel" name="User information: " type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderUserName" name="User Name" type="string" expression="${user.firstName} ${user.lastName}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderUserEmail" name="User Email" type="string" expression="${user.email}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderPhoneNumber" name="Phone Number" type="string" expression="${user.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderValidateOrderInformationLabel" name="Order information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderProductOrderId" name="Purchase Order ID" type="string" expression="${productOrder.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingInformationLabel" name="Billing Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingAccountPhoneNumber" name="Phone Number" type="string" expression="${billingAccount.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingAddress" name="Address" type="string" expression="${billingAccount.addressLine1}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingAccountCity" name="City" type="string" expression="${billingAccount.city}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingAccountState" name="State" type="string" expression="${billingAccount.state}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingAccountZipCode" name="Zip Code" type="string" expression="${billingAccount.zipCode}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingAccountCountry" name="Country" type="string" expression="${billingAccount.country}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingAccountPaymentMethodType" name="Payment Type" type="string" expression="${billingAccount.paymentMethodType}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderProductInformationLabel" name="Product Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderProductId" name="Product ID" type="string" expression="${product.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderProductName" name="Product Name" type="string" expression="${product.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderProductOfferId" name="Product Offer Id" type="string" expression="${productOffer.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderProductOfferName" name="Product Offer Name" type="string" expression="${productOffer.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderProvisioningNotes" name="Provisioning notes" type="string" expression="${processVariables.productOrderProvisioningNotes}"></activiti:formProperty>
+        <activiti:formProperty id="wholesalePurchaseOrderBillingNotes" name="Billing notes" type="string" expression="${processVariables.productOrderBillingNotes}"></activiti:formProperty>
+        <activiti:formProperty id="cancelOrder" name="Cancel Order" type="enum" default="no" required="true">
+          <activiti:value id="no" name="No"></activiti:value>
+          <activiti:value id="yes" name="Yes"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow5" sourceRef="_29" targetRef="exclusivegateway2"></sequenceFlow>
+    <userTask id="usertask2" name="Notify Reseller / Customer of Active Account - ${group.name}" activiti:candidateGroups="sales">
+      <documentation>${group.id}, ${productOrder.id}</documentation>
+      <extensionElements>
+        <activiti:formProperty id="notifyResellerOrderInformationLabel" name="Order information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerResellerLabel" name="Reseller" type="string" expression="${processVariables.reseller}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerAutoProvisionDataLabel" name="Order Configuration" type="string" expression="${processVariables.autoProvisionData}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerCustomerInformationLabel" name="Customer Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerGroupInformationLabel" name="Group information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerGroupId" name="Group Id" type="string" expression="${group.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerGroupName" name="Group Name" type="string" expression="${group.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerGroupIntegrationKey" name="Existing Account Id" type="string" expression="${processVariables.groupIntegrationKey}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerUserInformationLabel" name="User information: " type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerUserName:" name="User Name" type="string" expression="${user.firstName} ${user.lastName}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerUserEmail" name="User Email" type="string" expression="${user.email}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerPhoneNumber" name="Phone Number" type="string" expression="${user.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerOrderInformationLabel" name="Order information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerProductOrderId" name="Purchase Order ID" type="string" expression="${productOrder.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerProductInformationLabel" name="Product Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerProductId" name="Product ID" type="string" expression="${product.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerProductName" name="Product Name" type="string" expression="${product.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerProductOfferId" name="Product Offer ID" type="string" expression="${productOffer.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerProductOfferName" name="Product Offer Name:" type="string" expression="${productOffer.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerServiceInstanceID" name="Service Instance ID" type="string" expression="${processVariables.productInstanceServiceInstanceIds}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerProvisioningNotes" name="Provisioning notes" type="string" expression="${processVariables.productOrderProvisioningNotes}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="notifyResellerBillingNotes" name="Billing notes" type="string" expression="${processVariables.productOrderBillingNotes}" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow6" sourceRef="usertask2" targetRef="_28"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow10" name="Proceed" sourceRef="exclusivegateway2" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${cancelOrderFromValidate == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow11" name="Cancel" sourceRef="exclusivegateway2" targetRef="_18">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${cancelOrderFromValidate == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask3" name="Provision - ${group.name}" activiti:candidateGroups="sales">
+      <documentation>${group.id}, ${productOrder.id}</documentation>
+      <extensionElements>
+        <activiti:formProperty id="provisioningProvisionServiceLabel" name="Provision Service:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningResellerLabel" name="Reseller" type="string" expression="${processVariables.reseller}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningAutoProvisionDataLabel" name="Order Configuration" type="string" expression="${processVariables.autoProvisionData}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningCustomerInformationLabel" name="Customer Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningGroupInformationLabel" name="Group information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningGroupId" name="Group ID" type="string" expression="${group.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningGroupName" name="Group Name" type="string" expression="${group.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningUserInformationLabel" name="User information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningUserName" name="User Name" type="string" expression="${user.firstName} ${user.lastName}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningUserEmail" name="User Email" type="string" expression="${user.email}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningUserPhoneNumber" name="Phone number" type="string" expression="${user.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningValidateOrderInformationLabel" name="Order information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductOrderId" name="Purchase Order ID" type="string" expression="${productOrder.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingInformationLabel " name="Billing Information: " type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountPhoneNumber" name="Phone Number" type="string" expression="${billingAccount.phoneNumber}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountAddressLine1 " name="Address" type="string" expression=" ${billingAccount.addressLine1}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountState " name="State" type="string" expression="${billingAccount.state}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountZipCode " name="Zip Code" type="string" expression="${billingAccount.zipCode}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountCountry " name="Country" type="string" expression="${billingAccount.country}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingAccountPaymentMethodType " name="Payment Type" type="string" expression="${billingAccount.paymentMethodType}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductInformationLabel" name="Product Information:" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductId" name="Product ID" type="string" expression="${product.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductName" name="Product Name" type="string" expression="${product.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductOfferId" name="Product Offer ID" type="string" expression="${productOffer.id}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProductOfferName" name="Product Offer Name" type="string" expression="${productOffer.name}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="provisioningNotes" name="Provisioning Notes" type="string" expression="${processVariables.productOrderProvisioningNotes}"></activiti:formProperty>
+        <activiti:formProperty id="provisioningBillingNotes" name="Billing Notes" type="string" expression="${processVariables.productOrderBillingNotes}" required="true"></activiti:formProperty>
+        <activiti:formProperty id="provisioningServiceInstanceIdsLabel" name="Please, provide GSI if Provision Mode is Manual" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="serviceInstanceIds" name="Group Services Instance IDs (comma separated)" type="string" expression="${processVariables.productInstanceServiceInstanceIds}" required="true"></activiti:formProperty>
+        <activiti:formProperty id="provisioningServiceProvisioningDate" name="Indicate the date the service was provisioned:" type="date" datePattern="dd-MMM-yyyy" required="true"></activiti:formProperty>
+        <activiti:formProperty id="provisioningProvisionMode" name="Select a Provision Mode" type="enum" default="auto" required="true">
+          <activiti:value id="manual" name="Manual Provision"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="goBackProvision" name="Go Back To Validation" type="enum" default="no" required="true">
+          <activiti:value id="no" name="No"></activiti:value>
+          <activiti:value id="yes" name="Yes"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow12" name="Proceed" sourceRef="_17" targetRef="usertask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${cancelOrder == 'no' && hasAutoProvision == 'false'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow13" name="Complete" sourceRef="usertask3" targetRef="_23"></sequenceFlow>
+    <sequenceFlow id="_26_35" sourceRef="_26" targetRef="_35"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_FulfillProductOrder-1.6">
+    <bpmndi:BPMNPlane bpmnElement="FulfillProductOrder-1.6" id="BPMNPlane_FulfillProductOrder-1.6">
+      <bpmndi:BPMNShape bpmnElement="_39" id="BPMNShape__39">
+        <omgdc:Bounds height="40.0" width="40.0" x="673.0" y="478.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" id="BPMNShape__1">
+        <omgdc:Bounds height="40.0" width="40.0" x="153.0" y="-90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_25" id="BPMNShape__25">
+        <omgdc:Bounds height="40.0" width="40.0" x="152.0" y="-30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" id="BPMNShape__32">
+        <omgdc:Bounds height="48.0" width="100.0" x="123.0" y="31.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" id="BPMNShape__29">
+        <omgdc:Bounds height="61.0" width="105.0" x="120.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" id="BPMNShape__20">
+        <omgdc:Bounds height="48.0" width="123.0" x="111.0" y="347.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" id="BPMNShape__18">
+        <omgdc:Bounds height="48.0" width="118.0" x="264.0" y="424.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_30" id="BPMNShape__30">
+        <omgdc:Bounds height="64.0" width="105.0" x="40.0" y="484.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" id="BPMNShape__17">
+        <omgdc:Bounds height="40.0" width="40.0" x="152.0" y="427.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" id="BPMNShape__19">
+        <omgdc:Bounds height="40.0" width="40.0" x="436.0" y="429.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" id="BPMNShape__23">
+        <omgdc:Bounds height="48.0" width="158.0" x="94.0" y="583.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_24" id="BPMNShape__24">
+        <omgdc:Bounds height="40.0" width="40.0" x="152.0" y="655.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_26" id="BPMNShape__26">
+        <omgdc:Bounds height="48.0" width="145.0" x="238.0" y="652.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" id="BPMNShape__31">
+        <omgdc:Bounds height="55.0" width="233.0" x="452.0" y="562.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" id="BPMNShape__35">
+        <omgdc:Bounds height="40.0" width="40.0" x="504.0" y="655.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" id="BPMNShape__33">
+        <omgdc:Bounds height="48.0" width="134.0" x="505.0" y="717.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_37" id="BPMNShape__37">
+        <omgdc:Bounds height="48.0" width="182.0" x="713.0" y="573.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_34" id="BPMNShape__34">
+        <omgdc:Bounds height="55.0" width="188.0" x="710.0" y="713.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_36" id="BPMNShape__36">
+        <omgdc:Bounds height="40.0" width="40.0" x="918.0" y="648.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_38" id="BPMNShape__38">
+        <omgdc:Bounds height="55.0" width="153.0" x="984.0" y="641.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" id="BPMNShape__28">
+        <omgdc:Bounds height="40.0" width="40.0" x="1041.0" y="465.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="224.0" x="61.0" y="260.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="263.0" x="929.0" y="541.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="152.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="64.0" width="105.0" x="211.0" y="484.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_33-_34" id="BPMNEdge__33-_34">
+        <omgdi:waypoint x="639.0" y="741.0"></omgdi:waypoint>
+        <omgdi:waypoint x="710.0" y="740.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_32" id="BPMNEdge__25-_32">
+        <omgdi:waypoint x="172.0" y="10.0"></omgdi:waypoint>
+        <omgdi:waypoint x="173.0" y="31.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_33" id="BPMNEdge__35-_33">
+        <omgdi:waypoint x="524.0" y="695.0"></omgdi:waypoint>
+        <omgdi:waypoint x="572.0" y="717.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="47.0" x="-1.0" y="-15.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_36-_38" id="BPMNEdge__36-_38">
+        <omgdi:waypoint x="958.0" y="668.0"></omgdi:waypoint>
+        <omgdi:waypoint x="984.0" y="668.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_31-_39" id="BPMNEdge__31-_39">
+        <omgdi:waypoint x="568.0" y="562.0"></omgdi:waypoint>
+        <omgdi:waypoint x="568.0" y="498.0"></omgdi:waypoint>
+        <omgdi:waypoint x="673.0" y="498.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_36" id="BPMNEdge__34-_36">
+        <omgdi:waypoint x="804.0" y="713.0"></omgdi:waypoint>
+        <omgdi:waypoint x="938.0" y="688.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_37-_36" id="BPMNEdge__37-_36">
+        <omgdi:waypoint x="804.0" y="621.0"></omgdi:waypoint>
+        <omgdi:waypoint x="938.0" y="648.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_39-_37" id="BPMNEdge__39-_37">
+        <omgdi:waypoint x="713.0" y="498.0"></omgdi:waypoint>
+        <omgdi:waypoint x="804.0" y="498.0"></omgdi:waypoint>
+        <omgdi:waypoint x="804.0" y="573.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="40.0" x="-71.0" y="-14.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_19" id="BPMNEdge__18-_19">
+        <omgdi:waypoint x="382.0" y="448.0"></omgdi:waypoint>
+        <omgdi:waypoint x="436.0" y="449.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_20" id="BPMNEdge__29-_20">
+        <omgdi:waypoint x="173.0" y="315.0"></omgdi:waypoint>
+        <omgdi:waypoint x="172.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_24-_25" id="BPMNEdge__24-_25">
+        <omgdi:waypoint x="152.0" y="675.0"></omgdi:waypoint>
+        <omgdi:waypoint x="21.0" y="675.0"></omgdi:waypoint>
+        <omgdi:waypoint x="21.0" y="-10.0"></omgdi:waypoint>
+        <omgdi:waypoint x="152.0" y="-10.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="39.0" x="10.0" y="0.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_25" id="BPMNEdge__1-_25">
+        <omgdi:waypoint x="173.0" y="-50.0"></omgdi:waypoint>
+        <omgdi:waypoint x="172.0" y="-30.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_39-_25" id="BPMNEdge__39-_25">
+        <omgdi:waypoint x="693.0" y="478.0"></omgdi:waypoint>
+        <omgdi:waypoint x="693.0" y="-10.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="-10.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="39.0" x="-48.0" y="8.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_23-_24" id="BPMNEdge__23-_24">
+        <omgdi:waypoint x="173.0" y="631.0"></omgdi:waypoint>
+        <omgdi:waypoint x="172.0" y="655.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_24-_26" id="BPMNEdge__24-_26">
+        <omgdi:waypoint x="192.0" y="675.0"></omgdi:waypoint>
+        <omgdi:waypoint x="238.0" y="676.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="40.0" x="-23.0" y="-20.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_29" id="BPMNEdge__32-_29">
+        <omgdi:waypoint x="173.0" y="79.0"></omgdi:waypoint>
+        <omgdi:waypoint x="172.0" y="100.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_38-_28" id="BPMNEdge__38-_28">
+        <omgdi:waypoint x="1060.0" y="641.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1060.0" y="596.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_31" id="BPMNEdge__35-_31">
+        <omgdi:waypoint x="524.0" y="655.0"></omgdi:waypoint>
+        <omgdi:waypoint x="568.0" y="617.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="35.0" x="-1.0" y="5.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="172.0" y="395.0"></omgdi:waypoint>
+        <omgdi:waypoint x="172.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="192.0" y="447.0"></omgdi:waypoint>
+        <omgdi:waypoint x="264.0" y="448.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="33.0" x="-17.0" y="-18.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="172.0" y="467.0"></omgdi:waypoint>
+        <omgdi:waypoint x="92.0" y="484.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="40.0" x="-30.0" y="-24.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="92.0" y="548.0"></omgdi:waypoint>
+        <omgdi:waypoint x="173.0" y="583.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="46.0" x="-56.0" y="-12.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="172.0" y="161.0"></omgdi:waypoint>
+        <omgdi:waypoint x="172.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="1060.0" y="541.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1061.0" y="505.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="172.0" y="220.0"></omgdi:waypoint>
+        <omgdi:waypoint x="173.0" y="260.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="40.0" x="6.0" y="-11.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="192.0" y="200.0"></omgdi:waypoint>
+        <omgdi:waypoint x="323.0" y="200.0"></omgdi:waypoint>
+        <omgdi:waypoint x="323.0" y="424.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="33.0" x="-112.0" y="-66.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="172.0" y="467.0"></omgdi:waypoint>
+        <omgdi:waypoint x="263.0" y="484.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="40.0" x="-12.0" y="-23.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="263.0" y="548.0"></omgdi:waypoint>
+        <omgdi:waypoint x="173.0" y="583.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="46.0" x="10.0" y="-12.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26_35" id="BPMNEdge__26_35">
+        <omgdi:waypoint x="383.0" y="676.0"></omgdi:waypoint>
+        <omgdi:waypoint x="504.0" y="675.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
