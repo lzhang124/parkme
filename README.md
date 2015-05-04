@@ -27,6 +27,8 @@ Web Server download, build and configure:
 	Dependencies:
 		1. JDK 1.7
 		2. mongo 3.x
+		3. maven
+		4. git
 
 	Database configuration:
 	 	use teh default configuration.
@@ -36,6 +38,7 @@ Web Server download, build and configure:
 	Deployment/install instructions:
 	1. download and install jdk 1.7. (this differs for windows/mac/linux, search for instructions on the web for your target machine)
 	2. download and install mongo
+	2.1. download and install maven
 	3. git clone the server repository:
 		- create a local directory as WORKSPACE
 		- cd $WORKSPACE
