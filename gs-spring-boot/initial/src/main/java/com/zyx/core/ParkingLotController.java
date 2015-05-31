@@ -6,14 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-public class HelloController {
+public class ParkingLotController {
 	@Autowired
 	private ParkingLotRepository repository;
 	
-    @RequestMapping("/")
-    public String index() {
-        return "Greetings from ZYX Parking, blah blah blah... ";
-    }
  
     @RequestMapping("/list")
     public String list() {
