@@ -1,0 +1,4 @@
+core/Application.class
+core/ParkingLot.class
+core/ParkingLotRepository.class
+core/ParkingLotController.class

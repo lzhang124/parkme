@@ -16,10 +16,10 @@ public class Application implements CommandLineRunner{
 
     public static void main(String[] args) {
     	
-    	System.out.println("Startring up");
+    	System.out.println("Starting up");
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
         
-        System.out.println("Startring up");
+        System.out.println("Starting up");
         System.out.println("Let's inspect the beans provided by Spring Boot:");
         
         String[] beanNames = ctx.getBeanDefinitionNames();
@@ -28,10 +28,9 @@ public class Application implements CommandLineRunner{
             System.out.println(beanName);
         }
     }
-         
-     
-        @Override
-    	public void run(String... args) throws Exception {
+
+    @Override
+    public void run(String... args) throws Exception {
 		repository.deleteAll();
 
 		// save a couple of customers
@@ -56,6 +55,6 @@ public class Application implements CommandLineRunner{
 		for (ParkingLot parkinglot : repository.findByZipcode("80027")) {
 			System.out.println(parkinglot);
 		}
-        }
-	 
+	}
+
 }

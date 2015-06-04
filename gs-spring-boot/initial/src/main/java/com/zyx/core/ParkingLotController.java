@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ParkingLotController {
 	@Autowired
 	private ParkingLotRepository repository;
-	
  
     @RequestMapping("/list")
     public String list() {
@@ -22,14 +21,12 @@ public class ParkingLotController {
     
     @RequestMapping("/getByName")
     public String getByName(String name) {
-    	
     	ParkingLot lot = repository.findByName(name);
     	if ( lot == null){
     		return "Lot by Name:" + name + " not Found";
     	} else {
     		return "found:" + "<pre>" + lot + "</pre>";
     	}
-        
     }  
     
     @RequestMapping(value = "/entered")
@@ -56,6 +53,6 @@ public class ParkingLotController {
     		
     		return "Parking Lot added:" + "<pre>" + lot + "</pre>";
     	}   
-    }  
-    
+    }
+
 }

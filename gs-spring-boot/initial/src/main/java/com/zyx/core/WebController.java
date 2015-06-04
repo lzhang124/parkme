@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebController {
-
     
     @RequestMapping("/")
     public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {

@@ -58,7 +58,7 @@ public class ParkingLot {
     public ParkingLot(String name, String zipcode, int capacity) {
         this.name = name;
         this.zipcode = zipcode;
-	this.capacity = capacity;
+		this.capacity = capacity;
     }
 
     @Override
