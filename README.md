@@ -1,54 +1,54 @@
-# README #
+#AVOK
 
-This REAMD describes the overall structure and instructions for building and running the components of the parking app. 
+This README describes the overall structure and instructions for building and running the components of the parking app.
 
 
-Summary:
+##Summary:
 
 The source tree structure will be composed of multiple projects:
 
-gs-spring-boot: this is the spring boot container has the web server/API and core engine. 
-firmware: this will contain the Arduino project code for the firmware running on the Arduino controller. 
-mobile-app: this will contain the mobilt appication code.
-deployment: this will contain the scripts for deployment once a datacenter is setup.
+- *API*: this is the spring boot container with the API and core engine.
+- *web*: this contains the web server (MEAN).
+- *firmware*: this will contain the Arduino project code for the firmware running on the Arduino controller.
+- *mobile*: this will contain the mobilt appication code.
+- *deployment*: this will contain the scripts for deployment once a datacenter is setup.
 
 
-Setup:
+##Setup:
 
-Summary of set up:
-Multiple parts need to setup for an end to end user case to work: 
-- Download mobile app to a phone. 
-- Run the gs-spring-boot as web server. 
-- Run the firmware on the Arduino controller
+Multiple parts need to setup for an end to end use case to work:
 
-Mobile App download build and configure:
+- Download mobile app to a phone.
+- Run the application as web server.
+- Run the firmware on the Arduino controller.
 
-Web Server download, build and configure:
-	Dependencies:
-		1. JDK 1.7
-		2. mongo 3.x
-		3. maven
-		4. git
+###Mobile App
 
-	Database configuration:
-	 	use teh default configuration.
+TBD
+
+###Web Server
+
+*Dependencies:*
+
+1. JDK 1.7
+2. mongo 3.x
+3. maven
+4. git
+
+*Database configuration:* use the default configuration.
 	
-  	run unit test:
+*Deployment/install instructions:*
 	
-	Deployment/install instructions:
-	1. download and install jdk 1.7. (this differs for windows/mac/linux, search for instructions on the web for your target machine)
-	2. download and install mongo
-	2.1. download and install maven
-	3. git clone the server repository:
-		- create a local directory as WORKSPACE
-		- cd $WORKSPACE
-		- git clone git@bitbucket.org:zyxparking/core.git	
-	4. cd core/gs-spring-boot/initial
-	5. mvn clean install
-	6. mvn package
-	7. start mongo: mongod --config /usr/local/etc/mongod.conf
-	8. java -jar target/*, where * is the latest jar built.
-  	9. the server should be up and running	
-	10.simple test: http://localhost:8080/list to see a list of parking lots.
-		 
-
+1. download and install jdk 1.7. (this differs for windows/mac/linux, search for instructions on the web for your target machine)
+2. download and install mongo, maven, git
+3. git clone the server repository:
+	- create a local directory as WORKSPACE
+	- cd $WORKSPACE
+	- git clone git@bitbucket.org:zyxparking/core.git	
+4. cd core/API
+5. mvn clean install
+6. mvn package
+7. (start mongo) mongod
+8. java -jar target/*, where * is the latest jar built.
+9. the server should be up and running.
+10.simple test: http://localhost:8080/list to see a list of parking lots.
