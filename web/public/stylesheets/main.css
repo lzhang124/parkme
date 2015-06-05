@@ -11,31 +11,29 @@ html, body {
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
-  color: black; }
-
-.logo {
-  width: 40%; }
-
-.tagline {
-  margin-top: 25px;
-  text-transform: uppercase;
-  font-size: 2em;
-  letter-spacing: 2.5px; }
-
-.contact {
-  margin-top: 10px;
-  font-size: 1em;
-  letter-spacing: 1.25px; }
+  color: black;
+  padding: 0 10%; }
+  .content .logo {
+    width: 50%;
+    margin-bottom: 25px; }
+  .content .tagline {
+    text-transform: uppercase;
+    font-size: 2em;
+    letter-spacing: 2.5px; }
+  .content .contact {
+    margin-top: 20%;
+    font-size: 1em;
+    letter-spacing: 1.25px; }
 
 /* Mobile */
 @media only screen and (max-width: 480px) {
-  .logo {
-    width: 75%; }
-
-  .tagline {
-    font-size: 1.5em; }
-
-  .contact {
-    font-size: 1em; } }
+  .content {
+    padding: 0; }
+    .content .logo {
+      width: 75%; }
+    .content .tagline {
+      font-size: 1.5em; }
+    .content .contact {
+      font-size: 1em; } }
 
 /*# sourceMappingURL=main.css.map */
