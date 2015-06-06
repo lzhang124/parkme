@@ -28,6 +28,11 @@ TBD
 
 ###Web Server
 
+1. `npm install`
+2. `node app`
+
+###API
+
 *Dependencies:*
 
 1. JDK 1.7
@@ -44,11 +49,13 @@ TBD
 3. git clone the server repository:
 	- create a local directory as WORKSPACE
 	- cd $WORKSPACE
-	- git clone git@bitbucket.org:zyxparking/core.git	
-4. cd core/API
-5. mvn clean install
-6. mvn package
-7. (start mongo) mongod
-8. java -jar target/*, where * is the latest jar built.
+	- `git clone git@bitbucket.org:zyxparking/core.git`
+4. `cd core/API`
+5. `mvn clean install`
+6. `mvn package`
+7. (start mongo) `mongod`
+8. `java -jar target/*`, where * is the latest jar built.
 9. the server should be up and running.
 10.simple test: http://localhost:8080/list to see a list of parking lots.
+
+In `src/main/resources/application.properties`, `server.ssl.key-store` points to the keystore, which is currently `keystore.jks`.
