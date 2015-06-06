@@ -17,6 +17,7 @@ html, body {
     width: 50%;
     margin-bottom: 25px; }
   .content .tagline {
+    margin-top: 20px;
     text-transform: uppercase;
     font-size: 2em;
     letter-spacing: 2.5px; }
