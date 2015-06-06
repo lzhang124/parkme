@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691e65c5-3396-43d8-b630-e20f45e2e38e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/avok.keystore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../web/views/results.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/views/error.html" afterPath="$PROJECT_DIR$/../web/views/error.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/views/index.html" afterPath="$PROJECT_DIR$/../web/views/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/routes/index.js" afterPath="$PROJECT_DIR$/../web/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/main.css.map" afterPath="$PROJECT_DIR$/../web/public/stylesheets/main.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/../web/public/stylesheets/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/scss/main.scss" afterPath="$PROJECT_DIR$/../web/public/stylesheets/scss/main.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/javascripts/search.js" afterPath="$PROJECT_DIR$/../web/public/javascripts/search.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="avok.iws" />
@@ -33,18 +26,7 @@
     <favorites_list name="avok" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40592784">
-              <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -132,6 +114,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="API" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="avok" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="API" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -465,12 +469,12 @@
       <workItem from="1433538045924" duration="404000" />
       <workItem from="1433542234821" duration="1196000" />
       <workItem from="1433560213459" duration="14000" />
-      <workItem from="1433628241553" duration="618000" />
+      <workItem from="1433628241553" duration="1047000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4969000" />
+    <option name="totallyTimeSpent" value="5398000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -582,6 +586,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43943298">
           <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05798969">
+          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
