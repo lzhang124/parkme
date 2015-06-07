@@ -48,8 +48,8 @@
       <img src="images/logo-white.svg"
            onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
       <form ng-submit="showResults()">
-        <input ng-model="search" type="text" placeholder="ZIPCODE" autofocus>
-        <button>Search</button>
+        <input ng-model="search" name="search" type="text" placeholder="ZIPCODE" autofocus>
+        <button type="submit">Search</button>
       </form>
     </div>
     <div class="results" ng-hide="showSearch">
@@ -62,6 +62,9 @@
         <button ng-repeat="lot in lots">
           <div class="lot-name">
             {{ lot.name }}
+          </div>
+          <div class="lot-address">
+            {{ lot.address }}
           </div>
           <div class="lot-free">
             Available spots: {{ lot.capacity - lot.occupied }}

@@ -129,6 +129,10 @@ html, body {
     font-size: 2em;
     text-transform: uppercase;
     letter-spacing: 2.5px;
+
+    a, a:visited {
+      color: $white;
+    }
   }
 
   form {

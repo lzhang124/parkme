@@ -140,6 +140,8 @@ html, body {
     font-size: 2em;
     text-transform: uppercase;
     letter-spacing: 2.5px; }
+    .content .tagline a, .content .tagline a:visited {
+      color: white; }
   .content form {
     width: 30%;
     margin: auto; }
