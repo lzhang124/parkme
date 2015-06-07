@@ -24,10 +24,12 @@
         </div>
         <button class="btn btn-default">Search</button>
       </form>
+      <ul>
+        <li ng-repeat="lot in lots">{{ lot.name }}</li>
+      </ul>
       <div class="contact">
         For questions, please email <a href="mailto:larryzhang@mit.edu">larryzhang@mit.edu</a>
       </div>
     </div>
-  </div>
 </body>
 </html>
