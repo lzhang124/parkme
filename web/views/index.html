@@ -14,22 +14,27 @@
   <script src="/javascripts/search.js"></script>
 </head>
 </body>
+  <div class="bg"></div>
   <div ng-controller="searchController">
-    <div class="content">
-      <img src="/images/logo-black.svg"
-           onerror="this.onerror=null; this.src='/images/logo-black.png'" class="logo">
+    <div class="content" ng-show="showSearch">
+      <img src="/images/logo-white.svg"
+           onerror="this.onerror=null; this.src='/images/logo-white.png'" class="logo">
       <form ng-submit="showResults()">
         <div class="form-group">
           <input ng-model="search" type="text" class="form-control" placeholder="Enter zipcode" autofocus>
         </div>
         <button class="btn btn-default">Search</button>
       </form>
-      <ul>
-        <li ng-repeat="lot in lots">{{ lot.name }}</li>
-      </ul>
       <div class="contact">
         For questions, please email <a href="mailto:larryzhang@mit.edu">larryzhang@mit.edu</a>
       </div>
     </div>
+    <div class="results" ng-hide="showSearch">
+
+      <ul>
+        <li ng-repeat="lot in lots">{{ lot.name }}</li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
