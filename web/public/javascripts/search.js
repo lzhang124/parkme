@@ -11,4 +11,15 @@ app.controller('searchController', function($scope, $http) {
       });
     $scope.showSearch = false;
   };
+
+  $scope.hideResults = function() {
+    $scope.showSearch = true;
+    this.search = "";
+  };
+
+  $scope.close = function(event) {
+    if (event.keyCode === 27) {
+      $scope.hideResults();
+    };
+  };
 });

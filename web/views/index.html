@@ -3,7 +3,7 @@
 <head lang="en">
   <title>AVOKTECH</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
   <link href='/stylesheets/main.css' rel='stylesheet' type='text/css'>
 
   <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
@@ -30,10 +30,21 @@
       </div>
     </div>
     <div class="results" ng-hide="showSearch">
-
-      <ul>
-        <li ng-repeat="lot in lots">{{ lot.name }}</li>
-      </ul>
+      <img src="/images/close.svg" ng-click="hideResults()" 
+           onerror="this.onerror=null; this.src='/images/close.png'" class="close-button">
+      <div class="results-title">
+        Parking lots found in {{ search }}:
+      </div>
+      <div class="results-container">
+        <li ng-repeat="lot in lots">
+          <div class="lot-name">
+            {{ lot.name }}
+          </div>
+          <div class="lot-free">
+            Available spots: {{ lot.capacity - lot.occupied }}
+          </div>
+        </li>
+      </div>
     </div>
   </div>
 </body>
