@@ -34,8 +34,8 @@ public class Application implements CommandLineRunner {
         repository.deleteAll();
 
         // save a couple of customers
-        repository.save(new ParkingLot("ZYXParking", "80027", 100));
-        repository.save(new ParkingLot("IParking", "80027", 200));
+        repository.save(new ParkingLot("ZYXParking", "80027", "Address 1", 100));
+        repository.save(new ParkingLot("IParking", "80027", "Address 2", 200));
 
         // fetch all customers
         System.out.println("Lots found with findAll():");

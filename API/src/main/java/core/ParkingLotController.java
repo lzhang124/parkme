@@ -17,11 +17,7 @@ public class ParkingLotController {
 
     @RequestMapping("/list")
     public List<ParkingLot> list() {
-        List<ParkingLot> allLots = new ArrayList<>();
-        for (ParkingLot parkingLot : repository.findAll()) {
-            allLots.add(parkingLot);
-        }
-        return allLots;
+        return repository.findAll();
     }
 
     @RequestMapping("/lotByName")
@@ -43,6 +39,17 @@ public class ParkingLotController {
             return null;
         } else {
             return allLots;
+        }
+    }
+
+    @RequestMapping("/lotByAddress")
+    public ParkingLot lotByAddress(String address) {
+        ParkingLot lot = repository.findByAddress(address);
+        if (lot == null) {
+            System.out.println("Lot with address " + address + " was not found.");
+            return null;
+        } else {
+            return lot;
         }
     }
 

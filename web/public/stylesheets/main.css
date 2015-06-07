@@ -42,6 +42,9 @@ html, body {
     .login .button-container button {
       background: transparent;
       border: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
       padding: 10px 20px;
       font-family: "Lato", sans-serif;
       font-weight: 300;
@@ -85,7 +88,10 @@ html, body {
         margin: auto; }
         .login .dimmer .login-container form input {
           background: transparent;
-          border: none;
+          border: 0;
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 0;
           border-bottom: 3px solid white;
           padding: 10px 0;
           font-family: "Lato", sans-serif;
@@ -100,6 +106,9 @@ html, body {
         .login .dimmer .login-container form button {
           background: transparent;
           border: 0;
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 0;
           padding: 10px 20px;
           font-family: "Lato", sans-serif;
           font-weight: 300;
@@ -136,7 +145,10 @@ html, body {
     margin: auto; }
     .content form input {
       background: transparent;
-      border: none;
+      border: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
       border-bottom: 3px solid white;
       padding: 10px 0;
       font-family: "Lato", sans-serif;
@@ -151,6 +163,9 @@ html, body {
     .content form button {
       background: transparent;
       border: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
       padding: 10px 20px;
       font-family: "Lato", sans-serif;
       font-weight: 300;
@@ -197,6 +212,9 @@ html, body {
     .results .results-container button {
       background: transparent;
       border: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
       padding: 10px 20px;
       font-family: "Lato", sans-serif;
       font-weight: 300;

@@ -32,7 +32,7 @@
       <button ng-click="showLogin()">Login</button>
     </div>
     <div class="dimmer" ng-show="showDimmer">
-      <img src="images/close.svg" ng-click="hideLogin()" 
+      <img src="images/close.svg" ng-click="hideLogin()"
            onerror="this.onerror=null; this.src='images/close.png'" class="close">
       <div class="login-container">
         <form ng-submit="login()">
@@ -53,7 +53,7 @@
       </form>
     </div>
     <div class="results" ng-hide="showSearch">
-      <img src="images/close.svg" ng-click="hideResults()" 
+      <img src="images/close.svg" ng-click="hideResults()"
            onerror="this.onerror=null; this.src='images/close.png'" class="close">
       <div class="results-title">
         Parking lots found in {{ search }}:

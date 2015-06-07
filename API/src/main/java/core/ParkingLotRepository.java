@@ -8,4 +8,5 @@ public interface ParkingLotRepository extends MongoRepository<ParkingLot, String
 
     ParkingLot findByName(String name);
     List<ParkingLot> findByZipcode(String zipcode);
+    ParkingLot findByAddress(String address);
 }

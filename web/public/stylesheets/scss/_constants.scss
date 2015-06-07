@@ -8,6 +8,9 @@ $lato: "Lato", sans-serif;
 @mixin button() {
   background: transparent;
   border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   padding: 10px 20px;
   font-family: $lato;
   font-weight: 300;
@@ -27,7 +30,10 @@ $lato: "Lato", sans-serif;
 
 @mixin input() {
   background: transparent;
-  border: none;
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   border-bottom: 3px solid $white;
   padding: 10px 0;
   font-family: $lato;

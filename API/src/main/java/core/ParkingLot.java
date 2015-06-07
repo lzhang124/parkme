@@ -9,12 +9,14 @@ public class ParkingLot {
 
     private String name;
     private String zipcode;
+    private String address;
     private int capacity;
     private int occupied;
 
-    public ParkingLot(String name, String zipcode, int capacity) {
+    public ParkingLot(String name, String zipcode, String address, int capacity) {
         this.name = name;
         this.zipcode = zipcode;
+        this.address = address;
         this.capacity = capacity;
     }
 
@@ -36,6 +38,14 @@ public class ParkingLot {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getCapacity() {
