@@ -1,4 +1,4 @@
-var app = angular.module('search', []);
+var app = angular.module('main', []);
 
 app.controller('searchController', function($scope, $http) {
   $scope.showSearch = true;
@@ -22,4 +22,16 @@ app.controller('searchController', function($scope, $http) {
       $scope.hideResults();
     };
   };
+});
+
+app.controller('loginController', function($scope, $http) {
+  $scope.showDimmer = false;
+
+  $scope.showLogin = function() {
+    $scope.showDimmer = true;
+  }
+
+  $scope.hideLogin = function() {
+    $scope.showDimmer = false;
+  }
 });

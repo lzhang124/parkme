@@ -1,49 +1,72 @@
 <!DOCTYPE html>
-<html ng-app="search">
+<html ng-app="main">
 <head lang="en">
   <title>AVOKTECH</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-  <link href='/stylesheets/main.css' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+  
+  <!-- Styling -->
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
+  <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
 
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
-
+  <!-- Load Angular -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-  <script src="/javascripts/search.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-animate.min.js"></script>
+
+  <!-- Controllers -->
+  <script src="javascripts/main.js"></script>
+
+  <!-- Semantic-UI -->
+  <!-- <link rel="stylesheet" href="plugins/semantic-ui/css/semantic.min.css"> -->
+  <!-- <script src="plugins/semantic-ui/javascript/semantic.min.js"></script> -->
+
+  <!-- Animate.css -->
+  <!-- <link rel="stylesheet" href="plugins/animate.css"> -->
 </head>
 </body>
   <div class="bg"></div>
-  <div ng-controller="searchController">
-    <div class="content" ng-show="showSearch">
-      <img src="/images/logo-white.svg"
-           onerror="this.onerror=null; this.src='/images/logo-white.png'" class="logo">
-      <form ng-submit="showResults()">
-        <div class="form-group">
-          <input ng-model="search" type="text" class="form-control" placeholder="Enter zipcode" autofocus>
-        </div>
-        <button class="btn btn-default">Search</button>
-      </form>
-      <div class="contact">
-        For questions, please email <a href="mailto:larryzhang@mit.edu">larryzhang@mit.edu</a>
+  <div class="login" ng-controller="loginController">
+    <div class="button-container">
+      <button ng-click="showLogin()">Login</button>
+    </div>
+    <div class="dimmer" ng-show="showDimmer">
+      <img src="images/close.svg" ng-click="hideLogin()" 
+           onerror="this.onerror=null; this.src='images/close.png'" class="close">
+      <div class="login-container">
+        <form>
+          <input ng-model="username" type="text" placeholder="username" autofocus>
+          <input ng-model="password" type="password" placeholder="password">
+          <button>Login</button>
+        </form>
       </div>
     </div>
+  </div>
+  <div ng-controller="searchController">
+    <div class="content" ng-show="showSearch">
+      <img src="images/logo-white.svg"
+           onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
+      <form ng-submit="showResults()">
+        <input ng-model="search" type="text" placeholder="zipcode" autofocus>
+        <button>Search</button>
+      </form>
+    </div>
     <div class="results" ng-hide="showSearch">
-      <img src="/images/close.svg" ng-click="hideResults()" 
-           onerror="this.onerror=null; this.src='/images/close.png'" class="close-button">
+      <img src="images/close.svg" ng-click="hideResults()" 
+           onerror="this.onerror=null; this.src='images/close.png'" class="close">
       <div class="results-title">
         Parking lots found in {{ search }}:
       </div>
       <div class="results-container">
-        <li ng-repeat="lot in lots">
+        <button ng-repeat="lot in lots">
           <div class="lot-name">
             {{ lot.name }}
           </div>
           <div class="lot-free">
             Available spots: {{ lot.capacity - lot.occupied }}
           </div>
-        </li>
+        </button>
       </div>
     </div>
   </div>

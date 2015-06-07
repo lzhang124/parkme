@@ -1,3 +1,59 @@
 $blue: rgba(0,72,105,1);
+$white: rgba(255,255,255,1);
+$grey: rgba(150,150,150,1);
+$dimmer: rgba(0,0,0,1);
 
 $lato: "Lato", sans-serif;
+
+@mixin button() {
+  background: transparent;
+  border: 0;
+  padding: 10px 20px;
+  font-family: $lato;
+  font-weight: 300;
+  text-align: center;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: $white;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+@mixin button-hover() {
+  background: $white;
+  color: $blue;
+}
+
+@mixin input() {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid $white;
+  padding: 10px 0;
+  font-family: $lato;
+  font-weight: 300;
+  text-align: center;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: $white;
+}
+
+@mixin input-focus() {
+  outline: 0;
+}
+
+@mixin close() {
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 3%;
+  opacity: .5;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+@mixin close-hover() {
+  opacity: 1;
+}
