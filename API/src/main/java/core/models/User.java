@@ -1,4 +1,4 @@
-package core;
+package core.models;
 
 import org.springframework.data.annotation.Id;
 
@@ -13,7 +13,7 @@ public class User {
     private String password;
     private String phone;
     private String email;
-    private String type;
+    private String roles;
 
     public User(String firstName, String lastName, String username, String password, String phone, String email) {
         this.firstName = firstName;
@@ -22,7 +22,7 @@ public class User {
         this.password = password;
         this.phone = phone;
         this.email = email;
-        this.type = "General";
+        this.roles = {}; // Account, Admin, System
     };
 
     public String getId() {
@@ -77,12 +77,12 @@ public class User {
         this.email = email;
     };
 
-    public String getType() {
-        return type;
+    public String getRoles() {
+        return roles;
     };
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRoles(String roles) {
+        this.roles = roles;
     };
 
     @Override

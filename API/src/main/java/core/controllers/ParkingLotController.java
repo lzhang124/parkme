@@ -1,13 +1,12 @@
-package core;
+package core.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import core.Repositories.ParkingLotRepository;
+import core.models.ParkingLot;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.lang.reflect.Array;
 
 @RestController
 public class ParkingLotController {
