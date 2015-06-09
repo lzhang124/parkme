@@ -1,8 +1,7 @@
 package core.models;
 
-public class Admin {
+public class LotGroup {
 
     private User user;
     private ParkingLot lot;
-
 }

@@ -2,6 +2,9 @@ package core.models;
 
 import org.springframework.data.annotation.Id;
 
+import java.lang.*;
+import java.util.Dictionary;
+
 public class User {
 
     @Id
@@ -13,7 +16,7 @@ public class User {
     private String password;
     private String phone;
     private String email;
-    private String roles;
+    private Map<String, Account> roles;
 
     public User(String firstName, String lastName, String username, String password, String phone, String email) {
         this.firstName = firstName;
@@ -22,7 +25,11 @@ public class User {
         this.password = password;
         this.phone = phone;
         this.email = email;
-        this.roles = {}; // Account, Admin, System
+        this.roles = Map<
+            "account": Account;
+            "lotGroup": LotGroup;
+            "system": System;
+        >;
     };
 
     public String getId() {
