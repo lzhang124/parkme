@@ -1,9 +1,8 @@
 package core.models;
 
-public class LotGroup {
+public class Systems {
 
     private Account account;
-    private ParkingLot lot;
 
 
 }
