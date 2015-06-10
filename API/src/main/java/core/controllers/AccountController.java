@@ -7,10 +7,10 @@ import core.models.Account;
 import core.models.User;
 import core.models.LotGroup;
 import core.models.Systems;
-import core.Repositories.AccountRepository;
-import core.Repositories.UserRepository;
-import core.Repositories.LotGroupRepository;
-import core.Repositories.SystemsRepository;
+import core.repositories.AccountRepository;
+import core.repositories.UserRepository;
+import core.repositories.LotGroupRepository;
+import core.repositories.SystemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class AccountController {
-
+    
     @Autowired
     private AccountRepository accountRepository;
     @Autowired

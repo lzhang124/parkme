@@ -3,7 +3,7 @@ package core.controllers;
 import java.util.List;
 
 import core.models.ParkingLot;
-import core.Repositories.ParkingLotRepository;
+import core.repositories.ParkingLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

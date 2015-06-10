@@ -3,11 +3,11 @@ package core;
 import java.util.Arrays;
 
 import core.models.ParkingLot;
-import core.Repositories.ParkingLotRepository;
-import core.Repositories.AccountRepository;
-import core.Repositories.UserRepository;
-import core.Repositories.LotGroupRepository;
-import core.Repositories.SystemsRepository;
+import core.repositories.ParkingLotRepository;
+import core.repositories.AccountRepository;
+import core.repositories.UserRepository;
+import core.repositories.LotGroupRepository;
+import core.repositories.SystemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

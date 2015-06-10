@@ -1,4 +1,4 @@
-package core.Repositories;
+package core.repositories;
 
 import core.models.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
