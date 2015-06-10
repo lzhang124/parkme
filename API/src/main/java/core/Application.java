@@ -6,6 +6,8 @@ import core.models.ParkingLot;
 import core.Repositories.ParkingLotRepository;
 import core.Repositories.AccountRepository;
 import core.Repositories.UserRepository;
+import core.Repositories.LotGroupRepository;
+import core.Repositories.SystemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +23,10 @@ public class Application implements CommandLineRunner {
     private AccountRepository accountRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private LotGroupRepository lotGroupRepository;
+    @Autowired
+    private SystemsRepository systemsRepository;
 
     public static void main(String[] args) {
 
@@ -42,6 +48,8 @@ public class Application implements CommandLineRunner {
         parkingLotRepository.deleteAll();
         accountRepository.deleteAll();
         userRepository.deleteAll();
+        lotGroupRepository.deleteAll();
+        systemsRepository.deleteAll();
 
         // save a couple of customers
         parkingLotRepository.save(new ParkingLot("ZYXParking", "80027", "Address 1", "$2.00", 100));

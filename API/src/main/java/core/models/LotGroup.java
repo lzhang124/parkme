@@ -10,9 +10,8 @@ public class LotGroup {
     private String accountId;
     private String lotId;
 
-    public LotGroup(String accountId, String lotId) {
+    public LotGroup(String accountId) {
         this.accountId = accountId;
-        this.lotId = lotId;
     }
 
     public String getId() {
