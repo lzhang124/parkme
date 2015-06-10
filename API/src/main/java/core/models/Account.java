@@ -17,7 +17,7 @@ public class Account {
     private String password;
     private String phone;
     private String email;
-    private Map<String, Object> type;
+    private Map<String, String> type;
 
     public Account(String firstName, String lastName, String username, String password, String phone, String email) {
         this.firstName = firstName;
@@ -94,8 +94,8 @@ public class Account {
                Objects.equals(type, "systems") && this.type.containsKey("systems");
     }
 
-    public void addType(String type, Object object) {
-        this.type.put(type, object);
+    public void addType(String type, String typeId) {
+        this.type.put(type, typeId);
     }
 
     @Override

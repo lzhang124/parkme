@@ -7,12 +7,12 @@ public class User {
     @Id
     private String id;
 
-    private Account account;
+    private String accountId;
     private boolean parked;
     private boolean payed;
 
-    public User(Account account) {
-        this.account = account;
+    public User(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getId() {
@@ -23,12 +23,12 @@ public class User {
         this.id = id;
     }
 
-    public Account getAccount() {
-        return account;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public boolean isParked() {
@@ -57,6 +57,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [" + account.getFirstName() + account.getLastName();
+        return "User [id=" + id;
     }
 }

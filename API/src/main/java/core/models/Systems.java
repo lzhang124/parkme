@@ -7,10 +7,10 @@ public class Systems {
     @Id
     private String id;
 
-    private Account account;
+    private String accountId;
 
-    public Systems(Account account) {
-        this.account = account;
+    public Systems(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getId() {
@@ -21,16 +21,16 @@ public class Systems {
         this.id = id;
     }
 
-    public Account getAccount() {
-        return account;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
-    //    @Override
-//    public String toString() {
-//        return "Systems [" + account.getFirstName() + account.getLastName();
-//    }
+        @Override
+    public String toString() {
+        return "Systems [id=" + id;
+    }
 }

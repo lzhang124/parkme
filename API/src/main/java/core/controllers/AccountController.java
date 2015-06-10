@@ -74,9 +74,9 @@ public class AccountController {
     public Account newAccount(String firstName, String lastName, String username, String password, String phone, String email) {
         Account account = new Account(firstName, lastName, username, password, phone, email);
         accountRepository.save(account);
-        User user = new User(account);
+        User user = new User(account.getId());
         userRepository.save(user);
-        account.addType("user", user);
+        account.addType("user", user.getId());
         accountRepository.save(account);
         return account;
     }

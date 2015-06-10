@@ -7,12 +7,12 @@ public class LotGroup {
     @Id
     private String id;
 
-    private Account account;
-    private ParkingLot lot;
+    private String accountId;
+    private String lotId;
 
-    public LotGroup(Account account, ParkingLot lot) {
-        this.account = account;
-        this.lot = lot;
+    public LotGroup(String accountId, String lotId) {
+        this.accountId = accountId;
+        this.lotId = lotId;
     }
 
     public String getId() {
@@ -23,24 +23,24 @@ public class LotGroup {
         this.id = id;
     }
 
-    public Account getAccount() {
-        return account;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
-    public ParkingLot getLot() {
-        return lot;
+    public String getLotId() {
+        return lotId;
     }
 
-    public void setLot(ParkingLot lot) {
-        this.lot = lot;
+    public void setLotId(String lotId) {
+        this.lotId = lotId;
     }
 
     @Override
     public String toString() {
-        return "LotGroup [lot=" + lot.getName();
+        return "LotGroup [id=" + id;
     }
 }
