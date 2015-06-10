@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class AccountController {
-    
+
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
@@ -92,8 +92,8 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/newAccount", method = RequestMethod.POST)
-    public Account newAccount(String firstName, String lastName, String username, String password, String phone, String email) {
-        Account account = new Account(firstName, lastName, username, password, phone, email);
+    public Account newAccount(String firstName, String lastName, String username, String password) {
+        Account account = new Account(firstName, lastName, username, password);
         accountRepository.save(account);
         User user = new User(account.getId());
         userRepository.save(user);

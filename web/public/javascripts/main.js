@@ -25,19 +25,42 @@ app.controller('searchController', function($scope, $http) {
 
 app.controller('loginController', function($scope, $http) {
   $scope.showDimmer = false;
+  $scope.LoginForm = false;
+  $scope.SignupForm = false;
 
   $scope.showLogin = function() {
     $scope.showDimmer = true;
+    $scope.LoginForm = true;
   };
 
-  $scope.hideLogin = function() {
+  $scope.showSignup = function() {
+    $scope.showDimmer = true;
+    $scope.SignupForm = true;
+  };
+
+  $scope.hideDimmer = function() {
     $scope.showDimmer = false;
+    $scope.LoginForm = false;
+    $scope.SignupForm = false;
   };
 
   $scope.login = function() {
     $http.post('url', {
       username: $scope.username,
       password: $scope.password,
+    }).success(function(){
+      console.log(arguments)
+    });
+  };
+
+  $scope.signup = function() {
+    $http.post('url', {
+      firstName: $scope.firstName,
+      lastName: $scope.lastName,
+      username: $scope.username,
+      password: $scope.password,
+      phone: $scope.phone,
+      email: $scope.email,
     }).success(function(){
       console.log(arguments)
     });
