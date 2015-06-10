@@ -45,15 +45,15 @@ html, body {
   position: absolute;
   
   .button-container {
-    height: 25px;
+    // height: 25px;
     position: absolute;
     top: 0;
     right: 0;
+    margin: 10px;
     z-index: 1;
 
     button {
       @include button();
-      margin: 10px;
     }
 
     button:hover {

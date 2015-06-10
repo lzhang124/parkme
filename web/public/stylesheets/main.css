@@ -34,10 +34,10 @@ html, body {
   width: 100%;
   position: absolute; }
   .login .button-container {
-    height: 25px;
     position: absolute;
     top: 0;
     right: 0;
+    margin: 10px;
     z-index: 1; }
     .login .button-container button {
       background: transparent;
@@ -54,8 +54,7 @@ html, body {
       letter-spacing: 2.5px;
       color: white;
       cursor: pointer;
-      transition: all 300ms ease;
-      margin: 10px; }
+      transition: all 300ms ease; }
     .login .button-container button:hover {
       background: white;
       color: #004869; }
