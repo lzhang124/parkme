@@ -1,7 +1,5 @@
 package core.Repositories;
 
-import java.util.List;
-
 import core.models.Account;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

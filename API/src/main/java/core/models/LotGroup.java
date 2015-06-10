@@ -13,8 +13,6 @@ public class LotGroup {
     public LotGroup(Account account, ParkingLot lot) {
         this.account = account;
         this.lot = lot;
-
-        account.addType("lotGroup", this);
     }
 
     public String getId() {

@@ -26,10 +26,7 @@ public class Account {
         this.password = password;
         this.phone = phone;
         this.email = email;
-
         this.type = new HashMap<>();
-        User newUser = new User(this);
-        this.type.put("user", newUser);
     }
 
     public String getId() {

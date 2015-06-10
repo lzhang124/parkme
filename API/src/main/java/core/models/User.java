@@ -8,8 +8,8 @@ public class User {
     private String id;
 
     private Account account;
-    private boolean isParked;
-    private boolean hasPayed;
+    private boolean parked;
+    private boolean payed;
 
     public User(Account account) {
         this.account = account;
@@ -27,24 +27,32 @@ public class User {
         return account;
     }
 
-    public void setAccount() {
+    public void setAccount(Account account) {
         this.account = account;
     }
 
     public boolean isParked() {
-        return isParked;
+        return parked;
     }
 
-    public void setIsParked(boolean isParked) {
-        this.isParked = isParked;
+    public void setParked(boolean parked) {
+        this.parked = parked;
     }
 
-    public boolean isHasPayed() {
-        return hasPayed;
+    public void changeParked() {
+        this.parked = !this.parked;
     }
 
-    public void setHasPayed(boolean hasPayed) {
-        this.hasPayed = hasPayed;
+    public boolean isPayed() {
+        return payed;
+    }
+
+    public void setPayed(boolean payed) {
+        this.payed = payed;
+    }
+
+    public void changePayed() {
+        this.payed = !this.payed;
     }
 
     @Override

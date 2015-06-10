@@ -11,8 +11,6 @@ public class Systems {
 
     public Systems(Account account) {
         this.account = account;
-
-        account.addType("systems", this);
     }
 
     public String getId() {
@@ -31,8 +29,8 @@ public class Systems {
         this.account = account;
     }
 
-    @Override
-    public String toString() {
-        return "Systems [" + account.getFirstName() + account.getLastName();
-    }
+    //    @Override
+//    public String toString() {
+//        return "Systems [" + account.getFirstName() + account.getLastName();
+//    }
 }

@@ -2,10 +2,10 @@ package core;
 
 import java.util.Arrays;
 
-import core.models.Account;
 import core.models.ParkingLot;
-import core.Repositories.AccountRepository;
 import core.Repositories.ParkingLotRepository;
+import core.Repositories.AccountRepository;
+import core.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,10 +16,11 @@ import org.springframework.context.ApplicationContext;
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private ParkingLotRepository plRepository;
-
+    private ParkingLotRepository parkingLotRepository;
     @Autowired
-    private AccountRepository aRepository;
+    private AccountRepository accountRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public static void main(String[] args) {
 
@@ -38,21 +39,18 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        plRepository.deleteAll();
-        aRepository.deleteAll();
+        parkingLotRepository.deleteAll();
+        accountRepository.deleteAll();
+        userRepository.deleteAll();
 
         // save a couple of customers
-        plRepository.save(new ParkingLot("ZYXParking", "80027", "Address 1", "$2.00", 100));
-        plRepository.save(new ParkingLot("IParking", "80027", "Address 2", "$1.75", 200));
-
-        // save a couple of Accounts
-        aRepository.save(new Account("Larry", "Zhang", "larry", "password", "3038070600", "larry.zhang@avoktech.com"));
-        aRepository.save(new Account("Yihong", "Zhang", "yihong", "password", "3038813418", "yihong.zhang@avoktech.com"));
+        parkingLotRepository.save(new ParkingLot("ZYXParking", "80027", "Address 1", "$2.00", 100));
+        parkingLotRepository.save(new ParkingLot("IParking", "80027", "Address 2", "$1.75", 200));
 
 //        // fetch all customers
 //        System.out.println("Lots found with findAll():");
 //        System.out.println("-------------------------------");
-//        for (ParkingLot parkinglot : plRepository.findAll()) {
+//        for (ParkingLot parkinglot : parkingLotRepository.findAll()) {
 //            System.out.println(parkinglot);
 //        }
 //        System.out.println();
@@ -60,11 +58,11 @@ public class Application implements CommandLineRunner {
 //        // fetch an individual customer
 //        System.out.println("Lot found with findByName('ZYXParking'):");
 //        System.out.println("--------------------------------");
-//        System.out.println(plRepository.findByName("ZYXParking"));
+//        System.out.println(parkingLotRepository.findByName("ZYXParking"));
 //
 //        System.out.println("Lot found with findByZipcode('80027'):");
 //        System.out.println("--------------------------------");
-//        for (ParkingLot parkinglot : plRepository.findByZipcode("80027")) {
+//        for (ParkingLot parkinglot : parkingLotRepository.findByZipcode("80027")) {
 //            System.out.println(parkinglot);
 //        }
     }
