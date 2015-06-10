@@ -111,7 +111,7 @@ html, body {
 }
 
 .content {
-  height: 50%;
+  height: 75%;
   width: 100%;
   position: absolute;
   top: 25%;
@@ -129,10 +129,15 @@ html, body {
     font-size: 2em;
     text-transform: uppercase;
     letter-spacing: 2.5px;
+  }
 
-    a, a:visited {
-      color: $white;
-    }
+  .info {
+    margin-top: 12%;
+    text-transform: uppercase;
+  }
+
+  a, a:visited {
+    color: $white;
   }
 
   form {

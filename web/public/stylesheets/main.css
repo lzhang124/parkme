@@ -125,7 +125,7 @@ html, body {
           color: #004869; }
 
 .content {
-  height: 50%;
+  height: 75%;
   width: 100%;
   position: absolute;
   top: 25%;
@@ -140,8 +140,11 @@ html, body {
     font-size: 2em;
     text-transform: uppercase;
     letter-spacing: 2.5px; }
-    .content .tagline a, .content .tagline a:visited {
-      color: white; }
+  .content .info {
+    margin-top: 12%;
+    text-transform: uppercase; }
+  .content a, .content a:visited {
+    color: white; }
   .content form {
     width: 30%;
     margin: auto; }
