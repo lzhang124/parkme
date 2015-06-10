@@ -7,6 +7,7 @@ import core.Repositories.ParkingLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class ParkingLotController {
@@ -14,12 +15,12 @@ public class ParkingLotController {
     @Autowired
     private ParkingLotRepository repository;
 
-    @RequestMapping("/list")
-    public List<ParkingLot> list() {
+    @RequestMapping(value = "/listParkingLots", method = RequestMethod.GET)
+    public List<ParkingLot> listParkingLots() {
         return repository.findAll();
     }
 
-    @RequestMapping("/lotById")
+    @RequestMapping(value = "/lotById", method = RequestMethod.GET)
     public ParkingLot lotById(String id) {
         ParkingLot lot = repository.findById(id);
         if (lot == null) {
@@ -30,7 +31,7 @@ public class ParkingLotController {
         }
     }
 
-    @RequestMapping("/lotByName")
+    @RequestMapping(value = "/lotByName", method = RequestMethod.GET)
     public ParkingLot lotByName(String name) {
         ParkingLot lot = repository.findByName(name);
         if (lot == null) {
@@ -41,7 +42,7 @@ public class ParkingLotController {
         }
     }
 
-    @RequestMapping("/lotsByZipcode")
+    @RequestMapping(value = "/lotsByZipcode", method = RequestMethod.GET)
     public List<ParkingLot> lotsByZipcode(String zipcode) {
         List<ParkingLot> allLots = repository.findByZipcode(zipcode);
         if (allLots == null) {
@@ -52,7 +53,7 @@ public class ParkingLotController {
         }
     }
 
-    @RequestMapping("/lotByAddress")
+    @RequestMapping(value = "/lotByAddress", method = RequestMethod.GET)
     public ParkingLot lotByAddress(String address) {
         ParkingLot lot = repository.findByAddress(address);
         if (lot == null) {
@@ -63,7 +64,7 @@ public class ParkingLotController {
         }
     }
 
-    @RequestMapping("/entered")
+    @RequestMapping(value = "/entered", method = RequestMethod.POST)
     public ParkingLot entered(String name) {
         ParkingLot lot = repository.findByName(name);
         if (lot == null) {
@@ -76,7 +77,7 @@ public class ParkingLotController {
         }
     }
 
-    @RequestMapping("/exited")
+    @RequestMapping(value = "/exited", method = RequestMethod.POST)
     public ParkingLot exited(String id) {
         ParkingLot lot = repository.findById(id);
         if (lot == null) {
@@ -92,7 +93,7 @@ public class ParkingLotController {
         }
     }
 
-    @RequestMapping("/new")
+    @RequestMapping(value = "/newParkingLot", method = RequestMethod.POST)
     public ParkingLot newLot(String name, String zipcode, String address, String price, int capacity) {
         ParkingLot lot = new ParkingLot(name, zipcode, address, price, capacity);
         repository.save(lot);

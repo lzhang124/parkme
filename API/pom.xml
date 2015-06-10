@@ -8,8 +8,8 @@
 	<version>0.1.4</version>
 	<packaging>jar</packaging>
 
-	<name>Avoktech</name>
-	<description>Avoktech Parking Application</description>
+	<name>AvokTech</name>
+	<description>AvokTech Parking Application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

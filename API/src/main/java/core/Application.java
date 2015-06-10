@@ -39,6 +39,7 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         plRepository.deleteAll();
+        aRepository.deleteAll();
 
         // save a couple of customers
         plRepository.save(new ParkingLot("ZYXParking", "80027", "Address 1", "$2.00", 100));

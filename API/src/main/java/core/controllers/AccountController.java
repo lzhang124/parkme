@@ -7,6 +7,7 @@ import core.Repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class AccountController {
@@ -14,12 +15,12 @@ public class AccountController {
     @Autowired
     private AccountRepository repository;
 
-    @RequestMapping("/list")
-    public List<Account> list() {
+    @RequestMapping(value = "/listAccounts", method = RequestMethod.GET)
+    public List<Account> listAccounts() {
         return repository.findAll();
     }
 
-    @RequestMapping("/accountById")
+    @RequestMapping(value = "/accountById", method = RequestMethod.GET)
     public Account accountById(String id) {
         Account account = repository.findById(id);
         if (account == null) {
@@ -30,7 +31,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping("/accountByUsername")
+    @RequestMapping(value = "/accountByUsername", method = RequestMethod.GET)
     public Account accountByUsername(String username) {
         Account account = repository.findByUsername(username);
         if (account == null) {
@@ -41,7 +42,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping("/accountByEmail")
+    @RequestMapping(value = "/accountByEmail", method = RequestMethod.GET)
     public Account accountByEmail(String email) {
         Account account = repository.findByEmail(email);
         if (account == null) {
@@ -52,7 +53,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping("/addType")
+    @RequestMapping(value = "/addType", method = RequestMethod.POST)
     public Account addType(String id, String type, Object object) {
         Account account = repository.findById(id);
         if (account == null) {
@@ -65,7 +66,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping("/new")
+    @RequestMapping(value = "/newAccount", method = RequestMethod.POST)
     public Account newAccount(String firstName, String lastName, String username, String password, String phone, String email) {
         Account account = new Account(firstName, lastName, username, password, phone, email);
         repository.save(account);

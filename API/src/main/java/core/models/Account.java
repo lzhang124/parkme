@@ -1,5 +1,6 @@
 package core.models;
 
+import java.util.Map;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class Account {
     private String password;
     private String phone;
     private String email;
-    private HashMap<String, Object> type;
+    private Map<String, Object> type;
 
     public Account(String firstName, String lastName, String username, String password, String phone, String email) {
         this.firstName = firstName;
@@ -87,7 +88,7 @@ public class Account {
         this.email = email;
     }
 
-    public HashMap getType() {
+    public Map getType() {
         return type;
     }
 
