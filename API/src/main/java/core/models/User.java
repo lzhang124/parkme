@@ -8,6 +8,7 @@ public class User {
     private String id;
 
     private Account account;
+    private String creditCard;
     private boolean isParked;
     private boolean hasPayed;
 
@@ -29,6 +30,14 @@ public class User {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public String getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
     }
 
     public boolean isParked() {

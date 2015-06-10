@@ -11,6 +11,8 @@ public class Systems {
 
     public Systems(Account account) {
         this.account = account;
+
+        account.addType("systems", this);
     }
 
     public String getId() {

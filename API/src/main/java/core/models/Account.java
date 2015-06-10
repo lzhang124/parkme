@@ -1,6 +1,8 @@
 package core.models;
 
 import java.util.HashMap;
+import java.util.Objects;
+
 import org.springframework.data.annotation.Id;
 
 public class Account {
@@ -24,11 +26,9 @@ public class Account {
         this.phone = phone;
         this.email = email;
 
-        this.type = new HashMap<String, Object>();
+        this.type = new HashMap<>();
         User newUser = new User(this);
         this.type.put("user", newUser);
-        this.type.put("lotGroup", null);
-        this.type.put("systems", null);
     }
 
     public String getId() {
@@ -91,8 +91,13 @@ public class Account {
         return type;
     }
 
-    public void addType(String label, Object type) {
-        this.type.put(label, type);
+    public boolean hasType(String type) {
+        return Objects.equals(type, "lotGroup") && this.type.containsKey("lotGroup") ||
+               Objects.equals(type, "systems") && this.type.containsKey("systems");
+    }
+
+    public void addType(String type, Object object) {
+        this.type.put(type, object);
     }
 
     @Override
