@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import core.models.Account;
 import core.models.ParkingLot;
-import core.Repositories.AccountRepository
+import core.Repositories.AccountRepository;
 import core.Repositories.ParkingLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +17,8 @@ public class Application implements CommandLineRunner {
 
     @Autowired
     private ParkingLotRepository plRepository;
+
+    @Autowired
     private AccountRepository aRepository;
 
     public static void main(String[] args) {
