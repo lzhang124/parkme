@@ -59,8 +59,6 @@ app.controller('loginController', function($scope, $http) {
       lastName: $scope.lastName,
       username: $scope.username,
       password: $scope.password,
-      phone: $scope.phone,
-      email: $scope.email,
     }).success(function(){
       console.log(arguments)
     });

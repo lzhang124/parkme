@@ -5,8 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-
 var app = express();
 
 // view engine setup
@@ -22,6 +20,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// passport config
+var passport = require('passport');
+var expressSession = require('express-session');
+
+app.use(expressSession({
+    secret: 'thisisasecret',
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport init
+var initPassport = require('./passport/init');
+initPassport(passport);
+
+// routes
+var routes = require('./routes/index');
 app.use('/', routes);
 
 // catch 404 and forward to error handler
