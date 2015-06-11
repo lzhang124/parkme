@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var bCrypt = require('bcrypt-nodejs');
 var https = require('https');
+var querystring = require('querystring');
 
 module.exports = function(passport) {
 
@@ -14,14 +15,12 @@ module.exports = function(passport) {
             });
 
             res.on('end', function() {
-                var user = JSON.parse(data)
-                console.log(user.username);
-
                 if (!user) {
                     return fn(null, null);
-                } else {
-                    return fn(null, user);
                 }
+                var user = JSON.parse(data);
+                console.log('Username: ', user.username);
+                return fn(null, user);
             });
         }).on('error', function(e) {
             console.log('Error: ', e);
@@ -38,14 +37,12 @@ module.exports = function(passport) {
             });
 
             res.on('end', function() {
-                var user = JSON.parse(data);
-                console.log(user.username);
-
                 if (!user) {
                     return fn(null, null);
-                } else {
-                    return fn(null, user);
                 }
+                var user = JSON.parse(data);
+                console.log('Username: ', user.username);
+                return fn(null, user);
             });
         }).on('error', function(e) {
             console.log('Error: ', e);
@@ -54,21 +51,21 @@ module.exports = function(passport) {
     };
 
     var createNewUser = function(firstName, lastName, username, password, fn) {
-        var data = {
+        var data = querystring.stringify({
             firstName: firstName,
             lastName: lastName,
             username: username,
             password: password
-        };
-        var dataString = JSON.stringify(data);
+        });
+        console.log(data);
 
         var options = {
-            host: 'https://127.0.0.1',
+            host: '127.0.0.1',
             port: 8443,
             path: '/newAccount',
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         };
 
@@ -82,7 +79,7 @@ module.exports = function(passport) {
 
             res.on('end', function() {
                 var user = JSON.parse(data);
-                console.log(user.username);
+                console.log('Username: ', user.username);
 
                 return fn(null, user);
             });
@@ -92,7 +89,7 @@ module.exports = function(passport) {
             return fn(e, null);
         });
 
-        req.write(dataString);
+        req.write(data);
         req.end();
     };
 
@@ -115,22 +112,24 @@ module.exports = function(passport) {
     }, function(req, username, password, done) {
         findByUsername(username, function(err, user) {
             if (err) {
-                console.log('Error in login: '+err);
+                console.log('Error in login: ' + err);
                 return done(err);
             };
             if (!user) {
+                console.log('User not found with username: ' + username);
                 return done(null, false, req.flash( 'message', 'User not found with username: ' + username ));
             };
             if (!isValidPassword(user, password)){
+                console.log('Invalid password');
                 return done(null, false, req.flash( 'message', 'Invalid password' ));
             };
+            console.log('Welcome, ' + user.firstName);
             return done(null, user, req.flash( 'message', 'Welcome, ' + user.firstName ));
         });
     }));
 
     var isValidPassword = function(user, password){
-        // return bCrypt.compareSync(password, user.password);
-        return user.password === password;
+        return bCrypt.compareSync(password, user.password);
     };
 
     // SIGNUP
@@ -144,11 +143,11 @@ module.exports = function(passport) {
                     return done(err);
                 };
                 if (user) {
+                    console.log('User already exists with username: ' + username);
                     return done(null, false, req.flash( 'message', 'User already exists with username: ' + username ));
                 } else {
                     var firstName = req.param('firstName');
                     var lastName = req.param('lastName');
-                    var username = username;
                     var password = createHash(password);
                     
                     createNewUser(firstName, lastName, username, password, function(err, user) {
@@ -156,6 +155,7 @@ module.exports = function(passport) {
                             console.log('Error in saving user: ' + err);  
                             throw err;
                         };
+                        console.log('Welcome, ' + user.firstName);
                         return done(null, user, req.flash( 'message', 'Welcome, ' + user.firstName ));
                     });
                 };

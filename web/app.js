@@ -57,7 +57,6 @@ if (app.get('env') === 'development') {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        console.log(err.message);
         res.render('error', {
             message: err.message,
             error: err

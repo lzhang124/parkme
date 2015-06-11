@@ -37,22 +37,22 @@
            onerror="this.onerror=null; this.src='images/close.png'" class="close">
       <div class="login-container" ng-show="LoginForm">
         <form action="/login" method="POST">
-          <input ng-model="username" type="text" placeholder="USERNAME" autofocus>
-          <input ng-model="password" type="password" placeholder="PASSWORD">
+          <input name="username" type="text" placeholder="USERNAME" autofocus>
+          <input name="password" type="password" placeholder="PASSWORD">
           <button>Login</button>
         </form>
       </div>
       <div class="signup-container" ng-show="SignupForm">
         <form action="/signup" method="POST">
           <div class="first">
-            <input ng-model="firstName" type="text" placeholder="FIRST NAME" autofocus>
+            <input name="firstName" type="text" placeholder="FIRST NAME" autofocus>
           </div>
           <div class="last">
-            <input ng-model="lastName" type="text" placeholder="LAST NAME">
+            <input name="lastName" type="text" placeholder="LAST NAME">
           </div>
-          <input ng-model="username" type="text" placeholder="USERNAME">
-          <input ng-model="password" type="password" placeholder="PASSWORD">
-          <input ng-model="password2" type="password" placeholder="RETYPE PASSWORD">
+          <input name="username" type="text" placeholder="USERNAME">
+          <input name="password" type="password" placeholder="PASSWORD">
+          <input name="password2" type="password" placeholder="RETYPE PASSWORD">
           <button>Sign Up</button>
         </form>
       </div>

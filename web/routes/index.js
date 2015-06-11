@@ -21,10 +21,6 @@ module.exports = function(passport) {
     successFlash: true
   }));
 
-  router.get('/signup', function(req, res) {
-    res.render('success');
-  });
-
   /* Login */ 
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/success',
