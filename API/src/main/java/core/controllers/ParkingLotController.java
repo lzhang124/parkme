@@ -97,6 +97,7 @@ public class ParkingLotController {
     public ParkingLot newLot(String name, String zipcode, String address, String price, int capacity) {
         ParkingLot lot = new ParkingLot(name, zipcode, address, price, capacity);
         repository.save(lot);
+        System.out.println("New Lot with name " + name);
         return lot;
     }
 }

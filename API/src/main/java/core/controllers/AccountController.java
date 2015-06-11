@@ -78,12 +78,14 @@ public class AccountController {
             lotGroupRepository.save(group);
             account.addType(type, group.getId());
             accountRepository.save(account);
+            System.out.println("lotGroup type added to Account with username " + account.getUsername());
             return account;
         } else if (Objects.equals(type, "systems")) {
             Systems systems = new Systems(account.getId());
             systemsRepository.save(systems);
             account.addType(type, systems.getId());
             accountRepository.save(account);
+            System.out.println("systems type added to Account with username " + account.getUsername());
             return account;
         } else {
             System.out.println("Type " + type + " not recognized.");
@@ -99,6 +101,7 @@ public class AccountController {
         userRepository.save(user);
         account.addType("user", user.getId());
         accountRepository.save(account);
+        System.out.println("New Account with username " + username);
         return account;
     }
 

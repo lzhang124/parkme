@@ -15,11 +15,10 @@ module.exports = function(passport) {
             });
 
             res.on('end', function() {
-                if (!user) {
+                if (data === '') {
                     return fn(null, null);
                 }
                 var user = JSON.parse(data);
-                console.log('Username: ', user.username);
                 return fn(null, user);
             });
         }).on('error', function(e) {
@@ -37,11 +36,10 @@ module.exports = function(passport) {
             });
 
             res.on('end', function() {
-                if (!user) {
+                if (data === '') {
                     return fn(null, null);
                 }
                 var user = JSON.parse(data);
-                console.log('Username: ', user.username);
                 return fn(null, user);
             });
         }).on('error', function(e) {
@@ -78,8 +76,6 @@ module.exports = function(passport) {
 
             res.on('end', function() {
                 var user = JSON.parse(data);
-                console.log('Username: ', user.username);
-
                 return fn(null, user);
             });
         });
@@ -90,6 +86,14 @@ module.exports = function(passport) {
 
         req.write(data);
         req.end();
+    };
+
+    var isValidPassword = function(user, password) {
+        return bCrypt.compareSync(password, user.password);
+    };
+
+    var createHash = function(password) {
+        return bCrypt.hashSync(password, bCrypt.genSaltSync(10));
     };
 
     // Passport needs to be able to serialize and deserialize users to support persistent login sessions
@@ -127,15 +131,11 @@ module.exports = function(passport) {
         });
     }));
 
-    var isValidPassword = function(user, password){
-        return bCrypt.compareSync(password, user.password);
-    };
-
     // SIGNUP
     passport.use('signup', new LocalStrategy({
         passReqToCallback : true
     }, function(req, username, password, done) {
-        findOrCreateUser = function(){
+        process.nextTick(function() {
             findByUsername(username, function(err, user) {
                 if (err) {
                     console.log('Error in signup: ' + err);
@@ -159,11 +159,6 @@ module.exports = function(passport) {
                     });
                 };
             });
-        };
-        process.nextTick(findOrCreateUser);
+        });
     }));
-
-    var createHash = function(password){
-        return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-    };
 };
