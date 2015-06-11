@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // passport init
-var initPassport = require('./passport/init');
+var initPassport = require('./passport');
 initPassport(passport);
 
 // routes

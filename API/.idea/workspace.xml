@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691e65c5-3396-43d8-b630-e20f45e2e38e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/models/Account.java" afterPath="$PROJECT_DIR$/src/main/java/core/models/Account.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java" afterPath="$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/views/index.html" afterPath="$PROJECT_DIR$/../web/views/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/main.css.map" afterPath="$PROJECT_DIR$/../web/public/stylesheets/main.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/../web/public/stylesheets/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/javascripts/main.js" afterPath="$PROJECT_DIR$/../web/public/javascripts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/scss/main.scss" afterPath="$PROJECT_DIR$/../web/public/stylesheets/scss/main.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/passport/init.js" afterPath="$PROJECT_DIR$/../web/passport/init.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="avok.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +29,7 @@
       <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75386596">
+            <state vertical-scroll-proportion="0.77319586">
               <caret line="99" column="46" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -627,12 +622,12 @@
       <workItem from="1433796016864" duration="2769000" />
       <workItem from="1433810577318" duration="4235000" />
       <workItem from="1433878737439" duration="18356000" />
-      <workItem from="1433959015651" duration="2645000" />
+      <workItem from="1433959015651" duration="3362000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36430000" />
+    <option name="totallyTimeSpent" value="37147000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -955,7 +950,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75386596">
+        <state vertical-scroll-proportion="0.77319586">
           <caret line="99" column="46" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
