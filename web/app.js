@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var flash = require('connect-flash');
 
 var app = express();
 
@@ -31,13 +32,14 @@ app.use(expressSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // passport init
 var initPassport = require('./passport');
 initPassport(passport);
 
 // routes
-var routes = require('./routes/index');
+var routes = require('./routes/index')(passport);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -52,8 +54,10 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
+        console.log(err.message);
         res.render('error', {
             message: err.message,
             error: err

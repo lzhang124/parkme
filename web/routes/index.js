@@ -10,7 +10,37 @@ module.exports = function(passport) {
 
   /* GET info page. */
   router.get('/info', function(req, res) {
-      res.render('info');
+    res.render('info');
+  });
+
+  /* SIGNUP */
+  router.post('/signup', passport.authenticate('signup', {
+    successRedirect: '/success',
+    failureRedirect: '/failure',
+    failureFlash: true,
+    successFlash: true
+  }));
+
+  router.get('/signup', function(req, res) {
+    res.render('success');
+  });
+
+  /* Login */ 
+  router.post('/login', passport.authenticate('login', {
+    successRedirect: '/success',
+    failureRedirect: '/failure',
+    failureFlash: true,
+    successFlash: true
+  }));
+
+  /* GET success page. */
+  router.get('/success', function(req, res) {
+    res.render('success');
+  });
+
+  /* GET failure page. */
+  router.get('/failure', function(req, res) {
+    res.render('failure');
   });
 
   return router;

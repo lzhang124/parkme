@@ -43,24 +43,4 @@ app.controller('loginController', function($scope, $http) {
     $scope.LoginForm = false;
     $scope.SignupForm = false;
   };
-
-  $scope.login = function() {
-    $http.post('url', {
-      username: $scope.username,
-      password: $scope.password,
-    }).success(function(){
-      console.log(arguments)
-    });
-  };
-
-  $scope.signup = function() {
-    $http.post('url', {
-      firstName: $scope.firstName,
-      lastName: $scope.lastName,
-      username: $scope.username,
-      password: $scope.password,
-    }).success(function(){
-      console.log(arguments)
-    });
-  };
 });
