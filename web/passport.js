@@ -57,7 +57,6 @@ module.exports = function(passport) {
             username: username,
             password: password
         });
-        console.log(data);
 
         var options = {
             host: '127.0.0.1',
