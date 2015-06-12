@@ -13,6 +13,7 @@ public class ParkingLot {
     private String price;
     private int capacity;
     private int occupied;
+    private boolean status;
 
     public ParkingLot(String name, String zipcode, String address, String price, int capacity) {
         this.name = name;
@@ -76,6 +77,14 @@ public class ParkingLot {
 
     public void setOccupied(int occupied) {
         this.occupied = occupied;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     @Override

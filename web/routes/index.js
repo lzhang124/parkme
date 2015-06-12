@@ -13,6 +13,11 @@ module.exports = function(passport) {
     res.render('info');
   });
 
+  /* GET map page. */
+  router.get('/map', function(req, res) {
+    res.render('map');
+  });
+
   /* SIGNUP */
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/success',

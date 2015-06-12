@@ -93,6 +93,19 @@ public class ParkingLotController {
         }
     }
 
+    @RequestMapping(value = "/changeStatus", method = RequestMethod.POST)
+    public ParkingLot changeStatus(String id) {
+        ParkingLot lot = repository.findById(id);
+        if (lot == null) {
+            System.out.println("Lot with id " + id + " was not found.");
+            return null;
+        } else {
+            lot.setStatus(!lot.getStatus());
+            repository.save(lot);
+            return lot;
+        }
+    }
+
     @RequestMapping(value = "/newParkingLot", method = RequestMethod.POST)
     public ParkingLot newLot(String name, String zipcode, String address, String price, int capacity) {
         ParkingLot lot = new ParkingLot(name, zipcode, address, price, capacity);
