@@ -11,6 +11,7 @@ function initialize() {
     
     if (map) {
       map.panTo(start);
+      map.setZoom(17);
 
       var request = {
         location: start,
@@ -33,7 +34,7 @@ function initialize() {
         radius: 400,
         types: ['parking']
       };
-      
+
       infowindow = new google.maps.InfoWindow();
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, callback);
