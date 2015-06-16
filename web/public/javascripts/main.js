@@ -10,17 +10,17 @@ app.controller('searchController', function($scope, $http) {
       $scope.lots = response;
     });
     $scope.showSearch = false;
-  };
+  }
 
   $scope.hideResults = function() {
     $scope.showSearch = true;
-  };
+  }
 
   $scope.close = function(event) {
     if (event.keyCode === 27) {
       $scope.hideResults();
-    };
-  };
+    }
+  }
 });
 
 app.controller('loginController', function($scope, $http) {
@@ -31,16 +31,16 @@ app.controller('loginController', function($scope, $http) {
   $scope.showLogin = function() {
     $scope.showDimmer = true;
     $scope.LoginForm = true;
-  };
+  }
 
   $scope.showSignup = function() {
     $scope.showDimmer = true;
     $scope.SignupForm = true;
-  };
+  }
 
   $scope.hideDimmer = function() {
     $scope.showDimmer = false;
     $scope.LoginForm = false;
     $scope.SignupForm = false;
-  };
+  }
 });

@@ -133,11 +133,14 @@ html, body {
         display: inline-block;
         margin-left: 2.65%; }
 
+#search {
+  width: 50%; }
+
 .map {
   height: 100vh;
   width: 100vw;
   position: absolute; }
-  .map #map-canvas {
+  .map #map {
     height: 100%;
     width: 100%; }
 

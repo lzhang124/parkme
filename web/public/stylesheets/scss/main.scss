@@ -127,12 +127,16 @@ html, body {
   }
 }
 
+#search {
+  width: 50%;
+}
+
 .map {
   height: 100vh;
   width: 100vw;
   position: absolute;
 
-  #map-canvas {
+  #map {
     height: 100%;
     width: 100%;
   }
