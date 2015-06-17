@@ -13,8 +13,7 @@ public class Lot {
 
     private String name;
     private String address;
-    private Double latitude;
-    private Double longitude;
+    private double[] location;
     private String price;
 
     private int capacity;
@@ -25,11 +24,10 @@ public class Lot {
     private List<String> members;
     private List<Point> history;
 
-    public Lot(String name, String address, Double latitude, Double longitude, String price, int capacity) {
+    public Lot(String name, String address, double latitude, double longitude, String price, int capacity) {
         this.name = name;
         this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.location = new double[] {latitude, longitude};
         this.price = price;
         this.capacity = capacity;
 
@@ -53,20 +51,12 @@ public class Lot {
         this.name = name;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public double[] getLocation() {
+        return location;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public void setLocation(double[] location) {
+        this.location = location;
     }
 
     public String getAddress() {
@@ -133,11 +123,11 @@ public class Lot {
         return history;
     }
 
-    public void addPoint(Point point) {
+    public void addHistory(Point point) {
         this.history.add(point);
     }
 
-    public void removePoint(Point point) {
+    public void removeHistory(Point point) {
         this.history.remove(point);
     }
 

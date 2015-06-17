@@ -125,6 +125,6 @@ public class LotController {
 
     @RequestMapping(value="/searchNear", method = RequestMethod.GET)
     public List<Lot> searchNear(double latitude, double longitude) {
-        return lotRepo.findByPositionNear(new Point(latitude, longitude), new Distance(1, Metrics.MILES));
+        return lotRepo.findByLocationNear(new Point(latitude, longitude), new Distance(1, Metrics.MILES));
     }
 }

@@ -15,9 +15,9 @@ import org.springframework.context.ApplicationContext;
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private LotRepository lotRepo;
-    @Autowired
     private AccountRepository accountRepo;
+    @Autowired
+    private LotRepository lotRepo;
 
     public static void main(String[] args) {
 
