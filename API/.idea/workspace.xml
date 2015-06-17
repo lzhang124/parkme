@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="691e65c5-3396-43d8-b630-e20f45e2e38e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java" afterPath="$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="avok.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +42,8 @@
       <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59407216">
-              <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.6713917">
+              <caret line="76" column="83" selection-start-line="76" selection-start-column="83" selection-end-line="76" selection-end-column="83" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,7 +140,6 @@
         <option value="$PROJECT_DIR$/src/main/java/core/Repositories/LotGroupRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/Repositories/SystemsRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/models/LotGroup.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/core/models/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/controllers/ParkingLotController.java" />
@@ -150,6 +151,7 @@
         <option value="$PROJECT_DIR$/src/main/java/core/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/repositories/LotRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/controllers/LotController.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java" />
       </list>
     </option>
@@ -677,12 +679,12 @@
       <workItem from="1434075995380" duration="522000" />
       <workItem from="1434423825572" duration="11000" />
       <workItem from="1434482444691" duration="854000" />
-      <workItem from="1434485270237" duration="8848000" />
+      <workItem from="1434485270237" duration="8897000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48861000" />
+    <option name="totallyTimeSpent" value="48910000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -846,14 +848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13530928">
-          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05798969">
@@ -919,10 +913,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/avok.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13530928">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59407216">
-          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.6713917">
+          <caret line="76" column="83" selection-start-line="76" selection-start-column="83" selection-end-line="76" selection-end-column="83" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
