@@ -2,27 +2,19 @@ package core.models;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.Point;
 
 import org.springframework.data.annotation.Id;
 
-class Point<X, Y> {
-    public final X x;
-    public final Y y;
-    public Point(X x, Y y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
-public class ParkingLot {
+public class Lot {
 
     @Id
     private String id;
 
     private String name;
     private String address;
-    private Float latitude;
-    private Float longitude;
+    private Double latitude;
+    private Double longitude;
     private String price;
 
     private int capacity;
@@ -33,7 +25,7 @@ public class ParkingLot {
     private List<String> members;
     private List<Point> history;
 
-    public ParkingLot(String name, String address, Float latitude, Float longitude, String price, int capacity) {
+    public Lot(String name, String address, Double latitude, Double longitude, String price, int capacity) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -61,19 +53,19 @@ public class ParkingLot {
         this.name = name;
     }
 
-    public Float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Float latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
@@ -129,8 +121,8 @@ public class ParkingLot {
         return members;
     }
 
-    public void addMember(String member) {
-        this.members.add(member);
+    public void addMember(String memberId) {
+        this.members.add(memberId);
     }
 
     public void removeMember(String member) {
@@ -151,7 +143,7 @@ public class ParkingLot {
 
     @Override
     public String toString() {
-        return "ParkingLot [id=" + id +
+        return "Lot [id=" + id +
                 ", name=" + name +
                 ", address=" + address + "]";
     }

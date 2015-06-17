@@ -2,8 +2,8 @@ package core;
 
 import java.util.Arrays;
 
-import core.models.ParkingLot;
-import core.repositories.ParkingLotRepository;
+import core.models.Lot;
+import core.repositories.LotRepository;
 import core.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,9 +15,9 @@ import org.springframework.context.ApplicationContext;
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private ParkingLotRepository parkingLotRepository;
+    private LotRepository lotRepo;
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountRepository accountRepo;
 
     public static void main(String[] args) {
 
@@ -34,30 +34,12 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        parkingLotRepository.deleteAll();
-        accountRepository.deleteAll();
+        lotRepo.deleteAll();
+        accountRepo.deleteAll();
 
         // save a couple of customers
-//        parkingLotRepository.save(new ParkingLot("ZYXParking", "80027", "Address 1", "$2.00", 100));
-//        parkingLotRepository.save(new ParkingLot("IParking", "80027", "Address 2", "$1.75", 200));
-
-//        // fetch all customers
-//        System.out.println("Lots found with findAll():");
-//        System.out.println("-------------------------------");
-//        for (ParkingLot parkinglot : parkingLotRepository.findAll()) {
-//            System.out.println(parkinglot);
-//        }
-//        System.out.println();
-//
-//        // fetch an individual customer
-//        System.out.println("Lot found with findByName('ZYXParking'):");
-//        System.out.println("--------------------------------");
-//        System.out.println(parkingLotRepository.findByName("ZYXParking"));
-//
-//        System.out.println("Lot found with findByZipcode('80027'):");
-//        System.out.println("--------------------------------");
-//        for (ParkingLot parkinglot : parkingLotRepository.findByZipcode("80027")) {
-//            System.out.println(parkinglot);
-//        }
+        lotRepo.save(new Lot("Larry's House", "2210 Tamarron Lane, Lafayette, CO 80026", 40.001930, -105.120372, "$1.75", 2));
+        lotRepo.save(new Lot("Tia's House", "332 Morning Star Lane, Lafayette, CO 80026", 40.001248, -105.123108, "$1.50", 3));
+        lotRepo.save(new Lot("Indian Peaks Golf Course", "2300 Indian Peaks Trail, Lafayette, CO 80026", 40.002670, -105.123891, "$2.15", 50));
     }
 }
