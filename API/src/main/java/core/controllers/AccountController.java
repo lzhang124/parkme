@@ -4,13 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import core.models.Account;
-import core.models.User;
-import core.models.LotGroup;
-import core.models.Systems;
 import core.repositories.AccountRepository;
-import core.repositories.UserRepository;
-import core.repositories.LotGroupRepository;
-import core.repositories.SystemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
