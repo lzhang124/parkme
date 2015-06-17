@@ -46,6 +46,19 @@ public class AccountController {
         }
     }
 
+    @RequestMapping(value = "/addRole", method = RequestMethod.POST)
+    public Account addRole(String id, String role) {
+        Account account = accountRepo.findById(id);
+        if (account == null) {
+            System.out.println("Account with id " + id + " was not found.");
+            return null;
+        } else {
+            account.addRole(role);
+            accountRepo.save(account);
+            return account;
+        }
+    }
+
     @RequestMapping(value = "/newAccount", method = RequestMethod.POST)
     public Account newAccount(String firstName, String lastName, String email, String password) {
         Account account = new Account(firstName, lastName, email, password);
