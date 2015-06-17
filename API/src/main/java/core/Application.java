@@ -10,6 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.index.GeospatialIndex;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -18,6 +20,8 @@ public class Application implements CommandLineRunner {
     private AccountRepository accountRepo;
     @Autowired
     private LotRepository lotRepo;
+    @Autowired
+    MongoTemplate template;
 
     public static void main(String[] args) {
 
@@ -38,8 +42,9 @@ public class Application implements CommandLineRunner {
         accountRepo.deleteAll();
 
         // save a couple of customers
-        lotRepo.save(new Lot("Larry's House", "2210 Tamarron Lane, Lafayette, CO 80026", 40.001930, -105.120372, "$1.75", 2));
-        lotRepo.save(new Lot("Tia's House", "332 Morning Star Lane, Lafayette, CO 80026", 40.001248, -105.123108, "$1.50", 3));
-        lotRepo.save(new Lot("Indian Peaks Golf Course", "2300 Indian Peaks Trail, Lafayette, CO 80026", 40.002670, -105.123891, "$2.15", 50));
+        template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
+        lotRepo.save(new Lot("Larry's House", "2210 Tamarron Lane, Lafayette, CO 80026", -105.120372, 40.001930, "$1.75", 2));
+        lotRepo.save(new Lot("Tia's House", "332 Morning Star Lane, Lafayette, CO 80026", -105.123108, 40.001248, "$1.50", 3));
+        lotRepo.save(new Lot("Indian Peaks Golf Course", "2300 Indian Peaks Trail, Lafayette, CO 80026", -105.123891, 40.002670, "$2.15", 50));
     }
 }

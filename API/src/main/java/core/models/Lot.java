@@ -24,10 +24,12 @@ public class Lot {
     private List<String> members;
     private List<Point> history;
 
-    public Lot(String name, String address, double latitude, double longitude, String price, int capacity) {
+    public Lot() {}
+
+    public Lot(String name, String address, double longitude, double latitude, String price, int capacity) {
         this.name = name;
         this.address = address;
-        this.location = new double[] {latitude, longitude};
+        this.location = new double[] {longitude, latitude};
         this.price = price;
         this.capacity = capacity;
 

@@ -23,6 +23,8 @@ public class Account {
     private Map<String, String> lots;
     private List<String> roles;
 
+    public Account() {}
+
     public Account(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

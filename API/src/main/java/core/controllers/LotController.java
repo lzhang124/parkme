@@ -55,6 +55,9 @@ public class LotController {
         if (lot == null) {
             System.out.println("Lot with id " + id + " was not found.");
             return null;
+        } else if (lot.getOccupied() == lot.getCapacity()) {
+            System.out.println("Lot " + lot + " is full.");
+            return null;
         } else {
             lot.setOccupied(lot.getOccupied() + 1);
             lotRepo.save(lot);
@@ -124,7 +127,7 @@ public class LotController {
     }
 
     @RequestMapping(value="/searchNear", method = RequestMethod.GET)
-    public List<Lot> searchNear(double latitude, double longitude) {
-        return lotRepo.findByLocationNear(new Point(latitude, longitude), new Distance(1, Metrics.MILES));
+    public List<Lot> searchNear(double longitude, double latitude) {
+        return lotRepo.findByLocationNear(new Point(longitude, latitude), new Distance(1, Metrics.MILES));
     }
 }

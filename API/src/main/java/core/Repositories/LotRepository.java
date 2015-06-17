@@ -11,5 +11,5 @@ public interface LotRepository extends MongoRepository<Lot, String> {
 
     Lot findById(String id);
     Lot findByAddress(String address);
-    List<Lot> findByLocationNear(Point center, Distance distance);
+    List<Lot> findByLocationNear(Point point, Distance distance);
 }

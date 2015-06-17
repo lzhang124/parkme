@@ -6,6 +6,8 @@ import core.models.Account;
 import core.models.Lot;
 import core.repositories.AccountRepository;
 import core.repositories.LotRepository;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.index.GeospatialIndex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,8 @@ public class AccountController {
     private AccountRepository accountRepo;
     @Autowired
     private LotRepository lotRepo;
+    @Autowired
+    MongoTemplate template;
 
     @RequestMapping(value = "/listAccounts", method = RequestMethod.GET)
     public List<Account> listAccounts() {
@@ -74,6 +78,7 @@ public class AccountController {
             System.out.println("Account with id " + id + " was not found.");
             return null;
         } else {
+            template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
             Lot lot = new Lot(name, address, latitude, longitude, price, capacity);
             lotRepo.save(lot);
             System.out.println("New Lot:" + lot);
