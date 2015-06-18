@@ -37,20 +37,20 @@
            onerror="this.onerror=null; this.src='images/close.png'" class="close">
       <div class="login-container" ng-show="LoginForm">
         <form action="/login" method="POST">
-          <input name="username" type="text" placeholder="USERNAME" autofocus>
+          <input name="email" type="email" placeholder="EMAIL" autofocus>
           <input name="password" type="password" placeholder="PASSWORD">
           <button>Login</button>
         </form>
       </div>
       <div class="signup-container" ng-show="SignupForm">
         <form action="/signup" method="POST">
-          <div class="first">
+          <div class="left">
             <input name="firstName" type="text" placeholder="FIRST NAME" autofocus>
           </div>
-          <div class="last">
+          <div class="right">
             <input name="lastName" type="text" placeholder="LAST NAME">
           </div>
-          <input name="username" type="text" placeholder="USERNAME">
+          <input name="email" type="email" placeholder="EMAIL">
           <input name="password" type="password" placeholder="PASSWORD">
           <input name="password2" type="password" placeholder="RETYPE PASSWORD">
           <button>Sign Up</button>
@@ -63,7 +63,7 @@
       <img src="images/logo-white.svg"
            onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
       <form ng-submit="showResults()">
-        <input ng-model="search" name="search" type="text" placeholder="ZIPCODE" autofocus>
+        <input ng-model="search" name="search" type="text" placeholder="DESTINATION" autofocus>
         <button type="submit">Search</button>
       </form>
       <div class="info">

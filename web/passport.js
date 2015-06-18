@@ -27,8 +27,8 @@ module.exports = function(passport) {
     });
   };
 
-  var findByUsername = function(username, fn) {
-    https.get('https://127.0.0.1:8443/accountByUsername?username=' + username, function(res) {
+  var findByEmail = function(email, fn) {
+    https.get('https://127.0.0.1:8443/accountByEmail?email=' + email, function(res) {
       var data = '';
 
       res.on('data', function(chunk) {
@@ -48,11 +48,11 @@ module.exports = function(passport) {
     });
   };
 
-  var createNewUser = function(firstName, lastName, username, password, fn) {
+  var createNewUser = function(firstName, lastName, email, password, fn) {
     var data = querystring.stringify({
       firstName: firstName,
       lastName: lastName,
-      username: username,
+      email: email,
       password: password
     });
 
@@ -89,16 +89,13 @@ module.exports = function(passport) {
   };
 
   var isValidPassword = function(user, password) {
-    // return password = user.password;
     return bcrypt.compareSync(password, user.password);
   };
 
   var createHash = function(password) {
-    // return password;
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   };
 
-  // Passport needs to be able to serialize and deserialize users to support persistent login sessions
   passport.serializeUser(function(user, done) {
     console.log('serializing user:', user);
     done(null, user.id);
@@ -113,16 +110,18 @@ module.exports = function(passport) {
 
   // LOGIN
   passport.use('login', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
     passReqToCallback : true
-  }, function(req, username, password, done) {
-    findByUsername(username, function(err, user) {
+  }, function(req, email, password, done) {
+    findByEmail(email, function(err, user) {
       if (err) {
         console.log('Error in login: ' + err);
         return done(err);
       };
       if (!user) {
-        console.log('User not found with username: ' + username);
-        return done(null, false, req.flash( 'message', 'User not found with username: ' + username ));
+        console.log('User not found with email: ' + email);
+        return done(null, false, req.flash( 'message', 'User not found with email: ' + email ));
       };
       if (!isValidPassword(user, password)){
         console.log('Invalid password');
@@ -135,23 +134,25 @@ module.exports = function(passport) {
 
   // SIGNUP
   passport.use('signup', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
     passReqToCallback : true
-  }, function(req, username, password, done) {
+  }, function(req, email, password, done) {
     process.nextTick(function() {
-      findByUsername(username, function(err, user) {
+      findByEmail(email, function(err, user) {
         if (err) {
           console.log('Error in signup: ' + err);
           return done(err);
         };
         if (user) {
-          console.log('User already exists with username: ' + username);
-          return done(null, false, req.flash( 'message', 'User already exists with username: ' + username ));
+          console.log('User already exists with email: ' + email);
+          return done(null, false, req.flash( 'message', 'User already exists with email: ' + email ));
         } else {
           var first = req.param('firstName');
           var last = req.param('lastName');
           var pw = createHash(password);
           
-          createNewUser(first, last, username, pw, function(err, user) {
+          createNewUser(first, last, email, pw, function(err, user) {
             if (err) {
               console.log('Error in saving user: ' + err);  
               throw err;

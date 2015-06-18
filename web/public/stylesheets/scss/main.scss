@@ -24,14 +24,6 @@ html, body {
    color: $grey;
 }
 
-::selection {
-  background: $white;
-}
-
-::-moz-selection {
-  background: $white;
-}
-
 .bg {
   height: 100%;
   width: 100%;
@@ -45,7 +37,6 @@ html, body {
   position: absolute;
   
   .button-container {
-    // height: 25px;
     position: absolute;
     top: 0;
     right: 0;
@@ -53,12 +44,7 @@ html, body {
     z-index: 1;
 
     button {
-      @include button();
       font-size: 1.25em;
-    }
-
-    button:hover {
-      @include button-hover();
     }
   }
 
@@ -68,14 +54,6 @@ html, body {
     position: absolute;
     background: $dimmer;
     z-index: 1;
-
-    .close {
-      @include close();
-    }
-
-    .close:hover {
-      @include close-hover();
-    }
 
     .login-container {
       width: 40%;
@@ -89,21 +67,11 @@ html, body {
         margin: auto;
 
         input {
-          @include input();
           width: 100%;
         }
 
-        input:focus {
-          @include input-focus();
-        }
-
         button {
-          @include button();
           margin-top: 40px;
-        }
-
-        button:hover {
-          @include button-hover();
         }
       }
     }
@@ -112,16 +80,14 @@ html, body {
       @extend .login-container;
       top: 28%;
 
-      .first {
-        width: 47%;
-        display: inline-block;
-        margin-right: 2.65%;
+      .left {
+        width: 45%;
+        float: left;
       }
 
-      .last {
-        width: 47%;
-        display: inline-block;
-        margin-left: 2.65%;
+      .right {
+        width: 45%;
+        float: right;
       }
     }
   }
@@ -177,21 +143,11 @@ html, body {
     margin: auto;
 
     input {
-      @include input();
       width: 100%;
     }
 
-    input:focus {
-      @include input-focus();
-    }
-
     button {
-      @include button();
       margin-top: 40px;
-    }
-
-    button:hover {
-      @include button-hover();
     }
   }
 }
@@ -204,14 +160,6 @@ html, body {
   font-weight: 300;
   text-align: center;
   color: $white;
-
-  .close {
-    @include close();
-  }
-
-  .close:hover{
-    @include close-hover();
-  }
 
   .results-title {
     margin-top: 10%;
@@ -226,7 +174,6 @@ html, body {
     margin: auto;
 
     button {
-      @include button();
       width: 100%;
       border: 3px solid $white;
       -webkit-border-radius: 10px;
@@ -238,28 +185,10 @@ html, body {
         font-size: 2em;
       }
     }
-
-    button:hover {
-      @include button-hover();
-    }
   }
 }
 
 /* Mobile */
 @media only screen and (max-width : 480px) {
-  .content {
-    padding: 0;
 
-    .logo {
-      width: 75%;
-    }
-
-    .tagline {
-      font-size: 1.5em;
-    }
-
-    .contact {
-      font-size: 1em;
-    }
-  }
 }

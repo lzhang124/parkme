@@ -1,0 +1,44 @@
+Account
+    GET  /listAccounts
+    GET  /accountById
+        id
+    GET  /accountByEmail
+        email
+    POST /addRole
+        id
+        role
+    POST /newAccount
+        firstName
+        lastName
+        email
+        password
+    POST /newLot
+        id
+        name
+        address
+        latitude
+        longitude
+        price
+        capacity
+
+Lot
+    GET  /listLots
+    GET  /lotById
+        id
+    GET  /lotByAddress
+        address
+    POST /entered
+        id
+    POST /exited
+        id
+    POST /changeAvailable
+        id
+    POST /changeReservable
+        id
+    POST /addMember
+        id
+        email
+        role
+    POST /searchNear
+        longitude
+        latitude

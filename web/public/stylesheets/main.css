@@ -1,3 +1,55 @@
+button {
+  background: transparent;
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  padding: 10px 20px;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: white;
+  cursor: pointer;
+  transition: all 300ms ease; }
+
+button:hover {
+  background: white;
+  color: #004869; }
+
+input {
+  background: transparent;
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-bottom: 3px solid white;
+  padding: 10px 0;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 2em;
+  letter-spacing: 2.5px;
+  color: white; }
+
+input:focus {
+  outline: 0; }
+
+.close {
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 3%;
+  opacity: .5;
+  cursor: pointer;
+  transition: all 300ms ease; }
+
+close:hover {
+  opacity: 1; }
+
 html, body {
   height: 100%;
   width: 100%;
@@ -17,12 +69,6 @@ html, body {
 :-ms-input-placeholder {
   color: #969696; }
 
-::selection {
-  background: white; }
-
-::-moz-selection {
-  background: white; }
-
 .bg {
   height: 100%;
   width: 100%;
@@ -40,42 +86,13 @@ html, body {
     margin: 10px;
     z-index: 1; }
     .login .button-container button {
-      background: transparent;
-      border: 0;
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-      padding: 10px 20px;
-      font-family: "Lato", sans-serif;
-      font-weight: 300;
-      text-align: center;
-      font-size: 1.5em;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      color: white;
-      cursor: pointer;
-      transition: all 300ms ease;
       font-size: 1.25em; }
-    .login .button-container button:hover {
-      background: white;
-      color: #004869; }
   .login .dimmer {
     height: 100%;
     width: 100%;
     position: absolute;
-    background: black;
+    background: #191919;
     z-index: 1; }
-    .login .dimmer .close {
-      height: 25px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin: 3%;
-      opacity: .5;
-      cursor: pointer;
-      transition: all 300ms ease; }
-    .login .dimmer .close:hover {
-      opacity: 1; }
     .login .dimmer .login-container, .login .dimmer .signup-container {
       width: 40%;
       position: absolute;
@@ -86,52 +103,17 @@ html, body {
         width: 100;
         margin: auto; }
         .login .dimmer .login-container form input, .login .dimmer .signup-container form input {
-          background: transparent;
-          border: 0;
-          -webkit-border-radius: 0;
-          -moz-border-radius: 0;
-          border-radius: 0;
-          border-bottom: 3px solid white;
-          padding: 10px 0;
-          font-family: "Lato", sans-serif;
-          font-weight: 300;
-          text-align: center;
-          font-size: 2em;
-          letter-spacing: 2.5px;
-          color: white;
           width: 100%; }
-        .login .dimmer .login-container form input:focus, .login .dimmer .signup-container form input:focus {
-          outline: 0; }
         .login .dimmer .login-container form button, .login .dimmer .signup-container form button {
-          background: transparent;
-          border: 0;
-          -webkit-border-radius: 0;
-          -moz-border-radius: 0;
-          border-radius: 0;
-          padding: 10px 20px;
-          font-family: "Lato", sans-serif;
-          font-weight: 300;
-          text-align: center;
-          font-size: 1.5em;
-          text-transform: uppercase;
-          letter-spacing: 2.5px;
-          color: white;
-          cursor: pointer;
-          transition: all 300ms ease;
           margin-top: 40px; }
-        .login .dimmer .login-container form button:hover, .login .dimmer .signup-container form button:hover {
-          background: white;
-          color: #004869; }
     .login .dimmer .signup-container {
       top: 28%; }
-      .login .dimmer .signup-container .first {
-        width: 47%;
-        display: inline-block;
-        margin-right: 2.65%; }
-      .login .dimmer .signup-container .last {
-        width: 47%;
-        display: inline-block;
-        margin-left: 2.65%; }
+      .login .dimmer .signup-container .left {
+        width: 45%;
+        float: left; }
+      .login .dimmer .signup-container .right {
+        width: 45%;
+        float: right; }
 
 #search {
   width: 50%; }
@@ -169,42 +151,9 @@ html, body {
     width: 30%;
     margin: auto; }
     .content form input {
-      background: transparent;
-      border: 0;
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-      border-bottom: 3px solid white;
-      padding: 10px 0;
-      font-family: "Lato", sans-serif;
-      font-weight: 300;
-      text-align: center;
-      font-size: 2em;
-      letter-spacing: 2.5px;
-      color: white;
       width: 100%; }
-    .content form input:focus {
-      outline: 0; }
     .content form button {
-      background: transparent;
-      border: 0;
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-      padding: 10px 20px;
-      font-family: "Lato", sans-serif;
-      font-weight: 300;
-      text-align: center;
-      font-size: 1.5em;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      color: white;
-      cursor: pointer;
-      transition: all 300ms ease;
       margin-top: 40px; }
-    .content form button:hover {
-      background: white;
-      color: #004869; }
 
 .results {
   height: 100%;
@@ -214,17 +163,6 @@ html, body {
   font-weight: 300;
   text-align: center;
   color: white; }
-  .results .close {
-    height: 25px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 3%;
-    opacity: .5;
-    cursor: pointer;
-    transition: all 300ms ease; }
-  .results .close:hover {
-    opacity: 1; }
   .results .results-title {
     margin-top: 10%;
     margin-bottom: 20px;
@@ -235,21 +173,6 @@ html, body {
     width: 50%;
     margin: auto; }
     .results .results-container button {
-      background: transparent;
-      border: 0;
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-      padding: 10px 20px;
-      font-family: "Lato", sans-serif;
-      font-weight: 300;
-      text-align: center;
-      font-size: 1.5em;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      color: white;
-      cursor: pointer;
-      transition: all 300ms ease;
       width: 100%;
       border: 3px solid white;
       -webkit-border-radius: 10px;
@@ -258,19 +181,7 @@ html, body {
       margin: 20px 0; }
       .results .results-container button .lot-name {
         font-size: 2em; }
-    .results .results-container button:hover {
-      background: white;
-      color: #004869; }
 
 /* Mobile */
-@media only screen and (max-width: 480px) {
-  .content {
-    padding: 0; }
-    .content .logo {
-      width: 75%; }
-    .content .tagline {
-      font-size: 1.5em; }
-    .content .contact {
-      font-size: 1em; } }
 
 /*# sourceMappingURL=main.css.map */
