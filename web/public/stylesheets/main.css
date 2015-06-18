@@ -115,17 +115,6 @@ html, body {
         width: 45%;
         float: right; }
 
-#search {
-  width: 50%; }
-
-.map {
-  height: 100vh;
-  width: 100vw;
-  position: absolute; }
-  .map #map {
-    height: 100%;
-    width: 100%; }
-
 .content {
   height: 75%;
   width: 100%;
@@ -148,7 +137,7 @@ html, body {
   .content a, .content a:visited {
     color: white; }
   .content form {
-    width: 30%;
+    width: 60%;
     margin: auto; }
     .content form input {
       width: 100%; }

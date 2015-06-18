@@ -13,14 +13,19 @@ module.exports = function(passport) {
     res.render('info');
   });
 
+  /* GET results page. */
+  router.get('/results', function(req, res) {
+    res.render('results');
+  });
+
   /* GET map page. */
   router.get('/map', function(req, res) {
     res.render('map');
   });
 
-  /* SIGNUP */
+  /* Signup */
   router.post('/signup', passport.authenticate('signup', {
-    successRedirect: '/success',
+    successRedirect: '/',
     failureRedirect: '/failure',
     failureFlash: true,
     successFlash: true
@@ -28,16 +33,11 @@ module.exports = function(passport) {
 
   /* Login */ 
   router.post('/login', passport.authenticate('login', {
-    successRedirect: '/success',
+    successRedirect: '/',
     failureRedirect: '/failure',
     failureFlash: true,
     successFlash: true
   }));
-
-  /* GET success page. */
-  router.get('/success', function(req, res) {
-    res.render('success');
-  });
 
   /* GET failure page. */
   router.get('/failure', function(req, res) {

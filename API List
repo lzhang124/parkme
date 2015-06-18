@@ -1,44 +1,73 @@
-Account
+API
+  Account
     GET  /listAccounts
     GET  /accountById
-        id
+      id
     GET  /accountByEmail
-        email
+      email
     POST /addRole
-        id
-        role
+      id
+      role
     POST /newAccount
-        firstName
-        lastName
-        email
-        password
+      firstName
+      lastName
+      email
+      password
     POST /newLot
-        id
-        name
-        address
-        latitude
-        longitude
-        price
-        capacity
+      id
+      name
+      address
+      latitude
+      longitude
+      price
+      capacity
 
-Lot
+  Lot
     GET  /listLots
     GET  /lotById
-        id
+      id
     GET  /lotByAddress
-        address
+      address
     POST /entered
-        id
+      id
     POST /exited
-        id
+      id
     POST /changeAvailable
-        id
+      id
     POST /changeReservable
-        id
+      id
     POST /addMember
-        id
-        email
-        role
+      id
+      email
+      role
     POST /searchNear
-        longitude
-        latitude
+      longitude
+      latitude
+
+Schema
+  Account
+    id: id
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+    phone: string
+    photo: object
+    parked: boolean
+    payed: boolean
+    creditCard: string
+    lots: map<id, string>
+    roles: list<string>
+
+  Lot
+    id: id
+    name: string
+    address: string
+    location: double[]
+    price: string
+    capacity: int
+    occupied: int
+    reservable: boolean
+    available: boolean
+    members: list<string>
+    history: list<point>

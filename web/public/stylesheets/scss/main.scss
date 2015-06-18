@@ -93,21 +93,6 @@ html, body {
   }
 }
 
-#search {
-  width: 50%;
-}
-
-.map {
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-
-  #map {
-    height: 100%;
-    width: 100%;
-  }
-}
-
 .content {
   height: 75%;
   width: 100%;
@@ -139,7 +124,7 @@ html, body {
   }
 
   form {
-    width: 30%;
+    width: 60%;
     margin: auto;
 
     input {

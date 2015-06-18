@@ -3,11 +3,13 @@ var bcrypt = require('bcrypt-nodejs');
 var https = require('https');
 var querystring = require('querystring');
 
+var url = 'https://127.0.0.1:8443/';
+
 module.exports = function(passport) {
 
   // API CALLS
   var findById = function(id, fn) {
-    https.get('https://127.0.0.1:8443/accountById?id=' + id, function(res) {
+    https.get(url + 'accountById?id=' + id, function(res) {
       var data = '';
 
       res.on('data', function(chunk) {
@@ -28,7 +30,7 @@ module.exports = function(passport) {
   };
 
   var findByEmail = function(email, fn) {
-    https.get('https://127.0.0.1:8443/accountByEmail?email=' + email, function(res) {
+    https.get(url + 'accountByEmail?email=' + email, function(res) {
       var data = '';
 
       res.on('data', function(chunk) {
