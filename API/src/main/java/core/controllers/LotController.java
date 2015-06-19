@@ -49,6 +49,11 @@ public class LotController {
         }
     }
 
+    @RequestMapping(value="/searchNear", method = RequestMethod.GET)
+    public List<Lot> searchNear(double longitude, double latitude) {
+        return lotRepo.findByLocationNear(new Point(longitude, latitude), new Distance(1, Metrics.MILES));
+    }
+
     @RequestMapping(value = "/entered", method = RequestMethod.POST)
     public Lot entered(String id) {
         Lot lot = lotRepo.findById(id);
@@ -124,10 +129,5 @@ public class LotController {
             lotRepo.save(lot);
             return lot;
         }
-    }
-
-    @RequestMapping(value="/searchNear", method = RequestMethod.GET)
-    public List<Lot> searchNear(double longitude, double latitude) {
-        return lotRepo.findByLocationNear(new Point(longitude, latitude), new Distance(1, Metrics.MILES));
     }
 }

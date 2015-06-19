@@ -29,6 +29,9 @@ API
       id
     GET  /lotByAddress
       address
+    GET /searchNear
+      longitude
+      latitude
     POST /entered
       id
     POST /exited
@@ -41,9 +44,6 @@ API
       id
       email
       role
-    POST /searchNear
-      longitude
-      latitude
 
 Schema
   Account
