@@ -10,8 +10,7 @@ app.controller('resultsController', function($scope, $http) {
   var auto_search = new google.maps.places.Autocomplete(search);
 
   map = new google.maps.Map(document.getElementById('map'), {
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    disableDefaultUI: true
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
   google.maps.event.addListener(auto_search, 'place_changed', function() {
