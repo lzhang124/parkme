@@ -19,7 +19,7 @@
   background-color: $blue;
 
   form {
-    margin: 0 25px;
+    margin: 0 25px 10px 25px;
     
     #search {
       width: 100%;
@@ -32,12 +32,14 @@
     text-align: center;
 
     button {
+      width: 100%;
       background: $white;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       border-radius: 10px;
       padding: 10px 20px;
       margin: 5px 0;
+      text-transform: none;
       color: $blue;
     }
 

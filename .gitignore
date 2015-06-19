@@ -41,6 +41,7 @@ node_modules/
 # SASS Files
 # --------------------
 .sass-cache/
+*.map
 
 # --------------------
 # Bower Files

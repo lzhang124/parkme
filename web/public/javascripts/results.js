@@ -21,7 +21,7 @@ app.controller('resultsController', function($scope, $http) {
     var startLoc = start.geometry.location;
 
     map.panTo(startLoc);
-    map.setZoom(17);
+    map.setZoom(16);
 
     createMarker(startLoc.lat(), startLoc.lng(), start.name, null);
     searchNear(startLoc);
