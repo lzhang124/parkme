@@ -58,38 +58,15 @@
       </div>
     </div>
   </div>
-  <div ng-controller="searchController">
-    <div class="content" ng-show="showSearch">
-      <img src="images/logo-white.svg"
-           onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
-      <form ng-submit="showResults()">
-        <input ng-model="search" name="search" type="text" placeholder="DESTINATION" autofocus>
-        <button type="submit">Search</button>
-      </form>
-      <div class="info">
-        <a href="/map">Map</a>
-        <a href="/info">Click here for more information</a>
-      </div>
-    </div>
-    <div class="results" ng-hide="showSearch">
-      <img src="images/close.svg" ng-click="hideResults()"
-           onerror="this.onerror=null; this.src='images/close.png'" class="close">
-      <div class="results-title">
-        Parking lots found in {{ search }}:
-      </div>
-      <div class="results-container">
-        <button ng-repeat="lot in lots">
-          <div class="lot-name">
-            {{ lot.name }}
-          </div>
-          <div class="lot-address">
-            {{ lot.address }}
-          </div>
-          <div class="lot-free">
-            Available spots: {{ lot.capacity - lot.occupied }}
-          </div>
-        </button>
-      </div>
+  <div class="content">
+    <img src="images/logo-white.svg"
+         onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
+    <form>
+      <input name="search" type="text" placeholder="DESTINATION" autofocus>
+      <button type="submit">Search</button>
+    </form>
+    <div class="info">
+      <a href="/info">Click here for more information</a>
     </div>
   </div>
 </body>
