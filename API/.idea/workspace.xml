@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691e65c5-3396-43d8-b630-e20f45e2e38e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/Application.java" afterPath="$PROJECT_DIR$/src/main/java/core/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/scss/_constants.scss" afterPath="$PROJECT_DIR$/../web/public/stylesheets/scss/_constants.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/main.css.map" afterPath="$PROJECT_DIR$/../web/public/stylesheets/main.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/results.css.map" afterPath="$PROJECT_DIR$/../web/public/stylesheets/results.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/results.css" afterPath="$PROJECT_DIR$/../web/public/stylesheets/results.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/stylesheets/scss/results.scss" afterPath="$PROJECT_DIR$/../web/public/stylesheets/scss/results.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../API List" afterPath="$PROJECT_DIR$/../API List" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/models/Account.java" afterPath="$PROJECT_DIR$/src/main/java/core/models/Account.java" />
     </list>
     <ignored path="avok.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,13 +74,13 @@
         <option value="$PROJECT_DIR$/src/main/java/core/repositories/ParkingLotRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/models/ParkingLot.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/core/models/Account.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/repositories/LotRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/controllers/LotController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/core/models/Lot.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/core/models/Account.java" />
       </list>
     </option>
   </component>
@@ -135,6 +131,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -264,8 +262,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -589,11 +585,12 @@
       <workItem from="1434687983923" duration="147000" />
       <workItem from="1434688186888" duration="36000" />
       <workItem from="1434689510031" duration="48000" />
+      <workItem from="1434693128235" duration="43000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53402000" />
+    <option name="totallyTimeSpent" value="53445000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -620,9 +617,9 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -793,16 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/models/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44458762">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/repositories/AccountRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -817,16 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71005154">
-          <caret line="83" column="49" selection-start-line="83" selection-start-column="49" selection-end-line="83" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/LotController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5219072">
@@ -837,9 +814,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8260309">
+          <caret line="47" column="96" selection-start-line="47" selection-start-column="96" selection-end-line="47" selection-end-column="96" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/models/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6546392">
+          <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/core/models/Lot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6572165">
+        <state vertical-scroll-proportion="-0.39175257">
           <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -847,10 +844,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/Application.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8260309">
-          <caret line="47" column="96" selection-start-line="47" selection-start-column="96" selection-end-line="47" selection-end-column="96" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="2" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="2" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

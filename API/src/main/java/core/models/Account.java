@@ -17,7 +17,7 @@ public class Account {
     private Object photo;
 
     private boolean parked;
-    private boolean payed;
+    private boolean paid;
     private String creditCard;
 
     private Map<String, String> lots;
@@ -99,12 +99,12 @@ public class Account {
         this.parked = parked;
     }
 
-    public boolean isPayed() {
-        return payed;
+    public boolean isPaid() {
+        return paid;
     }
 
-    public void setPayed(boolean payed) {
-        this.payed = payed;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     public String getCreditCard() {

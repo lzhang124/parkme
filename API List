@@ -55,7 +55,7 @@ Schema
     phone: string
     photo: object
     parked: boolean
-    payed: boolean
+    paid: boolean
     creditCard: string
     lots: map<id, string>
     roles: list<string>
