@@ -38,6 +38,19 @@
       <form>
         <input ng-model="search" id="search" placeholder="DESTINATION" autofocus>
       </form>
+      <div class="results-container">
+        <button ng-repeat="lot in lots">
+          <div class="lot-name">
+            {{ lot.name }}
+          </div>
+          <div class="lot-address">
+            {{ lot.address }}
+          </div>
+          <div class="lot-free">
+            Available spots: {{ lot.capacity - lot.occupied }}
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 </body>
