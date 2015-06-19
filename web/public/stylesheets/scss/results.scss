@@ -28,9 +28,21 @@
   }
 
   .results-container {
+    margin: 0 25px;
+    text-align: center;
 
     button {
-      
+      background: $white;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 5px 0;
+      color: $blue;
+    }
+
+    button:hover {
+      background: $hover;
     }
   }
 }

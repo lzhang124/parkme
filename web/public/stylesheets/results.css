@@ -69,5 +69,18 @@ close:hover {
     .results form #search {
       width: 100%;
       font-size: 1.5em; }
+  .results .results-container {
+    margin: 0 25px;
+    text-align: center; }
+    .results .results-container button {
+      background: white;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 5px 0;
+      color: #004869; }
+    .results .results-container button:hover {
+      background: #f0f0f0; }
 
 /*# sourceMappingURL=results.css.map */
