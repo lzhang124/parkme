@@ -7,7 +7,7 @@ app.controller('searchController', function($scope, $http) {
   $scope.showResults = function() {
     var search = this.search;
     $http.get(url + 'listLots').
-    success(function(response){
+    success(function(response) {
       $scope.lots = response;
     });
     $scope.showSearch = false;

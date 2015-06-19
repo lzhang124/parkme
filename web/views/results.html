@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="main">
+<html ng-app="results">
 <head lang="en">
   <title>AVOKTECH | Results</title>
   <meta charset="UTF-8">
@@ -20,7 +20,7 @@
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
   <!-- Controllers -->
-  <script src="javascripts/places.js"></script>
+  <script src="javascripts/results.js"></script>
 
   <!-- Semantic-UI -->
   <!-- <link rel="stylesheet" href="plugins/semantic-ui/css/semantic.min.css"> -->
@@ -29,13 +29,15 @@
   <!-- Animate.css -->
   <!-- <link rel="stylesheet" href="plugins/animate.css"> -->
 </head>
-</body ng-controller="resultsController">
-  <div class="map-box">
-    <div id="map"></div>
-  </div>
-  <div class="results">
-    <div class="search">
-      <input id="search" placeholder="DESTINATION" autofocus>
+</body>
+  <div ng-controller="resultsController">
+    <div class="map-box">
+      <div id="map"></div>
+    </div>
+    <div class="results">
+      <form>
+        <input ng-model="search" id="search" placeholder="DESTINATION" autofocus>
+      </form>
     </div>
   </div>
 </body>

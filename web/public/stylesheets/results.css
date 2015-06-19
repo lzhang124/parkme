@@ -63,7 +63,7 @@ close:hover {
   width: 50vw;
   left: 50vw;
   background-color: #004869; }
-  .results .search #search {
+  .results #search {
     width: 90%;
     font-size: 1.5em; }
 
