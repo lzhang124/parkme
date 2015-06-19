@@ -16,6 +16,7 @@ API
     POST /newLot
       id
       name
+      type
       address
       latitude
       longitude
@@ -62,6 +63,7 @@ Schema
   Lot
     id: id
     name: string
+    type: string
     address: string
     location: double[]
     price: string

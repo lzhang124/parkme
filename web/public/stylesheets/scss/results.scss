@@ -15,10 +15,53 @@
   height: 100vh;
   width: 50vw;
   left: 50vw;
+  position: absolute;
   background-color: $blue;
 
-  #search {
-    width: 90%;
-    font-size: 1.5em;
+  form {
+    margin: 0 25px;
+    
+    #search {
+      width: 100%;
+      font-size: 1.5em;
+    }
+  }
+
+  .results-container {
+
+    button {
+      
+    }
   }
 }
+
+
+
+// .results {
+
+//   .results-title {
+//     margin-top: 10%;
+//     margin-bottom: 20px;
+//     font-size: 2em;
+//     text-transform: uppercase;
+//     letter-spacing: 2.5px;
+//   }
+  
+//   .results-container {
+//     width: 50%;
+//     margin: auto;
+
+//     button {
+//       width: 100%;
+//       border: 3px solid $white;
+//       -webkit-border-radius: 10px;
+//       -moz-border-radius: 10px;
+//       border-radius: 10px;
+//       margin: 20px 0;
+
+//       .lot-name {
+//         font-size: 2em;
+//       }
+//     }
+//   }
+// }

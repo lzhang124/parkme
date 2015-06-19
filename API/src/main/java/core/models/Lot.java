@@ -12,6 +12,7 @@ public class Lot {
     private String id;
 
     private String name;
+    private String type;
     private String address;
     private double[] location;
     private String price;
@@ -26,8 +27,9 @@ public class Lot {
 
     public Lot() {}
 
-    public Lot(String name, String address, double longitude, double latitude, String price, int capacity) {
+    public Lot(String name, String type, String address, double longitude, double latitude, String price, int capacity) {
         this.name = name;
+        this.type = type;
         this.address = address;
         this.location = new double[] {longitude, latitude};
         this.price = price;
@@ -51,6 +53,14 @@ public class Lot {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public double[] getLocation() {

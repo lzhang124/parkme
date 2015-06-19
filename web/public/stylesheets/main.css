@@ -144,33 +144,6 @@ html, body {
     .content form button {
       margin-top: 40px; }
 
-.results {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  font-family: "Lato", sans-serif;
-  font-weight: 300;
-  text-align: center;
-  color: white; }
-  .results .results-title {
-    margin-top: 10%;
-    margin-bottom: 20px;
-    font-size: 2em;
-    text-transform: uppercase;
-    letter-spacing: 2.5px; }
-  .results .results-container {
-    width: 50%;
-    margin: auto; }
-    .results .results-container button {
-      width: 100%;
-      border: 3px solid white;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      margin: 20px 0; }
-      .results .results-container button .lot-name {
-        font-size: 2em; }
-
 /* Mobile */
 
 /*# sourceMappingURL=main.css.map */
