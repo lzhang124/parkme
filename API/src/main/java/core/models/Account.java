@@ -16,8 +16,9 @@ public class Account {
     private String phone;
     private Object photo;
 
-    private boolean parked;
+    private Pair<String, Integer> parked;
     private boolean paid;
+    private Address billingAddress;
     private String creditCard;
 
     private Map<String, String> lots;
@@ -91,12 +92,12 @@ public class Account {
         this.photo = photo;
     }
 
-    public boolean isParked() {
+    public Pair<String, Integer> getParked() {
         return parked;
     }
 
-    public void setParked(boolean parked) {
-        this.parked = parked;
+    public void setParked(String id, int space) {
+        this.parked = new Pair<>(id, space);
     }
 
     public boolean isPaid() {
@@ -105,6 +106,14 @@ public class Account {
 
     public void setPaid(boolean paid) {
         this.paid = paid;
+    }
+
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public String getCreditCard() {

@@ -1,8 +1,9 @@
 package core.models;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import java.awt.Point;
+import java.util.Map;
 
 import org.springframework.data.annotation.Id;
 
@@ -13,30 +14,48 @@ public class Lot {
 
     private String name;
     private String type;
-    private String address;
+    private Address address;
     private double[] location;
-    private String price;
+    private Object photo;
+
+    private Map<String, Double> rate;
+    private double rateRatio;
 
     private int capacity;
     private int occupied;
-    private boolean reservable;
     private boolean available;
+    private boolean reservable;
+    private int reserveMax;
+    private List<Space> spaces;
 
     private List<String> members;
-    private List<Point> history;
 
     public Lot() {}
 
-    public Lot(String name, String type, String address, double longitude, double latitude, String price, int capacity) {
+    public Lot(String name, String type, Address address, double longitude, double latitude, String rateType, Double price, int capacity, int reserveMax) {
         this.name = name;
         this.type = type;
         this.address = address;
         this.location = new double[] {longitude, latitude};
-        this.price = price;
+        this.rate = new HashMap<>();
+        this.rate.put(rateType, price);
+        this.rateRatio = 1.0;
         this.capacity = capacity;
+        this.available = true;
+        if (reserveMax > 0) {
+            this.reservable = true;
+        }
+        this.reserveMax = reserveMax;
+
+        this.spaces = new ArrayList<>();
+        for (int i = 0; i < reserveMax; i ++) {
+            this.spaces.add(new Space(true));
+        }
+        for (int i = 0; i < capacity-reserveMax; i++) {
+            this.spaces.add(new Space(false));
+        }
 
         this.members = new ArrayList<>();
-        this.history = new ArrayList<>();
     }
 
     public String getId() {
@@ -63,6 +82,14 @@ public class Lot {
         this.type = type;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public double[] getLocation() {
         return location;
     }
@@ -71,20 +98,32 @@ public class Lot {
         this.location = location;
     }
 
-    public String getAddress() {
-        return address;
+    public Object getPhoto() {
+        return photo;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPhoto(Object photo) {
+        this.photo = photo;
     }
 
-    public String getPrice() {
-        return price;
+    public Map<String, Double> getRate() {
+        return rate;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void addRate(String rateType, Double price) {
+        this.rate.put(rateType, price);
+    }
+
+    public void removeRate(String rateType) {
+        this.rate.remove(rateType);
+    }
+
+    public double getRateRatio() {
+        return rateRatio;
+    }
+
+    public void setRateRatio(double rateRatio) {
+        this.rateRatio = rateRatio;
     }
 
     public int getCapacity() {
@@ -103,6 +142,14 @@ public class Lot {
         this.occupied = occupied;
     }
 
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
     public boolean isReservable() {
         return reservable;
     }
@@ -111,12 +158,24 @@ public class Lot {
         this.reservable = reservable;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public int getReserveMax() {
+        return reserveMax;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setReserveMax(int reserveMax) {
+        this.reserveMax = reserveMax;
+    }
+
+    public List<Space> getSpaces() {
+        return spaces;
+    }
+
+    public void addSpace(Space space) {
+        this.spaces.add(space);
+    }
+
+    public void removeSpace(Space space) {
+        this.spaces.remove(space);
     }
 
     public List<String> getMembers() {
@@ -129,18 +188,6 @@ public class Lot {
 
     public void removeMember(String member) {
         this.members.remove(member);
-    }
-
-    public List<Point> getHistory() {
-        return history;
-    }
-
-    public void addHistory(Point point) {
-        this.history.add(point);
-    }
-
-    public void removeHistory(Point point) {
-        this.history.remove(point);
     }
 
     @Override

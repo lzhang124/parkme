@@ -3,6 +3,7 @@ package core.controllers;
 import java.util.List;
 
 import core.models.Account;
+import core.models.Address;
 import core.models.Lot;
 import core.repositories.AccountRepository;
 import core.repositories.LotRepository;
@@ -72,14 +73,14 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/newLot", method = RequestMethod.POST)
-    public Account newLot(String id, String name, String type, String address, Double latitude, Double longitude, String price, int capacity) {
+    public Account newLot(String id, String name, String type, Address address, Double longitude, Double latitude, String rateType, Double price, int capacity, int reserveMax) {
         Account account = accountRepo.findById(id);
         if (account == null) {
             System.out.println("Account with id " + id + " was not found.");
             return null;
         } else {
             template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
-            Lot lot = new Lot(name, type, address, latitude, longitude, price, capacity);
+            Lot lot = new Lot(name, type, address, longitude, latitude, rateType, price, capacity, reserveMax);
             lotRepo.save(lot);
             System.out.println("New Lot:" + lot);
             account.addLot(lot.getId(), "Owner");
