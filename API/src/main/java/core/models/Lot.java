@@ -23,12 +23,13 @@ public class Lot {
 
     private int capacity;
     private int occupied;
-    private boolean available;
     private boolean reservable;
     private int reserveMax;
     private List<Space> spaces;
 
     private List<String> members;
+
+    private String lotHistoryId;
 
     public Lot() {}
 
@@ -41,7 +42,6 @@ public class Lot {
         this.rate.put(rateType, price);
         this.rateRatio = 1.0;
         this.capacity = capacity;
-        this.available = true;
         if (reserveMax > 0) {
             this.reservable = true;
         }
@@ -142,14 +142,6 @@ public class Lot {
         this.occupied = occupied;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
     public boolean isReservable() {
         return reservable;
     }
@@ -188,6 +180,14 @@ public class Lot {
 
     public void removeMember(String member) {
         this.members.remove(member);
+    }
+
+    public String getLotHistory() {
+        return lotHistoryId;
+    }
+
+    public void setLotHistory(String lotHistoryId) {
+        this.lotHistoryId = lotHistoryId;
     }
 
     @Override

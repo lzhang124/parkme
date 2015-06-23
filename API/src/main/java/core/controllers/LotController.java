@@ -1,14 +1,19 @@
 package core.controllers;
 
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import core.models.Account;
 import core.models.Lot;
+import core.models.Pair;
 import core.models.Space;
+import core.models.data.LotHistory;
+import core.models.data.RawHistory;
 import core.repositories.AccountRepository;
 import core.repositories.LotRepository;
+import core.repositories.data.LotHistoryRepository;
+import core.repositories.data.RawHistoryRepository;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
@@ -24,6 +29,10 @@ public class LotController {
     private LotRepository lotRepo;
     @Autowired
     private AccountRepository accountRepo;
+    @Autowired
+    private LotHistoryRepository lotHistoryRepo;
+    @Autowired
+    private RawHistoryRepository rawHistoryRepo;
 
     @RequestMapping(value = "/listLots", method = RequestMethod.GET)
     public List<Lot> listLots() {
@@ -52,15 +61,13 @@ public class LotController {
         if (lot == null) {
             System.out.println("Lot with id " + id + " was not found.");
             return null;
-        } else if (!lot.isAvailable()) {
+        } else if (lot.getOccupied() == lot.getCapacity() - lot.getReserveMax()) {
             System.out.println("Lot " + lot + " is full.");
             return null;
         } else {
-            if (lot.getOccupied() + 1 == lot.getCapacity() - lot.getReserveMax()) {
-                lot.setAvailable(false);
-            }
             lot.setOccupied(lot.getOccupied() + 1);
             lotRepo.save(lot);
+            addLotHistory(lot);
             return lot;
         }
     }
@@ -75,11 +82,9 @@ public class LotController {
             System.out.println("Lot " + lot + " is empty.");
             return null;
         } else {
-            if (lot.getOccupied() == lot.getCapacity() - lot.getReserveMax()) {
-                lot.setAvailable(true);
-            }
             lot.setOccupied(lot.getOccupied() - 1);
             lotRepo.save(lot);
+            addLotHistory(lot);
             return lot;
         }
     }
@@ -120,7 +125,66 @@ public class LotController {
     }
 
     @RequestMapping(value = "/setCalendar", method = RequestMethod.POST)
-    public Lot setCalendar(String id, Map<Integer, Boolean> calendar) {
+    public Lot setCalendar(String id, List<Long> startTimes, List<Integer> durations) {
+        Lot lot = lotRepo.findById(id);
+        if (lot == null) {
+            System.out.println("Lot with id " + id + " was not found.");
+            return null;
+        } else if (!lot.isReservable()) {
+            System.out.println("Lot with id " + id + " is not reservable.");
+            return null;
+        } else {
+            List<Pair<Long, Integer>> intervals = new ArrayList<>();
+            for (int i = 0; i < startTimes.size(); i++) {
+                intervals.add(new Pair<>(startTimes.get(i), durations.get(i)));
+            }
+
+            List<Space> spaces = lot.getSpaces();
+            for (int i = 0; i < lot.getReserveMax(); i++) {
+                Space space = spaces.get(i);
+                if (space.isReservable()) {
+                    space.setCalendar(intervals);
+                }
+            }
+            lotRepo.save(lot);
+            return lot;
+        }
+    }
+
+    @RequestMapping(value = "/reserve", method = RequestMethod.POST)
+    public Lot reserve(String id, String accountId, List<Long> startTimes, List<Integer> durations, String search) {
+        Lot lot = lotRepo.findById(id);
+        if (lot == null) {
+            System.out.println("Lot with id " + id + " was not found.");
+            return null;
+        } else if (!lot.isReservable()) {
+            System.out.println("Lot with id " + id + " is not reservable.");
+            return null;
+        } else {
+            List<Pair<Long, Integer>> intervals = new ArrayList<>();
+            for (int i = 0; i < startTimes.size(); i++) {
+                intervals.add(new Pair<>(startTimes.get(i), durations.get(i)));
+            }
+
+            List<Space> spaces = lot.getSpaces();
+            for (Pair<Long, Integer> interval : intervals) {
+                long start = interval.getL();
+                int duration = interval.getR();
+                for (int i = 0; i < lot.getReserveMax(); i++) {
+                    if (spaces.get(i).isAvailable(start, duration)) {
+                        spaces.get(i).addReservation(start, duration, accountId);
+                        addRawHistory(accountId, id, i, start, duration, search);
+                        break;
+                    }
+                }
+            }
+            lotRepo.save(lot);
+            return lot;
+        }
+    }
+
+    @RequestMapping(value = "/clearReservations", method = RequestMethod.POST)
+    public Lot clearReservations(String id) {
         Lot lot = lotRepo.findById(id);
         if (lot == null) {
             System.out.println("Lot with id " + id + " was not found.");
@@ -130,13 +194,34 @@ public class LotController {
             return null;
         } else {
             List<Space> spaces = lot.getSpaces();
-            for (Space space : spaces) {
+            for (int i = 0; i < lot.getReserveMax(); i++) {
+                Space space = spaces.get(i);
                 if (space.isReservable()) {
-                    space.setCalendar(calendar);
+                    space.clearReservations();
                 }
             }
             lotRepo.save(lot);
             return lot;
         }
+    }
+
+    public LotHistory addLotHistory(Lot lot) {
+        String id = lot.getLotHistory();
+        LotHistory history = lotHistoryRepo.findById(id);
+        if (history == null) {
+            System.out.println("History with id " + id + " was not found.");
+            return null;
+        } else {
+            Long date = new Date().getTime();
+            history.addHistory(date, lot.getOccupied());
+            lotHistoryRepo.save(history);
+            return history;
+        }
+    }
+
+    public RawHistory addRawHistory(String accountId, String lotId, int space, long start, int duration, String search) {
+        RawHistory history = new RawHistory(accountId, lotId, space, start, duration, search);
+        rawHistoryRepo.save(history);
+        return history;
     }
 }

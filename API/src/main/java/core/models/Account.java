@@ -16,7 +16,7 @@ public class Account {
     private String phone;
     private Object photo;
 
-    private Pair<String, Integer> parked;
+    private List<Reservation> reservations;
     private boolean paid;
     private Address billingAddress;
     private String creditCard;
@@ -32,6 +32,7 @@ public class Account {
         this.email = email;
         this.password = password;
 
+        this.reservations = new ArrayList<>();
         this.lots = new HashMap<>();
         this.roles = new ArrayList<>();
     }
@@ -92,12 +93,12 @@ public class Account {
         this.photo = photo;
     }
 
-    public Pair<String, Integer> getParked() {
-        return parked;
+    public List<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setParked(String id, int space) {
-        this.parked = new Pair<>(id, space);
+    public void addReservation(String lotId, int space, long start, int duration) {
+        this.reservations.add(new Reservation(lotId, space, start, duration));
     }
 
     public boolean isPaid() {
