@@ -3,6 +3,7 @@ var router = express.Router();
 
 module.exports = function(passport) {
   
+  /* GET splash page. */
   router.get('/', function(req, res) {
     res.render('splash');
   })
@@ -22,7 +23,7 @@ module.exports = function(passport) {
     res.render('results');
   });
 
-  /* Signup */
+  /* signup */
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/q9xwGoXLGQ',
     failureRedirect: '/q9xwGoXLGQ/failure',
@@ -30,7 +31,7 @@ module.exports = function(passport) {
     successFlash: true
   }));
 
-  /* Login */ 
+  /* login */ 
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/q9xwGoXLGQ',
     failureRedirect: '/q9xwGoXLGQ/failure',
