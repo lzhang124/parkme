@@ -1,12 +1,10 @@
 package core.controllers;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import core.models.Account;
 import core.models.Lot;
-import core.models.Pair;
 import core.models.Space;
 import core.models.data.LotHistory;
 import core.models.data.RawHistory;
@@ -208,10 +206,10 @@ public class LotController {
     }
 
     public LotHistory addLotHistory(Lot lot) {
-        String id = lot.getLotHistory();
-        LotHistory history = lotHistoryRepo.findById(id);
+        String lotHistoryId = lot.getLotHistory();
+        LotHistory history = lotHistoryRepo.findById(lotHistoryId);
         if (history == null) {
-            System.out.println("History with id " + id + " was not found.");
+            System.out.println("History with id " + lotHistoryId + " was not found.");
             return null;
         } else {
             Long date = new Date().getTime();
