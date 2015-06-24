@@ -20,6 +20,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// uncomment after testing
+app.use('/q9xwGoXLGQ', express.static(__dirname + '/public'));
 
 // passport config
 var passport = require('passport');
