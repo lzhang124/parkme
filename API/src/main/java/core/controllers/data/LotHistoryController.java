@@ -20,10 +20,10 @@ public class LotHistoryController {
     }
 
     @RequestMapping(value = "/lotHistory", method = RequestMethod.GET)
-    public LotHistory lotHistory(String id) {
-        LotHistory history = repo.findById(id);
+    public LotHistory lotHistory(String lotHistoryId) {
+        LotHistory history = repo.findById(lotHistoryId);
         if (history == null) {
-            System.out.println("History with id " + id + "was not found.");
+            System.out.println("History with id " + lotHistoryId + "was not found.");
             return null;
         } else {
             return history;

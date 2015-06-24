@@ -40,10 +40,10 @@ public class LotController {
     }
 
     @RequestMapping(value = "/lotById", method = RequestMethod.GET)
-    public Lot lotById(String id) {
-        Lot lot = lotRepo.findById(id);
+    public Lot lotById(String lotId) {
+        Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
-            System.out.println("Lot with id " + id + " was not found.");
+            System.out.println("Lot with id " + lotId + " was not found.");
             return null;
         } else {
             return lot;
@@ -56,10 +56,10 @@ public class LotController {
     }
 
     @RequestMapping(value = "/entered", method = RequestMethod.POST)
-    public Lot entered(String id) {
-        Lot lot = lotRepo.findById(id);
+    public Lot entered(String lotId) {
+        Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
-            System.out.println("Lot with id " + id + " was not found.");
+            System.out.println("Lot with id " + lotId + " was not found.");
             return null;
         } else if (lot.getOccupied() == lot.getCapacity() - lot.getReserveMax()) {
             System.out.println("Lot " + lot + " is full.");
@@ -73,10 +73,10 @@ public class LotController {
     }
 
     @RequestMapping(value = "/exited", method = RequestMethod.POST)
-    public Lot exited(String id) {
-        Lot lot = lotRepo.findById(id);
+    public Lot exited(String lotId) {
+        Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
-            System.out.println("Lot with id " + id + " was not found.");
+            System.out.println("Lot with id " + lotId + " was not found.");
             return null;
         } else if (lot.getOccupied() == 0) {
             System.out.println("Lot " + lot + " is empty.");
@@ -90,10 +90,10 @@ public class LotController {
     }
 
     @RequestMapping(value="/changeReserveMax", method = RequestMethod.POST)
-    public Lot changeReserveMax(String id, int reserveMax) {
-        Lot lot = lotRepo.findById(id);
+    public Lot changeReserveMax(String lotId, int reserveMax) {
+        Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
-            System.out.println("Lot with id " + id + " was not found.");
+            System.out.println("Lot with id " + lotId + " was not found.");
             return null;
         } else {
             lot.setReserveMax(reserveMax);
@@ -106,17 +106,17 @@ public class LotController {
     }
 
     @RequestMapping(value="/addMember", method = RequestMethod.POST)
-    public Lot addMember(String id, String email, String role) {
-        Lot lot = lotRepo.findById(id);
+    public Lot addMember(String lotId, String email, String role) {
+        Lot lot = lotRepo.findById(lotId);
         Account account = accountRepo.findByEmail(email);
         if (lot == null) {
-            System.out.println("Lot with id " + id + " was not found.");
+            System.out.println("Lot with id " + lotId + " was not found.");
             return null;
         } else if (account == null) {
             System.out.println("Account with email " + email + " was not found.");
             return null;
         } else {
-            account.addLot(id, role);
+            account.addLot(lotId, role);
             accountRepo.save(account);
             lot.addMember(account.getId());
             lotRepo.save(lot);
@@ -125,13 +125,13 @@ public class LotController {
     }
 
     @RequestMapping(value = "/setCalendar", method = RequestMethod.POST)
-    public Lot setCalendar(String id, List<Long> startTimes, List<Integer> durations) {
-        Lot lot = lotRepo.findById(id);
+    public Lot setCalendar(String lotId, List<Long> startTimes, List<Integer> durations) {
+        Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
-            System.out.println("Lot with id " + id + " was not found.");
+            System.out.println("Lot with id " + lotId + " was not found.");
             return null;
         } else if (!lot.isReservable()) {
-            System.out.println("Lot with id " + id + " is not reservable.");
+            System.out.println("Lot with id " + lotId + " is not reservable.");
             return null;
         } else {
             List<Space> spaces = lot.getSpaces();
@@ -186,13 +186,13 @@ public class LotController {
     }
 
     @RequestMapping(value = "/clearReservations", method = RequestMethod.POST)
-    public Lot clearReservations(String id) {
-        Lot lot = lotRepo.findById(id);
+    public Lot clearReservations(String lotId) {
+        Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
-            System.out.println("Lot with id " + id + " was not found.");
+            System.out.println("Lot with id " + lotId + " was not found.");
             return null;
         } else if (!lot.isReservable()) {
-            System.out.println("Lot with id " + id + " is not reservable.");
+            System.out.println("Lot with id " + lotId + " is not reservable.");
             return null;
         } else {
             List<Space> spaces = lot.getSpaces();

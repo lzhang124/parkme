@@ -30,10 +30,10 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/accountById", method = RequestMethod.GET)
-    public Account accountById(String id) {
-        Account account = accountRepo.findById(id);
+    public Account accountById(String accountId) {
+        Account account = accountRepo.findById(accountId);
         if (account == null) {
-            System.out.println("Account with id " + id + " was not found.");
+            System.out.println("Account with id " + accountId + " was not found.");
             return null;
         } else {
             return account;
@@ -52,10 +52,10 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/addRole", method = RequestMethod.POST)
-    public Account addRole(String id, String role) {
-        Account account = accountRepo.findById(id);
+    public Account addRole(String accountId, String role) {
+        Account account = accountRepo.findById(accountId);
         if (account == null) {
-            System.out.println("Account with id " + id + " was not found.");
+            System.out.println("Account with id " + accountId + " was not found.");
             return null;
         } else {
             account.addRole(role);
@@ -73,10 +73,10 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/newLot", method = RequestMethod.POST)
-    public Account newLot(String id, String name, String type, Address address, double longitude, double latitude, String rateType, double price, int capacity, int reserveMax) {
-        Account account = accountRepo.findById(id);
+    public Account newLot(String accountId, String name, String type, Address address, double longitude, double latitude, String rateType, double price, int capacity, int reserveMax) {
+        Account account = accountRepo.findById(accountId);
         if (account == null) {
-            System.out.println("Account with id " + id + " was not found.");
+            System.out.println("Account with id " + accountId + " was not found.");
             return null;
         } else {
             template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
@@ -85,7 +85,7 @@ public class AccountController {
             System.out.println("New Lot:" + lot);
             account.addLot(lot.getId(), "Owner");
             accountRepo.save(account);
-            lot.addMember(id);
+            lot.addMember(accountId);
             lotRepo.save(lot);
             return account;
         }
