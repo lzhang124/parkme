@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import core.models.Account;
+import core.models.Address;
 import core.models.Lot;
 import core.models.Space;
 import core.models.data.LotHistory;
@@ -15,6 +16,8 @@ import core.repositories.data.RawHistoryRepository;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.index.GeospatialIndex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +34,8 @@ public class LotController {
     private LotHistoryRepository lotHistoryRepo;
     @Autowired
     private RawHistoryRepository rawHistoryRepo;
+    @Autowired
+    MongoTemplate template;
 
     @RequestMapping(value = "/listLots", method = RequestMethod.GET)
     public List<Lot> listLots() {
@@ -49,8 +54,27 @@ public class LotController {
     }
 
     @RequestMapping(value="/searchNear", method = RequestMethod.GET)
-    public List<Lot> searchNear(double longitude, double latitude) {
+    public List<Lot> searchNear(double latitude, double longitude) {
         return lotRepo.findByLocationNear(new Point(longitude, latitude), new Distance(1, Metrics.MILES));
+    }
+
+    @RequestMapping(value = "/newLot", method = RequestMethod.POST)
+    public Account newLot(String accountId, String name, String type, Address address, double latitude, double longitude, String rateType, double price, int capacity, int reserveMax) {
+        Account account = accountRepo.findById(accountId);
+        if (account == null) {
+            System.out.println("Account with id " + accountId + " was not found.");
+            return null;
+        } else {
+            template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
+            Lot lot = new Lot(name, type, address, latitude, longitude, rateType, price, capacity, reserveMax);
+            lotRepo.save(lot);
+            System.out.println("New Lot:" + lot);
+            account.addLot(lot.getId(), "Owner");
+            accountRepo.save(account);
+            lot.addMember(accountId);
+            lotRepo.save(lot);
+            return account;
+        }
     }
 
     @RequestMapping(value = "/entered", method = RequestMethod.POST)
