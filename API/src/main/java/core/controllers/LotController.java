@@ -134,16 +134,16 @@ public class LotController {
             System.out.println("Lot with id " + id + " is not reservable.");
             return null;
         } else {
-            List<Pair<Long, Integer>> intervals = new ArrayList<>();
-            for (int i = 0; i < startTimes.size(); i++) {
-                intervals.add(new Pair<>(startTimes.get(i), durations.get(i)));
-            }
-
             List<Space> spaces = lot.getSpaces();
-            for (int i = 0; i < lot.getReserveMax(); i++) {
-                Space space = spaces.get(i);
-                if (space.isReservable()) {
-                    space.setCalendar(intervals);
+
+            for (int i = 0; i < startTimes.size(); i++) {
+                long start = startTimes.get(i);
+                int duration = durations.get(i);
+                for (int j = 0; j < lot.getReserveMax(); j++) {
+                    Space space = spaces.get(j);
+                    if (space.isReservable()) {
+                        space.setCalendar(start, duration);
+                    }
                 }
             }
             lotRepo.save(lot);
@@ -152,33 +152,35 @@ public class LotController {
     }
 
     @RequestMapping(value = "/reserve", method = RequestMethod.POST)
-    public Lot reserve(String id, String accountId, List<Long> startTimes, List<Integer> durations, String search) {
-        Lot lot = lotRepo.findById(id);
+    public Lot reserve(String lotId, String accountId, List<Long> startTimes, List<Integer> durations, String search) {
+        Lot lot = lotRepo.findById(lotId);
+        Account account = accountRepo.findById(accountId);
         if (lot == null) {
-            System.out.println("Lot with id " + id + " was not found.");
+            System.out.println("Lot with lotId " + lotId + " was not found.");
+            return null;
+        } else if (account == null){
+            System.out.println("Account with lotId " + accountId + " was not found.");
             return null;
         } else if (!lot.isReservable()) {
-            System.out.println("Lot with id " + id + " is not reservable.");
+            System.out.println("Lot with lotId " + lotId + " is not reservable.");
             return null;
         } else {
-            List<Pair<Long, Integer>> intervals = new ArrayList<>();
-            for (int i = 0; i < startTimes.size(); i++) {
-                intervals.add(new Pair<>(startTimes.get(i), durations.get(i)));
-            }
-
             List<Space> spaces = lot.getSpaces();
-            for (Pair<Long, Integer> interval : intervals) {
-                long start = interval.getL();
-                int duration = interval.getR();
-                for (int i = 0; i < lot.getReserveMax(); i++) {
-                    if (spaces.get(i).isAvailable(start, duration)) {
-                        spaces.get(i).addReservation(start, duration, accountId);
-                        addRawHistory(accountId, id, i, start, duration, search);
+
+            for (int i = 0; i < startTimes.size(); i++) {
+                long start = startTimes.get(i);
+                int duration = durations.get(i);
+                for (int j = 0; j < lot.getReserveMax(); j++) {
+                    if (spaces.get(j).isAvailable(start, duration)) {
+                        spaces.get(j).addReservation(start, duration, accountId);
+                        account.addReservation(lotId, j, start, duration);
+                        addRawHistory(accountId, lotId, j, start, duration, search);
                         break;
                     }
                 }
             }
             lotRepo.save(lot);
+            accountRepo.save(account);
             return lot;
         }
     }

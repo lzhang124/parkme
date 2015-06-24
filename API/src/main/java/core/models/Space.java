@@ -39,14 +39,10 @@ public class Space {
         return calendar;
     }
 
-    public void setCalendar(List<Pair<Long, Integer>> intervals) {
-        for (Pair interval : intervals) {
-            long start = (long) interval.getL();
-            int duration = (int) interval.getR();
-            for (int i = 0; i < duration; i++) {
-                long time = start + i*3600000;
-                this.calendar.put(time, null);
-            }
+    public void setCalendar(long start, int duration) {
+        for (int i = 0; i < duration; i++) {
+            long time = start + i*3600000;
+            this.calendar.put(time, null);
         }
     }
 
