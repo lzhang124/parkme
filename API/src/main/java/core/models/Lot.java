@@ -37,7 +37,7 @@ public class Lot {
         this.name = name;
         this.type = type;
         this.address = address;
-        this.location = new double[] {latitude, longitude};
+        this.location = new double[] {longitude, latitude};
         this.rate = new HashMap<>();
         this.rate.put(rateType, price);
         this.rateRatio = 1.0;

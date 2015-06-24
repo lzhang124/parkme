@@ -1,7 +1,24 @@
 var app = angular.module('main', []);
 var url = 'https://127.0.0.1:8443/';
 
-app.controller('loginController', function($scope, $http) {
+app.factory('Data', function() {
+  var savedData = {};
+  
+  function set(data) {
+    savedData = data;
+  }
+  
+  function get() {
+    return savedData;
+  }
+
+  return {
+    set: set,
+    get: get
+  }
+});
+
+app.controller('loginController', function($scope, $http, Data) {
   $scope.showDimmer = false;
   $scope.LoginForm = false;
   $scope.SignupForm = false;
@@ -20,5 +37,91 @@ app.controller('loginController', function($scope, $http) {
     $scope.showDimmer = false;
     $scope.LoginForm = false;
     $scope.SignupForm = false;
+  }
+
+  var search = document.getElementById('search');
+  var auto_search = new google.maps.places.Autocomplete(search);
+
+  google.maps.event.addListener(auto_search, 'place_changed', function() {
+    var start = auto_search.getPlace();
+    var startLoc = start.geometry.location;
+  });
+
+  $scope.showResults = function() {
+    console.log('test');
+    Data.set(start);
+    console.log(Data);
+  }
+});
+
+app.controller('resultsController', function($scope, $http, Data) {
+  var map;
+  var infowindow;
+  var markers = [];
+
+  var search = document.getElementById('search');
+  var auto_search = new google.maps.places.Autocomplete(search);
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  google.maps.event.addListener(auto_search, 'place_changed', function() {
+    deleteMarkers();
+
+    var start = auto_search.getPlace();
+    var startLoc = start.geometry.location;
+
+    map.panTo(startLoc);
+    map.setZoom(16);
+
+    createMarker(startLoc.lat(), startLoc.lng(), start.name, null);
+    searchNear(startLoc);
+
+    infowindow = new google.maps.InfoWindow();
+    places = new google.maps.places.PlacesService(map);
+  });
+
+  var createMarker = function(lat, lng, name, available) {
+
+    if (available === true) {
+      var pin = 'images/pin-green.png';
+    } else if (available === false) {
+      var pin = 'images/pin-red.png';
+    } else {
+      var pin = 'images/pin-green.png';
+    }
+
+    var marker = new google.maps.Marker({
+      map: map,
+      position: new google.maps.LatLng(lat, lng),
+      icon: pin
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(name);
+      infowindow.open(this.map, this);
+    });
+
+    markers.push(marker);
+  }
+
+  var deleteMarkers = function() {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+    }
+    markers = [];
+  }
+
+  var searchNear = function(location) {
+    $http.get(url + 'searchNear?latitude=' + location.lat() + 
+                               '&longitude=' + location.lng()).
+    success(function(response) {
+      $scope.lots = response;
+      for (var i = 0; i < response.length; i++) {
+        place = response[i];
+        createMarker(place.location[1], place.location[0], place.name, place.available);
+      }
+    })
   }
 });
