@@ -3,44 +3,43 @@ var router = express.Router();
 
 module.exports = function(passport) {
   
-  /* GET home page. */
   router.get('/', function(req, res) {
+    res.render('splash');
+  })
+
+  /* GET home page. */
+  router.get('/q9xwGoXLGQ', function(req, res) {
     res.render('index');
   });
 
   /* GET info page. */
-  router.get('/info', function(req, res) {
+  router.get('/q9xwGoXLGQ/info', function(req, res) {
     res.render('info');
   });
 
   /* GET results page. */
-  router.get('/results', function(req, res) {
+  router.get('/q9xwGoXLGQ/results', function(req, res) {
     res.render('results');
-  });
-
-  /* GET map page. */
-  router.get('/map', function(req, res) {
-    res.render('map');
   });
 
   /* Signup */
   router.post('/signup', passport.authenticate('signup', {
-    successRedirect: '/',
-    failureRedirect: '/failure',
+    successRedirect: '/q9xwGoXLGQ',
+    failureRedirect: '/q9xwGoXLGQ/failure',
     failureFlash: true,
     successFlash: true
   }));
 
   /* Login */ 
   router.post('/login', passport.authenticate('login', {
-    successRedirect: '/',
-    failureRedirect: '/failure',
+    successRedirect: '/q9xwGoXLGQ',
+    failureRedirect: '/q9xwGoXLGQ/failure',
     failureFlash: true,
     successFlash: true
   }));
 
   /* GET failure page. */
-  router.get('/failure', function(req, res) {
+  router.get('/q9xwGoXLGQ/failure', function(req, res) {
     res.render('failure');
   });
 
