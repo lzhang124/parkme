@@ -92,17 +92,22 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
   var createMarker = function(lat, lng, name, available) {
     if (available === true) {
-      var pin = 'images/pin-green.png';
+      var image = 'images/pin-green.png';
     } else if (available === false) {
-      var pin = 'images/pin-red.png';
+      var image = 'images/pin-red.png';
     } else {
-      var pin = 'images/star.png';
+      var image = {
+        url: 'images/star.png',
+        size: new google.maps.Size(27, 26),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(13.5, 13)
+      };
     }
 
     var marker = new google.maps.Marker({
       map: map,
       position: new google.maps.LatLng(lat, lng),
-      icon: pin
+      icon: image
     });
 
     google.maps.event.addListener(marker, 'click', function() {
