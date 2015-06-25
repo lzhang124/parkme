@@ -54,7 +54,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
       $rootScope.showResults = true;
       $rootScope.showLogin = false;
       $rootScope.showContent = false;
-
       search.value = search_main.value;
 
       map = new google.maps.Map(document.getElementById('map'), {
@@ -75,7 +74,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
     map.panTo(startLoc);
     map.setZoom(16);
-    createMarker(startLoc.lat(), startLoc.lng(), start.name, null);
+    createMarker(startLoc.lat(), startLoc.lng(), 'Your Destination', null);
 
     $http.get(url + 'searchNear?latitude=' + startLoc.lat() + 
                                '&longitude=' + startLoc.lng()).
@@ -120,16 +119,4 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     }
     markers = [];
   }
-
-  // var searchNear = function(location) {
-  //   $http.get(url + 'searchNear?latitude=' + location.lat() + 
-  //                              '&longitude=' + location.lng()).
-  //   success(function(response) {
-  //     $scope.lots = response;
-  //     for (var i = 0; i < response.length; i++) {
-  //       place = response[i];
-  //       createMarker(place.location[1], place.location[0], place.name, place.available);
-  //     }
-  //   })
-  // }
 });
