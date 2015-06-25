@@ -18,11 +18,6 @@ module.exports = function(passport) {
     res.render('info');
   });
 
-  /* GET results page. */
-  router.get('/q9xwGoXLGQ/results', function(req, res) {
-    res.render('results');
-  });
-
   /* signup */
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/q9xwGoXLGQ',
