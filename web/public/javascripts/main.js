@@ -96,7 +96,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     } else if (available === false) {
       var pin = 'images/pin-red.png';
     } else {
-      var pin = 'images/pin-green.png';
+      var pin = 'images/star.png';
     }
 
     var marker = new google.maps.Marker({

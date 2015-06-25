@@ -23,6 +23,7 @@ public class Lot {
 
     private int capacity;
     private int occupied;
+    private boolean available;
     private boolean reservable;
     private int reserveMax;
     private List<Space> spaces;
@@ -42,6 +43,7 @@ public class Lot {
         this.rate.put(rateType, price);
         this.rateRatio = 1.0;
         this.capacity = capacity;
+        this.available = true;
         if (reserveMax > 0) {
             this.reservable = true;
         }
@@ -140,6 +142,14 @@ public class Lot {
 
     public void setOccupied(int occupied) {
         this.occupied = occupied;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public boolean isReservable() {

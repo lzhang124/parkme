@@ -85,6 +85,8 @@ public class LotController {
             return null;
         } else if (lot.getOccupied() == lot.getCapacity() - lot.getReserveMax()) {
             System.out.println("Lot " + lot + " is full.");
+            lot.setAvailable(false);
+            lotRepo.save(lot);
             return null;
         } else {
             lot.setOccupied(lot.getOccupied() + 1);
@@ -105,13 +107,14 @@ public class LotController {
             return null;
         } else {
             lot.setOccupied(lot.getOccupied() - 1);
+            lot.setAvailable(true);
             lotRepo.save(lot);
             addLotHistory(lot);
             return lot;
         }
     }
 
-    @RequestMapping(value="/changeReserveMax", method = RequestMethod.POST)
+    @RequestMapping(value = "/changeReserveMax", method = RequestMethod.POST)
     public Lot changeReserveMax(String lotId, int reserveMax) {
         Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
@@ -127,7 +130,7 @@ public class LotController {
         }
     }
 
-    @RequestMapping(value="/addMember", method = RequestMethod.POST)
+    @RequestMapping(value = "/addMember", method = RequestMethod.POST)
     public Lot addMember(String lotId, String email, String role) {
         Lot lot = lotRepo.findById(lotId);
         Account account = accountRepo.findByEmail(email);

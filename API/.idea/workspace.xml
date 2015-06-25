@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="691e65c5-3396-43d8-b630-e20f45e2e38e" name="Default" comment="" />
+    <list default="true" id="691e65c5-3396-43d8-b630-e20f45e2e38e" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../web/public/javascripts/results.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/models/Lot.java" afterPath="$PROJECT_DIR$/src/main/java/core/models/Lot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/controllers/LotController.java" afterPath="$PROJECT_DIR$/src/main/java/core/controllers/LotController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../web/public/javascripts/main.js" afterPath="$PROJECT_DIR$/../web/public/javascripts/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="avok.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -91,8 +97,8 @@
         <option value="$PROJECT_DIR$/src/main/java/core/models/Address.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/controllers/AccountController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/core/controllers/LotController.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/models/Lot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/core/controllers/LotController.java" />
       </list>
     </option>
   </component>
@@ -143,6 +149,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -404,8 +412,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -739,11 +745,13 @@
       <workItem from="1435117719496" duration="260000" />
       <workItem from="1435118029619" duration="1641000" />
       <workItem from="1435174537108" duration="218000" />
+      <workItem from="1435211781429" duration="53000" />
+      <workItem from="1435211941990" duration="194000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117097000" />
+    <option name="totallyTimeSpent" value="117344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -1166,20 +1174,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/models/Lot.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/LotController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37371135">
-          <caret line="39" column="57" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.40592784">
+          <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/controllers/LotController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/core/models/Lot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17396908">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.0103092">
+          <caret line="146" column="32" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
