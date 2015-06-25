@@ -5,7 +5,6 @@ app.run(function($rootScope) {
   $rootScope.showContent = true;
   $rootScope.showLogin = true;
   $rootScope.showResults = false;
-  $rootScope.search = null;
 });
 
 app.factory('focus', function($timeout) {
@@ -39,24 +38,10 @@ app.controller('loginController', function($scope, $rootScope, $http, focus) {
   }
 });
 
-app.controller('searchController', function($scope, $rootScope, $timeout) {
-  var search = document.getElementById('search-main');
-  var auto_search = new google.maps.places.Autocomplete(search);
+app.controller('searchController', function($scope, $rootScope, $http, $timeout) {
+  var search_main = document.getElementById('search-main');
+  var auto_search_main = new google.maps.places.Autocomplete(search_main);
 
-  google.maps.event.addListener(auto_search, 'place_changed', function() {
-    var start = auto_search.getPlace();
-    var startLoc = start.geometry.location;
-
-    $timeout(function() {
-      $rootScope.search = start;
-      $rootScope.showResults = true;
-      $rootScope.showLogin = false;
-      $rootScope.showContent = false;
-    });
-  });
-});
-
-app.controller('resultsController', function($scope, $rootScope, $http) {
   var search = document.getElementById('search');
   var auto_search = new google.maps.places.Autocomplete(search);
 
@@ -64,28 +49,49 @@ app.controller('resultsController', function($scope, $rootScope, $http) {
   var infowindow;
   var markers = [];
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+  google.maps.event.addListener(auto_search_main, 'place_changed', function() {
+    $timeout(function() {
+      $rootScope.showResults = true;
+      $rootScope.showLogin = false;
+      $rootScope.showContent = false;
+
+      search.value = search_main.value;
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      searchNear(auto_search_main.getPlace());
+    });
   });
 
   google.maps.event.addListener(auto_search, 'place_changed', function() {
     deleteMarkers();
+    searchNear(auto_search.getPlace());
+  });
 
-    var start = auto_search.getPlace();
+  var searchNear = function(start) {
     var startLoc = start.geometry.location;
 
     map.panTo(startLoc);
     map.setZoom(16);
-
     createMarker(startLoc.lat(), startLoc.lng(), start.name, null);
-    searchNear(startLoc);
+
+    $http.get(url + 'searchNear?latitude=' + startLoc.lat() + 
+                               '&longitude=' + startLoc.lng()).
+    success(function(response) {
+      $scope.lots = response;
+      for (var i = 0; i < response.length; i++) {
+        place = response[i];
+        createMarker(place.location[1], place.location[0], place.name, place.available);
+      }
+    })
 
     infowindow = new google.maps.InfoWindow();
     places = new google.maps.places.PlacesService(map);
-  });
+  }
 
   var createMarker = function(lat, lng, name, available) {
-
     if (available === true) {
       var pin = 'images/pin-green.png';
     } else if (available === false) {
@@ -115,15 +121,15 @@ app.controller('resultsController', function($scope, $rootScope, $http) {
     markers = [];
   }
 
-  var searchNear = function(location) {
-    $http.get(url + 'searchNear?latitude=' + location.lat() + 
-                               '&longitude=' + location.lng()).
-    success(function(response) {
-      $scope.lots = response;
-      for (var i = 0; i < response.length; i++) {
-        place = response[i];
-        createMarker(place.location[1], place.location[0], place.name, place.available);
-      }
-    })
-  }
+  // var searchNear = function(location) {
+  //   $http.get(url + 'searchNear?latitude=' + location.lat() + 
+  //                              '&longitude=' + location.lng()).
+  //   success(function(response) {
+  //     $scope.lots = response;
+  //     for (var i = 0; i < response.length; i++) {
+  //       place = response[i];
+  //       createMarker(place.location[1], place.location[0], place.name, place.available);
+  //     }
+  //   })
+  // }
 });

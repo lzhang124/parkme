@@ -61,36 +61,38 @@
       </div>
     </div>
   </div>
-  <div class="content" ng-controller="searchController" ng-show="showContent">
-    <img src="images/logo-white.svg"
-         onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
-    <form>
-      <input id="search-main" type="text" placeholder="DESTINATION" autofocus>
-    </form>
-    <div class="info">
-      <a href="/q9xwGoXLGQ/info">Click here for more information</a>
-    </div>
-  </div>
-  <div class="search-results" ng-controller="resultsController" ng-show="showResults">
-    <div class="map-box">
-      <div id="map"></div>
-    </div>
-    <div class="results">
+  <div ng-controller="searchController">
+    <div class="content" ng-show="showContent">
+      <img src="images/logo-white.svg"
+           onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
       <form>
-        <input id="search" placeholder="DESTINATION">
+        <input id="search-main" type="text" placeholder="DESTINATION" autofocus>
       </form>
-      <div class="results-container">
-        <button ng-repeat="lot in lots">
-          <div class="lot-name">
-            {{ lot.name }}
-          </div>
-          <div class="lot-address">
-            {{ lot.address.street }}
-          </div>
-          <div class="lot-free">
-            Available spots: {{ lot.capacity - lot.occupied }}
-          </div>
-        </button>
+      <div class="info">
+        <a href="/q9xwGoXLGQ/info">Click here for more information</a>
+      </div>
+    </div>
+    <div class="search-results" ng-show="showResults">
+      <div class="map-box">
+        <div id="map"></div>
+      </div>
+      <div class="results">
+        <form>
+          <input id="search" placeholder="DESTINATION">
+        </form>
+        <div class="results-container">
+          <button ng-repeat="lot in lots">
+            <div class="lot-name">
+              <strong>{{ lot.name }}</strong>
+            </div>
+            <div class="lot-address">
+              {{ lot.address.street }}
+            </div>
+            <div class="lot-free">
+              Available spots: {{ lot.capacity - lot.occupied }}
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
