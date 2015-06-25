@@ -85,8 +85,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     searchNear(start);
   });
 
-
-
   var searchNear = function(start) {
     var startLoc = start.geometry.location;
 
