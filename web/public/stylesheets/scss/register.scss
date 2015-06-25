@@ -1,0 +1,80 @@
+@import '_constants';
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+::-webkit-input-placeholder {
+    color: $grey;;
+}
+
+:-moz-placeholder {
+   color: $grey;
+   opacity: 1;
+}
+
+::-moz-placeholder {
+   color: $grey;
+   opacity: 1;
+}
+
+:-ms-input-placeholder {
+   color: $grey;
+}
+
+.bg {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: $dimmer;
+}
+
+.register {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+  .title {
+    margin-top: 10%;
+    font-family: $lato;
+    font-weight: 300;
+    font-size: 3em;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 5px;
+    color: $white;
+  }
+
+  .register-container {
+    width: 60%;
+    margin: 5% 20% 0 20%;
+    text-align: center;
+
+    .map-box {
+      height: 50vh;
+      width: 100%;
+      margin-top: 5%;
+      margin-bottom: 10%;
+      
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    form {
+      width: 100%;
+      margin: auto;
+
+      input {
+        width: 100%;
+      }
+
+      button {
+        margin-top: 40px;
+      }
+    }
+  }
+}

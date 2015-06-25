@@ -20,8 +20,8 @@ module.exports = function(passport) {
 
   /* signup */
   router.post('/signup', passport.authenticate('signup', {
-    successRedirect: '/q9xwGoXLGQ',
-    failureRedirect: '/q9xwGoXLGQ/failure',
+    successRedirect: '/q9xwGoXLGQ/register',
+    failureRedirect: '/q9xwGoXLGQ/signup',
     failureFlash: true,
     successFlash: true
   }));
@@ -29,14 +29,14 @@ module.exports = function(passport) {
   /* login */ 
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/q9xwGoXLGQ',
-    failureRedirect: '/q9xwGoXLGQ/failure',
+    failureRedirect: '/q9xwGoXLGQ/login',
     failureFlash: true,
     successFlash: true
   }));
 
-  /* GET failure page. */
-  router.get('/q9xwGoXLGQ/failure', function(req, res) {
-    res.render('failure');
+  /* GET register page. */
+  router.get('/q9xwGoXLGQ/register', function(req, res) {
+    res.render('register');
   });
 
   return router;

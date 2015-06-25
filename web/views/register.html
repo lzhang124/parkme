@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="register">
+<head lang="en">
+  <title>AVOKTECH</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+  
+  <!-- Styling -->
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
+  <link href="stylesheets/register.css" rel="stylesheet" type="text/css">
+
+  <!-- Load Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-animate.min.js"></script>
+
+  <!-- Google Places -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+  <!-- Controllers -->
+  <script src="javascripts/register.js"></script>
+
+  <!-- Semantic-UI -->
+  <!-- <link rel="stylesheet" href="plugins/semantic-ui/css/semantic.min.css"> -->
+  <!-- <script src="plugins/semantic-ui/javascripts/semantic.min.js"></script> -->
+
+  <!-- Animate.css -->
+  <!-- <link rel="stylesheet" href="plugins/animate.css"> -->
+</head>
+</body>
+  <div class="bg"></div>
+  <div class="register" ng-controller="registerController">
+    <div class="title">
+      Register a Lot
+    </div>
+    <div class="register-container">
+      <form>
+        <input id="search" placeholder="ADDRESS" onClick="this.select();" autofocus>
+      </form>
+      <div class="map-box">
+        <div id="map"></div>
+      </div>
+      <form>
+        <input name="email" type="email" placeholder="EMAIL">
+        <input name="password" type="password" placeholder="PASSWORD">
+        <input name="password2" type="password" placeholder="RETYPE PASSWORD">
+        <button>Sign Up</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -100,7 +100,7 @@ html, body {
       margin: 0 30%;
       text-align: center; }
       .login .dimmer .login-container form, .login .dimmer .signup-container form {
-        width: 100;
+        width: 100%;
         margin: auto; }
         .login .dimmer .login-container form input, .login .dimmer .signup-container form input {
           width: 100%; }
@@ -187,3 +187,5 @@ html, body {
 
   .info {
     font-size: 1em; } }
+
+/*# sourceMappingURL=main.css.map */

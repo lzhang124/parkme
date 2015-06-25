@@ -49,25 +49,43 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
   var infowindow;
   var markers = [];
 
+  var searchName;
+  search.addEventListener('blur', function() {
+    if (searchName) {
+      setTimeout(function() {
+        search.value = searchName;
+      }, 1);
+    }
+  });
+
   google.maps.event.addListener(auto_search_main, 'place_changed', function() {
+    var start = auto_search_main.getPlace();
+
     $timeout(function() {
       $rootScope.showResults = true;
       $rootScope.showLogin = false;
       $rootScope.showContent = false;
-      search.value = search_main.value;
+      search.value = start.name;
 
       map = new google.maps.Map(document.getElementById('map'), {
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true
       });
 
-      searchNear(auto_search_main.getPlace());
+      searchNear(start);
     });
   });
 
   google.maps.event.addListener(auto_search, 'place_changed', function() {
+    var start = auto_search.getPlace();
+    searchName = start.name;
+    search.value = searchName;
+    
     deleteMarkers();
-    searchNear(auto_search.getPlace());
+    searchNear(start);
   });
+
+
 
   var searchNear = function(start) {
     var startLoc = start.geometry.location;
@@ -87,7 +105,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     })
 
     infowindow = new google.maps.InfoWindow();
-    places = new google.maps.places.PlacesService(map);
   }
 
   var createMarker = function(lat, lng, name, available) {
