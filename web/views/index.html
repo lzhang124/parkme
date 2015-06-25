@@ -28,19 +28,19 @@
   <!-- Animate.css -->
   <!-- <link rel="stylesheet" href="plugins/animate.css"> -->
 </head>
-</body>
+<body>
   <div class="bg"></div>
-  <div class="login" ng-controller="loginController">
+  <div class="login" ng-controller="loginController" ng-show="showLogin">
     <div class="button-container">
-      <button ng-click="showLogin()">Login</button>
-      <button ng-click="showSignup()">Sign Up</button>
+      <button ng-click="login()">Login</button>
+      <button ng-click="signup()">Sign Up</button>
     </div>
-    <div class="dimmer" ng-show="showDimmer">
+    <div class="dimmer" ng-show="LoginForm || SignupForm">
       <img src="images/close.svg" ng-click="hideDimmer()"
            onerror="this.onerror=null; this.src='images/close.png'" class="close">
       <div class="login-container" ng-show="LoginForm">
         <form action="/login" method="POST">
-          <input name="email" type="email" placeholder="EMAIL" autofocus>
+          <input id="login" name="email" type="email" placeholder="EMAIL" autofocus>
           <input name="password" type="password" placeholder="PASSWORD">
           <button>Login</button>
         </form>
@@ -48,7 +48,7 @@
       <div class="signup-container" ng-show="SignupForm">
         <form action="/signup" method="POST">
           <div class="left">
-            <input name="firstName" type="text" placeholder="FIRST NAME" autofocus>
+            <input id="signup" name="firstName" type="text" placeholder="FIRST NAME" autofocus>
           </div>
           <div class="right">
             <input name="lastName" type="text" placeholder="LAST NAME">
@@ -61,15 +61,37 @@
       </div>
     </div>
   </div>
-  <div class="content">
+  <div class="content" ng-controller="searchController" ng-show="showContent">
     <img src="images/logo-white.svg"
          onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
-    <form ng-submit="showResults()">
-      <input id="search" type="text" placeholder="DESTINATION" autofocus>
-      <button type="submit">Search</button>
+    <form>
+      <input id="search-main" type="text" placeholder="DESTINATION" autofocus>
     </form>
     <div class="info">
       <a href="/q9xwGoXLGQ/info">Click here for more information</a>
+    </div>
+  </div>
+  <div class="search-results" ng-controller="resultsController" ng-show="showResults">
+    <div class="map-box">
+      <div id="map"></div>
+    </div>
+    <div class="results">
+      <form>
+        <input id="search" placeholder="DESTINATION">
+      </form>
+      <div class="results-container">
+        <button ng-repeat="lot in lots">
+          <div class="lot-name">
+            {{ lot.name }}
+          </div>
+          <div class="lot-address">
+            {{ lot.address.street }}
+          </div>
+          <div class="lot-free">
+            Available spots: {{ lot.capacity - lot.occupied }}
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 </body>
