@@ -39,5 +39,10 @@ module.exports = function(passport) {
     res.render('register');
   });
 
+  /* GET test page */
+  router.get('/q9xwGoXLGQ/test', function(req, res) {
+    res.render('test');
+  });
+
   return router;
 }
