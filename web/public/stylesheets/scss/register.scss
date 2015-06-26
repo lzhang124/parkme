@@ -103,6 +103,30 @@ html, body {
       float: right;
     }
 
+    .ui.simple.dropdown {
+      background: transparent;
+      border: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      border-bottom: 1px solid $white;
+      padding: 5px 0;
+      font-family: $lato;
+      font-weight: 300;
+      text-align: left;
+      text-transform: uppercase;
+      font-size: 100%;
+      color: $white;
+    }
+
+    .ui.simple.dropdown:hover {
+      border-bottom: 1px solid $white;
+    }
+
+    i.dropdown.icon {
+      padding-right: 0;
+    }
+
     input.value {
       width: 95px;
       text-align: right;

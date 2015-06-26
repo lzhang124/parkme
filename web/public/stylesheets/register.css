@@ -131,6 +131,24 @@ html, body {
       width: 45%;
       text-align: left;
       float: right; }
+    .register .field .ui.simple.dropdown {
+      background: transparent;
+      border: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      border-bottom: 1px solid white;
+      padding: 5px 0;
+      font-family: "Lato", sans-serif;
+      font-weight: 300;
+      text-align: left;
+      text-transform: uppercase;
+      font-size: 100%;
+      color: white; }
+    .register .field .ui.simple.dropdown:hover {
+      border-bottom: 1px solid white; }
+    .register .field i.dropdown.icon {
+      padding-right: 0; }
     .register .field input.value {
       width: 95px;
       text-align: right; }
@@ -147,3 +165,5 @@ html, body {
   .register button {
     margin-top: 80px;
     margin-bottom: 10%; }
+
+/*# sourceMappingURL=register.css.map */

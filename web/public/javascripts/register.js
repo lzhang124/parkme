@@ -89,5 +89,5 @@ app.controller('registerController', function($scope, $filter) {
     }
   }
 
-  $scope.type = "Hour";
+  $scope.type = "HOUR";
 });
