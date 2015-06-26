@@ -37,6 +37,10 @@ input {
 input:focus {
   outline: 0; }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none; }
+
 .close {
   height: 25px;
   position: absolute;
@@ -76,36 +80,72 @@ html, body {
   background: #191919; }
 
 .register {
-  height: 100%;
   width: 100%;
-  position: absolute; }
+  position: absolute;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  color: white; }
   .register .title {
     margin-top: 10%;
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
     font-size: 3em;
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 5px;
-    color: white; }
-  .register .register-container {
+    letter-spacing: 5px; }
+  .register .map-container {
     width: 60%;
-    margin: 3% 20% 0 20%;
-    text-align: center; }
-    .register .register-container .map-box {
-      height: 50vh;
-      width: 100%;
-      margin-top: 5%;
-      margin-bottom: 5%; }
-      .register .register-container .map-box #map {
-        height: 100%;
-        width: 100%; }
-    .register .register-container form {
+    margin: 3% 20%;
+    text-align: center;
+    font-size: 1em; }
+    .register .map-container form {
       width: 100%;
       margin: auto; }
-      .register .register-container form input {
+      .register .map-container form input {
         width: 100%; }
-      .register .register-container form button {
-        margin-top: 40px; }
+    .register .map-container .map-box {
+      height: 50vh;
+      width: 100%;
+      margin: 5% 0 7% 0; }
+      .register .map-container .map-box #map {
+        height: 100%;
+        width: 100%; }
+  .register .field {
+    height: 40px;
+    width: 100%;
+    margin-top: 2%;
+    font-size: 2em;
+    letter-spacing: 2px; }
+    .register .field .left {
+      height: 40px;
+      width: 45%;
+      text-align: right;
+      float: left; }
+    .register .field .vertical {
+      height: 70px;
+      position: absolute;
+      left: 50%;
+      margin-top: -15px;
+      display: inline-block;
+      border-left: 3px solid white; }
+    .register .field .right {
+      height: 40px;
+      width: 45%;
+      text-align: left;
+      float: right; }
+    .register .field input.value {
+      width: 95px;
+      text-align: right; }
+    .register .field .icon {
+      height: 24px;
+      width: 24px;
+      cursor: pointer; }
+    .register .field input {
+      height: 40px;
+      width: 67px;
+      padding: 0;
+      border-bottom: 1px solid white;
+      font-size: 100%; }
+  .register button {
+    margin-top: 80px;
+    margin-bottom: 10%; }
 
 /*# sourceMappingURL=register.css.map */

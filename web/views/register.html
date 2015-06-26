@@ -34,20 +34,42 @@
     <div class="title">
       Register a Lot
     </div>
-    <div class="register-container">
+    <div class="map-container">
       <form>
-        <input id="search" placeholder="ADDRESS" onClick="this.select();" autofocus>
+        <input id="search" placeholder="ADDRESS" onClick="this.select();" autofocus />
       </form>
       <div class="map-box">
         <div id="map"></div>
       </div>
-      <form>
-        <input name="email" type="email" placeholder="EMAIL">
-        <input name="password" type="password" placeholder="PASSWORD">
-        <input name="password2" type="password" placeholder="RETYPE PASSWORD">
-        <button>Sign Up</button>
-      </form>
     </div>
+    <div class="field">
+      <div class="left">
+        Number of spots
+      </div>
+      <div class="vertical"></div>
+      <div class="right">
+        <img src="images/minus.svg" ng-click="minus()"
+             onerror="this.onerror=null; this.src='images/minus.png'" id="minus" class="icon">
+        <input id="capacity" ng-model="capacity" type="number" />
+        <img src="images/plus.svg" ng-click="plus()"
+             onerror="this.onerror=null; this.src='images/plus.png'" id="plus" class="icon">
+      </div>
+    </div>
+    <div class="field">
+      <div class="left">
+        Price
+      </div>
+      <div class="vertical"></div>
+      <div class="right">
+        $<input ng-model="value" type="number" class="value" />
+        per
+        <select class="dropdown" ng-model="type">
+          <option>Hour</option>
+          <option>Day</option>
+        </select>
+      </div>
+    </div>
+    <button>Register</button>
   </div>
 </body>
 </html>

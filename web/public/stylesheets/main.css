@@ -37,6 +37,10 @@ input {
 input:focus {
   outline: 0; }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none; }
+
 .close {
   height: 25px;
   position: absolute;

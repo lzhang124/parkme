@@ -32,37 +32,25 @@ html, body {
 }
 
 .register {
-  height: 100%;
   width: 100%;
   position: absolute;
+  font-family: $lato;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  color: $white;
 
   .title {
     margin-top: 10%;
-    font-family: $lato;
-    font-weight: 300;
     font-size: 3em;
-    text-transform: uppercase;
-    text-align: center;
     letter-spacing: 5px;
-    color: $white;
   }
 
-  .register-container {
+  .map-container {
     width: 60%;
-    margin: 3% 20% 0 20%;
+    margin: 3% 20%;
     text-align: center;
-
-    .map-box {
-      height: 50vh;
-      width: 100%;
-      margin-top: 5%;
-      margin-bottom: 5%;
-      
-      #map {
-        height: 100%;
-        width: 100%;
-      }
-    }
+    font-size: 1em;
 
     form {
       width: 100%;
@@ -71,10 +59,72 @@ html, body {
       input {
         width: 100%;
       }
+    }
 
-      button {
-        margin-top: 40px;
+    .map-box {
+      height: 50vh;
+      width: 100%;
+      margin: 5% 0 7% 0;
+      
+      #map {
+        height: 100%;
+        width: 100%;
       }
     }
+  }
+
+  .field {
+    height: 40px;
+    width: 100%;
+    margin-top: 2%;
+    font-size: 2em;
+    letter-spacing: 2px;
+
+    .left {
+      height: 40px;
+      width: 45%;
+      text-align: right;
+      float: left;
+    }
+
+    .vertical {
+      height: 70px;
+      position: absolute;
+      left: 50%;
+      margin-top: -15px;
+      display: inline-block;
+      border-left: 3px solid $white;
+    }
+
+    .right {
+      height: 40px;
+      width: 45%;
+      text-align: left;
+      float: right;
+    }
+
+    input.value {
+      width: 95px;
+      text-align: right;
+    }
+
+    .icon {
+      height: 24px;
+      width: 24px;
+      cursor: pointer;
+    }
+
+    input {
+      height: 40px;
+      width: 67px;
+      padding: 0;
+      border-bottom: 1px solid $white;
+      font-size: 100%;
+    }
+  }
+
+  button {
+    margin-top: 80px;
+    margin-bottom: 10%;
   }
 }

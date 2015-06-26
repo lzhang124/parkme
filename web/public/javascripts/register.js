@@ -1,7 +1,7 @@
 var app = angular.module('register', []);
 var url = 'https://127.0.0.1:8443/';
 
-app.controller('registerController', function() {
+app.controller('registerController', function($scope, $filter) {
   var search = document.getElementById('search');
   var auto_search = new google.maps.places.Autocomplete(search);
 
@@ -71,5 +71,21 @@ app.controller('registerController', function() {
       markers[i].setMap(null);
     }
     markers = [];
+  }
+
+  $scope.capacity = 1;
+  $scope.plus = function() {
+    if ($scope.capacity > 0) {
+      $scope.capacity += 1;
+    } else {
+      $scope.capacity = 1;
+    }
+  }
+  $scope.minus = function() {
+    if ($scope.capacity > 1) {
+      $scope.capacity -= 1;
+    } else {
+      $scope.capacity = 1;
+    }
   }
 });
