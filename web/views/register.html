@@ -22,11 +22,10 @@
   <script src="javascripts/register.js"></script>
 
   <!-- Semantic-UI -->
-  <!-- <link rel="stylesheet" href="plugins/semantic-ui/css/semantic.min.css"> -->
-  <!-- <script src="plugins/semantic-ui/javascripts/semantic.min.js"></script> -->
+  <link href="bower_components/semantic-ui-dropdown/dropdown.min.css" rel="stylesheet" type="text/css">
+  <script src="bower_components/semantic-ui-dropdown/dropdown.min.js"></script>
 
   <!-- Animate.css -->
-  <!-- <link rel="stylesheet" href="plugins/animate.css"> -->
 </head>
 </body>
   <div class="bg"></div>
@@ -63,7 +62,7 @@
       <div class="right">
         $<input ng-model="value" type="number" class="value" />
         per
-        <select class="dropdown" ng-model="type">
+        <select class="ui dropdown" ng-model="type">
           <option>Hour</option>
           <option>Day</option>
         </select>

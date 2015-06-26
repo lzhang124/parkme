@@ -88,4 +88,6 @@ app.controller('registerController', function($scope, $filter) {
       $scope.capacity = 1;
     }
   }
+
+  $scope.type = "Hour";
 });

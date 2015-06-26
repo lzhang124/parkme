@@ -22,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // uncomment after testing
 app.use('/q9xwGoXLGQ', express.static(path.join(__dirname, 'public')));
+app.use('/q9xwGoXLGQ', express.static(path.join(__dirname)));
 
 // passport config
 var passport = require('passport');
