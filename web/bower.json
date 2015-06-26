@@ -1,0 +1,14 @@
+{
+  "name": "avoktech",
+  "version": "0.0.0",
+  "authors": [
+    "Larry Zhang <larry.zhang@avoktech.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "semantic-ui-dropdown": "~1.12.3"
+  }
+}
