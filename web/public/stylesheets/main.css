@@ -8,7 +8,7 @@ button {
   font-family: "Lato", sans-serif;
   font-weight: 300;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 2em;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   color: white;
@@ -109,7 +109,10 @@ html, body {
         .login .dimmer .login-container form input, .login .dimmer .signup-container form input {
           width: 100%; }
         .login .dimmer .login-container form button, .login .dimmer .signup-container form button {
-          margin-top: 40px; }
+          margin-top: 40px;
+          font-weight: 300; }
+        .login .dimmer .login-container form button:hover, .login .dimmer .signup-container form button:hover {
+          color: #191919; }
     .login .dimmer .signup-container {
       top: 28%; }
       .login .dimmer .signup-container .left {
@@ -191,3 +194,5 @@ html, body {
 
   .info {
     font-size: 1em; } }
+
+/*# sourceMappingURL=main.css.map */

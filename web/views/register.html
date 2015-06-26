@@ -47,10 +47,23 @@
       </div>
       <div class="vertical"></div>
       <div class="right">
-        <img src="images/minus.svg" ng-click="minus()"
+        <img src="images/minus.svg" ng-click="minusCapacity()"
              onerror="this.onerror=null; this.src='images/minus.png'" id="minus" class="icon">
         <input id="capacity" ng-model="capacity" type="number" />
-        <img src="images/plus.svg" ng-click="plus()"
+        <img src="images/plus.svg" ng-click="plusCapacity()"
+             onerror="this.onerror=null; this.src='images/plus.png'" id="plus" class="icon">
+      </div>
+    </div>
+    <div class="field">
+      <div class="left">
+        Reservable spots
+      </div>
+      <div class="vertical"></div>
+      <div class="right">
+        <img src="images/minus.svg" ng-click="minusReserve()"
+             onerror="this.onerror=null; this.src='images/minus.png'" id="minus" class="icon">
+        <input id="reservable" ng-model="reservable" type="number" />
+        <img src="images/plus.svg" ng-click="plusReserve()"
              onerror="this.onerror=null; this.src='images/plus.png'" id="plus" class="icon">
       </div>
     </div>
@@ -63,8 +76,8 @@
         $<input ng-model="value" type="number" class="value" />
         per
         <select class="ui simple dropdown" ng-model="type">
-          <option>HOUR</option>
-          <option>DAY</option>
+          <option>hour</option>
+          <option>day</option>
         </select>
       </div>
     </div>

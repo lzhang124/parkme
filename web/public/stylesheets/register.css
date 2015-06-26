@@ -8,7 +8,7 @@ button {
   font-family: "Lato", sans-serif;
   font-weight: 300;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 2em;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   color: white;
@@ -132,6 +132,7 @@ html, body {
       text-align: left;
       float: right; }
     .register .field .ui.simple.dropdown {
+      min-width: 140px;
       background: transparent;
       border: 0;
       -webkit-border-radius: 0;
@@ -145,10 +146,37 @@ html, body {
       text-transform: uppercase;
       font-size: 100%;
       color: white; }
+      .register .field .ui.simple.dropdown .text {
+        margin: 0;
+        padding: 0; }
+      .register .field .ui.simple.dropdown i.dropdown.icon {
+        margin: 0;
+        margin-right: -30px;
+        padding: 0; }
+      .register .field .ui.simple.dropdown .menu {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none; }
+        .register .field .ui.simple.dropdown .menu .item {
+          background: transparent;
+          border-top: 1px solid white;
+          font-weight: 300;
+          text-transform: uppercase;
+          color: white;
+          transition: all 300ms ease; }
+        .register .field .ui.simple.dropdown .menu .item:hover {
+          background: #004869; }
+        .register .field .ui.simple.dropdown .menu .active {
+          font-weight: 400; }
     .register .field .ui.simple.dropdown:hover {
       border-bottom: 1px solid white; }
-    .register .field i.dropdown.icon {
-      padding-right: 0; }
+    .register .field input {
+      height: 40px;
+      width: 67px;
+      padding: 0;
+      border-bottom: 1px solid white;
+      font-size: 100%; }
     .register .field input.value {
       width: 95px;
       text-align: right; }
@@ -156,14 +184,10 @@ html, body {
       height: 24px;
       width: 24px;
       cursor: pointer; }
-    .register .field input {
-      height: 40px;
-      width: 67px;
-      padding: 0;
-      border-bottom: 1px solid white;
-      font-size: 100%; }
   .register button {
     margin-top: 80px;
     margin-bottom: 10%; }
+  .register button:hover {
+    color: #191919; }
 
 /*# sourceMappingURL=register.css.map */

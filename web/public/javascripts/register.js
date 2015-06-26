@@ -74,20 +74,45 @@ app.controller('registerController', function($scope, $filter) {
   }
 
   $scope.capacity = 1;
-  $scope.plus = function() {
+  $scope.plusCapacity = function() {
     if ($scope.capacity > 0) {
       $scope.capacity += 1;
     } else {
       $scope.capacity = 1;
     }
+    if ($scope.capacity === $scope.reservable + 1) {
+      $scope.reservable = $scope.capacity;
+    }
   }
-  $scope.minus = function() {
+  $scope.minusCapacity = function() {
     if ($scope.capacity > 1) {
       $scope.capacity -= 1;
     } else {
       $scope.capacity = 1;
     }
+    if ($scope.capacity === $scope.reservable - 1) {
+      $scope.reservable = $scope.capacity;
+    }
   }
 
-  $scope.type = "HOUR";
+  $scope.reservable = 1;
+  $scope.plusReserve = function() {
+    if ($scope.reservable >= 0) {
+      $scope.reservable += 1;
+    } else {
+      $scope.reservable = $scope.capacity;
+    }
+    if ($scope.reservable > $scope.capacity) {
+      $scope.reservable = $scope.capacity;
+    }
+  }
+  $scope.minusReserve = function() {
+    if ($scope.reservable > 0) {
+      $scope.reservable -= 1;
+    } else {
+      $scope.reservable = 0;
+    }
+  }
+
+  $scope.type = "hour";
 });
