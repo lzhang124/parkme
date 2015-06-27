@@ -1,12 +1,16 @@
 var app = angular.module('main', []);
 var url = 'https://127.0.0.1:8443/';
 
+
+// SET CONSTANTS //
 app.run(function($rootScope) {
   $rootScope.showContent = true;
   $rootScope.showLogin = true;
   $rootScope.showResults = false;
 });
 
+
+// AUTOFOCUS //
 app.factory('focus', function($timeout) {
   return function(id) {
     $timeout(function() {
@@ -17,7 +21,10 @@ app.factory('focus', function($timeout) {
   }
 });
 
+
 app.controller('loginController', function($scope, $rootScope, $http, focus) {
+  
+  // LOGIN //
   $scope.login = function() {
     $scope.LoginForm = true;
     $rootScope.showContent = false;
@@ -38,7 +45,10 @@ app.controller('loginController', function($scope, $rootScope, $http, focus) {
   }
 });
 
+
 app.controller('searchController', function($scope, $rootScope, $http, $timeout) {
+
+  // INIT PLACES AUTOCOMPLETE //
   var search_main = document.getElementById('search-main');
   var auto_search_main = new google.maps.places.Autocomplete(search_main);
 
@@ -58,6 +68,8 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     }
   });
 
+
+  // INIT MAP //
   google.maps.event.addListener(auto_search_main, 'place_changed', function() {
     var start = auto_search_main.getPlace();
 
@@ -76,6 +88,8 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     });
   });
 
+
+  // NEW SEARCH //
   google.maps.event.addListener(auto_search, 'place_changed', function() {
     var start = auto_search.getPlace();
     searchName = start.name;
@@ -85,6 +99,8 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     searchNear(start);
   });
 
+
+  // SEARCH //
   var searchNear = function(start) {
     var startLoc = start.geometry.location;
 
