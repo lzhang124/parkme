@@ -59,14 +59,14 @@ public class LotController {
     }
 
     @RequestMapping(value = "/newLot", method = RequestMethod.POST)
-    public Account newLot(String accountId, String name, String type, Address address, double latitude, double longitude, String rateType, double price, int capacity, int reserveMax) {
+    public Account newLot(String accountId, String name, String type, Address address, double latitude, double longitude, int capacity, int reserveMax) {
         Account account = accountRepo.findById(accountId);
         if (account == null) {
             System.out.println("Account with id " + accountId + " was not found.");
             return null;
         } else {
             template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
-            Lot lot = new Lot(name, type, address, latitude, longitude, rateType, price, capacity, reserveMax);
+            Lot lot = new Lot(name, type, address, latitude, longitude, capacity, reserveMax);
             lotRepo.save(lot);
             System.out.println("New Lot:" + lot);
             account.addLot(lot.getId(), "Owner");

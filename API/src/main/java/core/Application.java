@@ -44,8 +44,8 @@ public class Application implements CommandLineRunner {
 
         // save a couple of customers
         template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
-        lotRepo.save(new Lot("Larry's House", "residential", new Address("2210 Tamarron Lane", "Lafayette", "CO", "80026"), 40.001930, -105.120372, "hour", 1.75, 2, 2));
-        lotRepo.save(new Lot("Tia's House", "residential", new Address("332 Morning Star Lane", "Lafayette", "CO", "80026"), 40.001248, -105.123108, "hour", 1.50, 3, 3));
-        lotRepo.save(new Lot("Indian Peaks Golf Course", "parking lot", new Address("2300 Indian Peaks Trail", "Lafayette", "CO", "80026"), 40.002670, -105.123891, "day", 10.00, 50, 5));
+        lotRepo.save(new Lot("Larry's House", "residential", new Address("2210 Tamarron Lane", "Lafayette", "CO", "80026"), 40.001930, -105.120372, 2, 2));
+        lotRepo.save(new Lot("Tia's House", "residential", new Address("332 Morning Star Lane", "Lafayette", "CO", "80026"), 40.001248, -105.123108, 3, 3));
+        lotRepo.save(new Lot("Indian Peaks Golf Course", "parking lot", new Address("2300 Indian Peaks Trail", "Lafayette", "CO", "80026"), 40.002670, -105.123891, 50, 5));
     }
 }

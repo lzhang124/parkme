@@ -34,13 +34,13 @@ public class Lot {
 
     public Lot() {}
 
-    public Lot(String name, String type, Address address, double latitude, double longitude, String rateType, Double price, int capacity, int reserveMax) {
+    public Lot(String name, String type, Address address, double latitude, double longitude, int capacity, int reserveMax) {
         this.name = name;
         this.type = type;
         this.address = address;
         this.location = new double[] {longitude, latitude};
         this.rate = new HashMap<>();
-        this.rate.put(rateType, price);
+        this.rate.put("hour", 2.25);
         this.rateRatio = 1.0;
         this.capacity = capacity;
         this.available = true;
