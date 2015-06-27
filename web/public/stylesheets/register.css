@@ -92,7 +92,7 @@ html, body {
     font-size: 3em;
     letter-spacing: 5px; }
   .register .subtitle {
-    margin-top: 7%;
+    margin-top: 10%;
     font-size: 2.5em;
     letter-spacing: 5px; }
     .register .subtitle .tagline {
@@ -150,8 +150,52 @@ html, body {
       height: 24px;
       width: 24px;
       cursor: pointer; }
+  .register .calendar-container {
+    width: 63%;
+    padding: 2% 20% 5% 17%;
+    color: white; }
+    .register .calendar-container .r {
+      height: 23px;
+      width: 100%; }
+      .register .calendar-container .r .c {
+        height: 100%;
+        width: 14.285%;
+        float: left; }
+    .register .calendar-container .times {
+      width: 3%;
+      margin-top: 47px;
+      margin-bottom: 13px;
+      padding-right: 1%;
+      float: left;
+      text-align: right;
+      font-size: .75em; }
+      .register .calendar-container .times .r {
+        margin: 2px 0;
+        font-size: 1.25em; }
+    .register .calendar-container .days {
+      width: 95%;
+      float: right;
+      text-align: center; }
+      .register .calendar-container .days .r {
+        height: 30px; }
+        .register .calendar-container .days .r .c {
+          font-size: 1.25em; }
+      .register .calendar-container .days table.calendar {
+        width: 100%;
+        padding: 0;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        -webkit-border-horizontal-spacing: 1px;
+        -webkit-border-vertical-spacing: 1px; }
+        .register .calendar-container .days table.calendar tr.r {
+          height: 22px; }
+          .register .calendar-container .days table.calendar tr.r td.c {
+            padding: 12px 0;
+            outline: 1px solid #969696; }
+          .register .calendar-container .days table.calendar tr.r .selected {
+            background: #004869; }
   .register button {
-    margin-top: 80px;
+    margin-top: 7%;
     margin-bottom: 10%; }
   .register button:hover {
     color: #191919; }

@@ -77,9 +77,27 @@
         Select times when yours spots are available. You will be able to change this later.
       </div>
     </div>
-
-
-    <button>Register</button>
+    <div class="calendar-container">
+      <div class="times">
+        <div class="r" ng-repeat="time in times track by $index">
+          {{ time }}
+        </div>
+      </div>
+      <div class="days">
+        <div class="r">
+          <div class="c" ng-repeat="day in week">
+            {{ day }}
+          </div>
+        </div>
+        <table class="calendar">
+          <tr class="r" ng-repeat="hour in schedule[0] track by $index">
+            <td class="c" ng-repeat="day in schedule track by $index" ng-class="{'selected': schedule[$index][$parent.$index] === 1}">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <button ng-click="scheduleTimes()">Register</button>
   </div>
 </body>
 </html>

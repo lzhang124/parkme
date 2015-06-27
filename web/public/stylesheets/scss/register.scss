@@ -47,7 +47,7 @@ html, body {
   }
 
   .subtitle {
-    margin-top: 7%;
+    margin-top: 10%;
     font-size: 2.5em;
     letter-spacing: 5px;
 
@@ -131,8 +131,76 @@ html, body {
     }
   }
 
+  .calendar-container {
+    width: 63%;
+    padding: 2% 20% 5% 17%;
+    color: $white;
+
+    .r {
+      height: 23px;
+      width: 100%;
+
+      .c {
+        height: 100%;
+        width: 14.285%;
+        float: left;
+      }
+    }
+
+    .times {
+      width: 3%;
+      margin-top: 47px;
+      margin-bottom: 13px;
+      padding-right: 1%;
+      float: left;
+      text-align: right;
+      font-size: .75em;
+
+      .r {
+        margin: 2px 0;
+        font-size: 1.25em;
+      }
+    }
+
+    .days {
+      width: 95%;
+      float: right;
+      text-align: center;
+
+      .r {
+        height: 30px;
+        
+        .c {
+          font-size: 1.25em;
+        }
+      }
+
+      table.calendar {
+        width: 100%;
+        padding: 0;
+        border-top: 3px solid $white;
+        border-bottom: 3px solid $white;
+        -webkit-border-horizontal-spacing: 1px;
+        -webkit-border-vertical-spacing: 1px;
+
+        tr.r {
+          height: 22px;
+
+          td.c {
+            padding: 12px 0;
+            outline: 1px solid $grey;
+          }
+
+          .selected {
+            background: $blue;
+          }
+        }
+      }
+    }
+  }
+
   button {
-    margin-top: 80px;
+    margin-top: 7%;
     margin-bottom: 10%;
   }
 
