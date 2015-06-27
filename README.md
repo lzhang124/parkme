@@ -10,7 +10,7 @@ The source tree structure will be composed of multiple projects:
 - *API*: this is the spring boot container with the API and core engine.
 - *web*: this contains the web server (MEAN).
 - *firmware*: this will contain the Arduino project code for the firmware running on the Arduino controller.
-- *mobile*: this will contain the mobilt appication code.
+- *mobile*: this will contain the mobile appication code.
 - *deployment*: this will contain the scripts for deployment once a datacenter is setup.
 
 
@@ -54,8 +54,8 @@ TBD
 5. `mvn clean install`
 6. `mvn package`
 7. (start mongo) `mongod`
-8. `java -jar target/*`, where * is the latest jar built.
+8. `java -jar target/*`, where * is the latest jar build.
 9. the server should be up and running.
-10.simple test: http://localhost:8080/list to see a list of parking lots.
+10.simple test: http://localhost:8080/listLots to see a list of parking lots.
 
 In `src/main/resources/application.properties`, `server.ssl.key-store` points to the keystore, which is currently `keystore.jks`.
