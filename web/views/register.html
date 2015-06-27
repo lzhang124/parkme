@@ -20,10 +20,6 @@
   <!-- Controllers -->
   <script src="javascripts/register.js"></script>
 
-  <!-- Semantic-UI -->
-  <link href="bower_components/semantic-ui-dropdown/dropdown.min.css" rel="stylesheet" type="text/css">
-  <script src="bower_components/semantic-ui-dropdown/dropdown.min.js"></script>
-
   <!-- Animate.css -->
 </head>
 </body>
@@ -72,12 +68,7 @@
       </div>
       <div class="vertical"></div>
       <div class="right">
-        $<input ng-model="value" type="number" class="value" />
-        per
-        <select class="ui simple dropdown" ng-model="type">
-          <option>hour</option>
-          <option>day</option>
-        </select>
+        {{ 2.25 | currency }} per hour
       </div>
     </div>
     <div class="subtitle">

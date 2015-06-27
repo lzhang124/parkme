@@ -116,73 +116,12 @@ html, body {
       float: right;
     }
 
-    .ui.simple.dropdown {
-      min-width: 140px;
-      background: transparent;
-      border: 0;
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-      border-bottom: 1px solid $white;
-      padding: 5px 0;
-      font-family: $lato;
-      font-weight: 300;
-      text-align: left;
-      text-transform: uppercase;
-      font-size: 100%;
-      color: $white;
-
-      .text {
-        margin: 0;
-        padding: 0;
-      }
-
-      i.dropdown.icon {
-        margin: 0;
-        margin-right: -30px;
-        padding: 0;
-      }
-
-      .menu {
-        background: transparent;
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
-
-        .item {
-          background: transparent;
-          border-top: 1px solid $white;
-          font-weight: 300;
-          text-transform: uppercase;
-          color: $white;
-          transition: all 300ms ease;
-        }
-
-        .item:hover {
-          background: $blue;
-        }
-
-        .active {
-          font-weight: 400;
-        }
-      }
-    }
-
-    .ui.simple.dropdown:hover {
-      border-bottom: 1px solid $white;
-    }
-
     input {
       height: 40px;
       width: 67px;
       padding: 0;
       border-bottom: 1px solid $white;
       font-size: 100%;
-    }
-
-    input.value {
-      width: 95px;
-      text-align: right;
     }
 
     .icon {
