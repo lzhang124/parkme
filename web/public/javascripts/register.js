@@ -1,8 +1,8 @@
 var app = angular.module('register', []);
 var url = 'https://127.0.0.1:8443/';
 
-app.controller('registerController', function($scope, $document, $element) {
-  
+app.controller('registerController', function($scope, $http, $document, $element) {
+
   // INIT MAP //
   var search = document.getElementById('search');
   var auto_search = new google.maps.places.Autocomplete(search);
@@ -224,9 +224,9 @@ app.controller('registerController', function($scope, $document, $element) {
 
 
   // CALCULATE TIMES //
-  $scope.scheduleTimes = function() {
+  var scheduleTimes = function() {
     var offset = new Date().getTimezoneOffset()*60*1000;
-    var date = Math.floor(new Date()/604800000)*604800000 - 345600000 + offset;
+    var date = Math.floor(new Date()/604800000)*604800000 - 345600000;
 
     $scope.startTimes = [];
     $scope.durations = [];
@@ -239,7 +239,6 @@ app.controller('registerController', function($scope, $document, $element) {
             duration++;
           } else {
             $scope.startTimes.push(date + day*86400000 + hour*3600000);
-            console.log(new Date(date + day*86400000 + hour*3600000));
             block = true;
             duration = 1;
           }
@@ -256,4 +255,26 @@ app.controller('registerController', function($scope, $document, $element) {
       }
     }
   }
+
+
+  // CREATE NEW LOT //
+  // $scope.register = function() {
+  //   scheduleTimes();
+  //   $http.post(url + '/newLot', {
+  //     accountId: ,
+  //     name: ,
+  //     type: ,
+  //     address: ,
+  //     latitude: ,
+  //     longitude: ,
+  //     capacity: ,
+  //     reserveMax: 
+  //   }).
+  //   success(function() {
+  //     window.location = '/q9xwGoXLGQ'
+  //   }).
+  //   error(function(data) {
+  //     console.log(data);
+  //   });
+  // }
 });

@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+var isAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated())
+      return next();
+    res.redirect('/q9xwGoXLGQ');
+}
+
 module.exports = function(passport) {
   
   /* GET splash page. */
@@ -35,13 +41,8 @@ module.exports = function(passport) {
   }));
 
   /* GET register page. */
-  router.get('/q9xwGoXLGQ/register', function(req, res) {
-    res.render('register');
-  });
-
-  /* GET test page */
-  router.get('/q9xwGoXLGQ/test', function(req, res) {
-    res.render('test');
+  router.get('/q9xwGoXLGQ/register', isAuthenticated, function(req, res) {
+    res.render('register', { user: req.user });
   });
 
   return router;

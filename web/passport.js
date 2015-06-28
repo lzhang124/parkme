@@ -9,7 +9,7 @@ module.exports = function(passport) {
 
   // API CALLS
   var findById = function(id, fn) {
-    https.get(url + 'accountById?id=' + id, function(res) {
+    https.get(url + 'accountById?accountId=' + id, function(res) {
       var data = '';
 
       res.on('data', function(chunk) {
