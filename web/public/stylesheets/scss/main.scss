@@ -1,0 +1,209 @@
+@import '_constants';
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+::-webkit-input-placeholder {
+    color: $grey;;
+}
+
+:-moz-placeholder {
+   color: $grey;
+   opacity: 1;
+}
+
+::-moz-placeholder {
+   color: $grey;
+   opacity: 1;
+}
+
+:-ms-input-placeholder {
+   color: $grey;
+}
+
+.bg {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: $blue;
+}
+
+.login {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  
+  .button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    z-index: 1;
+
+    button {
+      font-size: 1.25em;
+    }
+  }
+
+  .dimmer {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: $dimmer;
+    z-index: 1;
+
+    .login-container {
+      width: 40%;
+      position: absolute;
+      top: 35%;
+      margin: 0 30%;
+      text-align: center;
+
+      form {
+        width: 100%;
+        margin: auto;
+
+        input {
+          width: 100%;
+        }
+
+        button {
+          margin-top: 40px;
+          font-weight: 300;
+        }
+
+        button:hover {
+          color: $dimmer;
+        }
+      }
+    }
+
+    .signup-container {
+      @extend .login-container;
+      top: 28%;
+
+      .left {
+        width: 45%;
+        float: left;
+      }
+
+      .right {
+        width: 45%;
+        float: right;
+      }
+    }
+  }
+}
+
+.content {
+  height: 75%;
+  width: 100%;
+  position: absolute;
+  top: 25%;
+  font-family: $lato;
+  font-weight: 300;
+  text-align: center;
+  color: $white;
+
+  .logo {
+    width: 40%;
+    margin-bottom: 50px;
+  }
+
+  .tagline {
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+  }
+
+  .info {
+    margin-top: 20%;
+    text-transform: uppercase;
+  }
+
+  a, a:visited {
+    color: $white;
+  }
+
+  form {
+    width: 60%;
+    margin: auto;
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      margin-top: 40px;
+    }
+  }
+}
+
+.search-results {
+
+  .map-box {
+    height: 100vh;
+    width: 50vw;
+    position: absolute;
+
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .results {
+    height: 100vh;
+    width: 50vw;
+    left: 50vw;
+    position: absolute;
+
+    form {
+      margin: 0 25px 10px 25px;
+      
+      #search {
+        width: 100%;
+        font-size: 1.5em;
+      }
+    }
+
+    .results-container {
+      margin: 0 25px;
+      text-align: center;
+
+      button {
+        width: 100%;
+        background: $white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        padding: 10px 20px;
+        margin: 5px 0;
+        text-transform: none;
+        color: $blue;
+      }
+
+      button:hover {
+        background: $hover;
+      }
+    }
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 480px) {
+  .logo {
+    width: 75%;
+  }
+
+  .tagline {
+    font-size: 1.5em;
+  }
+
+  .info {
+    font-size: 1em;
+  }
+}

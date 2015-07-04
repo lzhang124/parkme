@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="register">
+<head lang="en">
+  <title>AVOKTECH</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  
+  <!-- Styling -->
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
+  <link href="stylesheets/register.css" rel="stylesheet" type="text/css">
+
+  <!-- Load Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-animate.min.js"></script>
+
+  <!-- Google Places -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+  <!-- Controllers -->
+  <script src="javascripts/register.js"></script>
+
+  <!-- Animate.css -->
+</head>
+</body>
+  <div class="bg"></div>
+  <div class="register" ng-controller="registerController">
+    <div class="title">
+      Register a Lot
+    </div>
+    <div class="map-container">
+      <form>
+        <input id="search" placeholder="ADDRESS" onClick="this.select();" autofocus />
+      </form>
+      <div class="map-box">
+        <div id="map"></div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="left">
+        Number of spots
+      </div>
+      <div class="vertical"></div>
+      <div class="right">
+        <img src="images/minus.svg" ng-click="minusCapacity()"
+             onerror="this.onerror=null; this.src='images/minus.png'" id="minus" class="icon">
+        <input id="capacity" ng-model="capacity" type="number" />
+        <img src="images/plus.svg" ng-click="plusCapacity()"
+             onerror="this.onerror=null; this.src='images/plus.png'" id="plus" class="icon">
+      </div>
+    </div>
+    <div class="field">
+      <div class="left">
+        Reservable spots
+      </div>
+      <div class="vertical"></div>
+      <div class="right">
+        <img src="images/minus.svg" ng-click="minusReserve()"
+             onerror="this.onerror=null; this.src='images/minus.png'" id="minus" class="icon">
+        <input id="reservable" ng-model="reservable" type="number" />
+        <img src="images/plus.svg" ng-click="plusReserve()"
+             onerror="this.onerror=null; this.src='images/plus.png'" id="plus" class="icon">
+      </div>
+    </div>
+    <div class="field">
+      <div class="left">
+        Price
+      </div>
+      <div class="vertical"></div>
+      <div class="right">
+        {{ 2.25 | currency }} per hour
+      </div>
+    </div>
+    <div class="subtitle">
+      Set a preliminary schedule
+      <div class="tagline">
+        Select times when yours spots are available. You will be able to change this later.
+      </div>
+    </div>
+    <div class="calendar-container">
+      <div class="times">
+        <div class="r" ng-repeat="time in times track by $index">
+          {{ time }}
+        </div>
+      </div>
+      <div class="days">
+        <div class="r">
+          <div class="c" ng-repeat="day in week">
+            {{ day }}
+          </div>
+        </div>
+        <table class="calendar">
+          <tr class="r" ng-repeat="hour in schedule[0] track by $index">
+            <td class="c" ng-repeat="day in schedule track by $index" ng-class="{'selected': schedule[$index][$parent.$index] === 1}">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <button ng-click="register()">Register</button>
+  </div>
+</body>
+</html>
