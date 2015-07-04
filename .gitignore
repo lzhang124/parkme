@@ -4,9 +4,10 @@
 /API/target
 
 # --------------------
-# web git
+# Misc
 # --------------------
-web/.git
+web/
+API List.docx
 
 # --------------------
 # OSX Files
