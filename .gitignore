@@ -26,10 +26,10 @@ Icon
 # --------------------
 # IntelliJ Files
 # --------------------
+**/.idea/
 *.iml
 *.ipr
 *.iws
-.idea/
 
 # --------------------
 # Node Files
