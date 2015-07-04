@@ -22,6 +22,12 @@ TBD
 
 ###Web Server
 
+*Dependencies:*
+
+1. npm (run `brew install npm`)
+
+*Instructions:*
+
 1. `npm install`
 2. `node app`
 3. go to http://localhost:3000
