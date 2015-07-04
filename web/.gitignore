@@ -1,6 +1,0 @@
-node_modules/
-bower_components/
-*.sass-cache
-*.map
-npm-debug.log
-.DS_Store
