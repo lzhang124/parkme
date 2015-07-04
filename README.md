@@ -16,12 +16,6 @@ The source tree structure will be composed of multiple projects:
 
 ##Setup:
 
-Multiple parts need to setup for an end to end use case to work:
-
-- Download mobile app to a phone.
-- Run the application as web server.
-- Run the firmware on the Arduino controller.
-
 ###Mobile App
 
 TBD
@@ -30,12 +24,13 @@ TBD
 
 1. `npm install`
 2. `node app`
+3. go to http://localhost:3000
 
 ###API
 
 *Dependencies:*
 
-1. JDK 1.7
+1. JDK 1.8
 2. mongo 3.x
 3. maven
 4. git
@@ -44,11 +39,11 @@ TBD
 	
 *Deployment/install instructions:*
 	
-1. download and install jdk 1.7. (this differs for windows/mac/linux, search for instructions on the web for your target machine)
+1. download and install jdk 1.8. (this differs for windows/mac/linux, search for instructions on the web for your target machine)
 2. download and install mongo, maven, git
 3. git clone the server repository:
 	- create a local directory as WORKSPACE
-	- cd $WORKSPACE
+	- cd WORKSPACE
 	- `git clone git@bitbucket.org:zyxparking/core.git`
 4. `cd core/API`
 5. `mvn clean install`
@@ -56,6 +51,6 @@ TBD
 7. (start mongo) `mongod`
 8. `java -jar target/*`, where * is the latest jar build.
 9. the server should be up and running.
-10.simple test: http://localhost:8080/listLots to see a list of parking lots.
+10. simple test: http://localhost:8080/listLots to see a list of parking lots.
 
-In `src/main/resources/application.properties`, `server.ssl.key-store` points to the keystore, which is currently `keystore.jks`.
+In `src/main/resources/application.properties`, `server.ssl.key-store` points to the keystore, which is currently `keystore.jks`. Currently, SSL is `disabled`.
