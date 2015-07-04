@@ -24,7 +24,7 @@ Icon
 # --------------------
 # IntelliJ Files
 # --------------------
-meeting_minutes.txt
+.idea/
 *.iml
 *.ipr
 *.iws
