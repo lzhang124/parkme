@@ -16,30 +16,26 @@ The source tree structure will be composed of multiple projects:
 
 ##Setup:
 
-###Mobile App
-
-TBD
-
-###Web Server
+###Basic Setup
 
 *Dependencies:*
 
-1. npm (run `brew install npm`)
+- git
 
 *Instructions:*
 
-1. `npm install`
-2. `node app`
-3. go to http://localhost:3000
+1. git clone the server repository:
+    - create a local directory as WORKSPACE
+    - cd WORKSPACE
+    - `git clone git@bitbucket.org:zyxparking/core.git`
 
 ###API
 
 *Dependencies:*
 
-1. JDK 1.8
-2. mongo 3.x
-3. maven
-4. git
+- JDK 1.8
+- mongo 3.x
+- maven
 
 *Database configuration:* use the default configuration.
 	
@@ -47,16 +43,29 @@ TBD
 	
 1. download and install jdk 1.8. (this differs for windows/mac/linux, search for instructions on the web for your target machine)
 2. download and install mongo, maven, git
-3. git clone the server repository:
-	- create a local directory as WORKSPACE
-	- cd WORKSPACE
-	- `git clone git@bitbucket.org:zyxparking/core.git`
-4. `cd core/API`
-5. `mvn clean install`
-6. `mvn package`
-7. (start mongo) `mongod`
-8. `java -jar target/*`, where * is the latest jar build.
-9. the server should be up and running.
-10. simple test: http://localhost:8080/listLots to see a list of parking lots.
+3. `cd core/API`
+4. `mvn clean install`
+5. `mvn package`
+6. (start mongo) `mongod`
+7. `java -jar target/*`, where * is the latest jar build
+8. the server should be up and running
+9. simple test: http://localhost:8080/listLots to see a list of parking lots
 
-In `src/main/resources/application.properties`, `server.ssl.key-store` points to the keystore, which is currently `keystore.jks`. Currently, SSL is `disabled`.
+In `src/main/resources/application.properties`, `server.ssl.key-store` points to the keystore, which is currently `keystore.jks`. SSL is currently `disabled`.
+
+###Web Server
+
+*Dependencies:*
+
+- npm (run `brew install npm`)
+
+*Instructions:*
+
+1. `cd core/web`
+2. `npm install`
+3. `node app`
+4. go to http://localhost:3000
+
+###Mobile App
+
+TBD
