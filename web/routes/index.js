@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var newLot = require('../controller/lot');
+
 var isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated())
       return next();
@@ -24,7 +26,7 @@ module.exports = function(passport) {
     res.render('info');
   });
 
-  /* signup */
+  /* Sign up */
   router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/q9xwGoXLGQ/register',
     failureRedirect: '/q9xwGoXLGQ/signup',
@@ -32,7 +34,7 @@ module.exports = function(passport) {
     successFlash: true
   }));
 
-  /* login */ 
+  /* Login */ 
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/q9xwGoXLGQ',
     failureRedirect: '/q9xwGoXLGQ/login',
@@ -44,6 +46,9 @@ module.exports = function(passport) {
   router.get('/q9xwGoXLGQ/register', isAuthenticated, function(req, res) {
     res.render('register', { user: req.user });
   });
+
+  /* Create new lot */ 
+  router.post('/newLot', isAuthenticated, newLot);
 
   return router;
 }

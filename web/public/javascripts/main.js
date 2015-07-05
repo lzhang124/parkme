@@ -22,7 +22,7 @@ app.factory('focus', function($timeout) {
 });
 
 
-app.controller('loginController', function($scope, $rootScope, $http, focus) {
+app.controller('loginController', function($scope, $rootScope, focus) {
   
   // LOGIN //
   $scope.login = function() {

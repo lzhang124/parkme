@@ -44,9 +44,11 @@ app.controller('registerController', function($scope, $http, $document, $element
 
 
   // MAPS SEARCH //
+  var start;
+  var startLoc;
   google.maps.event.addListener(auto_search, 'place_changed', function() {
-    var start = auto_search.getPlace();
-    var startLoc = start.geometry.location;
+    start = auto_search.getPlace();
+    startLoc = start.geometry.location;
     searchName = start.name;
     search.value = searchName;
 
@@ -258,23 +260,24 @@ app.controller('registerController', function($scope, $http, $document, $element
 
 
   // CREATE NEW LOT //
-  // $scope.register = function() {
-  //   scheduleTimes();
-  //   $http.post(url + '/newLot', {
-  //     accountId: ,
-  //     name: ,
-  //     type: ,
-  //     address: ,
-  //     latitude: ,
-  //     longitude: ,
-  //     capacity: ,
-  //     reserveMax: 
-  //   }).
-  //   success(function() {
-  //     window.location = '/q9xwGoXLGQ'
-  //   }).
-  //   error(function(data) {
-  //     console.log(data);
-  //   });
-  // }
+  $scope.register = function() {
+    scheduleTimes();
+    address = start.formatted_address.split(', ');
+    $http.post('/newLot', {
+      type: 'residential',
+      address: {
+        street: address[0],
+        city: address[1],
+        state: address[2].split(' ')[0],
+        zipcode: address[2].split(' ')[1]
+      },
+      latitude: startLoc.lat(),
+      longitude: startLoc.lng(),
+      capacity: $scope.capacity,
+      reserveMax: $scope.reservable
+    }).
+    error(function(data) {
+      console.log(data);
+    });
+  }
 });

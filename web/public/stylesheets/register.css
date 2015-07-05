@@ -129,7 +129,7 @@ html, body {
       text-align: right;
       float: left; }
     .register .field .vertical {
-      height: 70px;
+      height: 80px;
       position: absolute;
       left: 50%;
       margin-top: -15px;

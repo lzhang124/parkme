@@ -38,7 +38,7 @@ app.use(passport.session());
 app.use(flash());
 
 // passport init
-var initPassport = require('./passport');
+var initPassport = require('./controller/passport');
 initPassport(passport);
 
 // routes
