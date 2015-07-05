@@ -262,15 +262,9 @@ app.controller('registerController', function($scope, $http, $document, $element
   // CREATE NEW LOT //
   $scope.register = function() {
     scheduleTimes();
-    address = start.formatted_address.split(', ');
     $http.post('/newLot', {
       type: 'residential',
-      address: {
-        street: address[0],
-        city: address[1],
-        state: address[2].split(' ')[0],
-        zipcode: address[2].split(' ')[1]
-      },
+      address: start.formatted_address,
       latitude: startLoc.lat(),
       longitude: startLoc.lng(),
       capacity: $scope.capacity,

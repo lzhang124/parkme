@@ -59,7 +59,7 @@ public class LotController {
     }
 
     @RequestMapping(value = "/newLot", method = RequestMethod.POST)
-    public Lot newLot(String accountId, String name, String type, Address address, double latitude, double longitude, int capacity, int reserveMax) {
+    public Lot newLot(String accountId, String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax) {
         Account account = accountRepo.findById(accountId);
         if (account == null) {
             System.out.println("Account with id " + accountId + " was not found.");
