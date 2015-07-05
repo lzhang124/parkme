@@ -1,15 +1,15 @@
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
-var https = require('https');
+var http = require('http');
 var querystring = require('querystring');
 
-var url = 'https://127.0.0.1:8443/';
+var url = 'http://127.0.0.1:8080/';
 
 module.exports = function(passport) {
 
   // API CALLS
   var findById = function(id, fn) {
-    https.get(url + 'accountById?accountId=' + id, function(res) {
+    http.get(url + 'accountById?accountId=' + id, function(res) {
       var data = '';
 
       res.on('data', function(chunk) {
@@ -30,7 +30,7 @@ module.exports = function(passport) {
   };
 
   var findByEmail = function(email, fn) {
-    https.get(url + 'accountByEmail?email=' + email, function(res) {
+    http.get(url + 'accountByEmail?email=' + email, function(res) {
       var data = '';
 
       res.on('data', function(chunk) {
@@ -60,7 +60,7 @@ module.exports = function(passport) {
 
     var options = {
       host: '127.0.0.1',
-      port: 8443,
+      port: 8080,
       path: '/newAccount',
       method: 'POST',
       headers: {
@@ -68,7 +68,7 @@ module.exports = function(passport) {
       }
     };
 
-    var req = https.request(options, function(res) {
+    var req = http.request(options, function(res) {
       res.setEncoding('utf8');
       var data = '';
 

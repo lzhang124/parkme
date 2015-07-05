@@ -1,5 +1,5 @@
 var app = angular.module('main', []);
-var url = 'https://127.0.0.1:8443/';
+var url = 'http://127.0.0.1:8080/';
 
 
 // SET CONSTANTS //
