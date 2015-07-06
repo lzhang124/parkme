@@ -68,7 +68,7 @@ public class LotController {
             template.indexOps(Lot.class).ensureIndex(new GeospatialIndex("location"));
 
             Lot lot = new Lot(name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations);
-            Lot duplicate = lotRepo.findByAddress(lot.getAddress());
+            Lot duplicate = lotRepo.findByFullAddress(lot.getFullAddress());
             if (duplicate != null) {
                 System.out.println("This lot already exists: " + duplicate.getId());
             } else {
