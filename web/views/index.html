@@ -76,7 +76,7 @@
           <input id="search" placeholder="DESTINATION" onClick="this.select();" />
         </form>
         <div class="results-container">
-          <button ng-repeat="lot in lots" ng-click="openInfoWindow($event, lot.marker)">
+          <button ng-repeat="lot in lots" ng-click="openInfoWindow(lot.marker)">
             <div class="lot-name">
               <strong>{{ lot.name }}</strong>
             </div>

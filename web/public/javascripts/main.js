@@ -106,6 +106,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
     map.panTo(startLoc);
     map.setZoom(16);
+
     var startMarker = new google.maps.Marker({
       map: map,
       position: startLoc,
@@ -164,8 +165,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     markers = [];
   }
 
-  $scope.openInfoWindow = function(e, marker){
-    e.preventDefault();
+  $scope.openInfoWindow = function(marker){
     google.maps.event.trigger(marker, 'click');
   }
 });
