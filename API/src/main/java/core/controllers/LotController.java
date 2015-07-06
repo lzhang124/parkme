@@ -65,14 +65,20 @@ public class LotController {
             System.out.println("Account with id " + accountId + " was not found.");
             return null;
         } else {
-            template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
+            template.indexOps(Lot.class).ensureIndex(new GeospatialIndex("location"));
 
             Lot lot = new Lot(name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations);
             lotRepo.save(lot);
             System.out.println("New Lot:" + lot);
+
             account.addLot(lot.getId(), "Owner");
             accountRepo.save(account);
             lot.addMember(accountId);
+
+            LotHistory history = new LotHistory();
+            lotHistoryRepo.save(history);
+            lot.setLotHistory(history.getId());
+
             lotRepo.save(lot);
             return lot;
         }
