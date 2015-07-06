@@ -270,8 +270,8 @@ app.controller('registerController', function($scope, $http, $document, $element
       capacity: $scope.capacity,
       reserveMax: $scope.reservable
     })
-    .success(function(data) {
-      $window.location.href = data;
+    .success(function(redirectURL) {
+      $window.location = redirectURL;
     });
   }
 });
