@@ -21,7 +21,7 @@ var createNewLot = function(accountId, name, type, address, latitude, longitude,
     path: '/newLot',
     method: 'POST',
     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
   };
 
@@ -64,11 +64,11 @@ var newLot = function(req, res) {
 
   createNewLot(accountId, name, type, address, latitude, longitude, capacity, reserveMax, function(err, lot) {
     if (err) {
-      console.log('Erorr in creating lot: ' + err);
+      console.log('Error in creating lot: ' + err);
       throw err;
     };
     console.log('New lot ' + lot.name);
-    res.redirect('/q9xwGoXLGQ');
+    res.send('/q9xwGoXLGQ');
   });
 }
 

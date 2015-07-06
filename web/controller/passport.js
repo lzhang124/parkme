@@ -105,7 +105,7 @@ module.exports = function(passport) {
 
   passport.deserializeUser(function(id, done) {
     findById(id, function(err, user) {
-      console.log('deserializing user:', user);
+      console.log('deserializing user:', user.id);
       done(err, user);
     });
   });

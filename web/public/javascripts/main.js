@@ -109,8 +109,8 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     createMarker(startLoc.lat(), startLoc.lng(), 'Your Destination', null);
 
     $http.get(url + 'searchNear?latitude=' + startLoc.lat() + 
-                               '&longitude=' + startLoc.lng()).
-    success(function(data) {
+                               '&longitude=' + startLoc.lng())
+    .success(function(data) {
       $scope.lots = data;
       for (var i = 0; i < data.length; i++) {
         place = data[i];

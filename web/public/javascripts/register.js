@@ -1,7 +1,7 @@
 var app = angular.module('register', []);
 var url = 'http://52.25.5.25:8080/';
 
-app.controller('registerController', function($scope, $http, $document, $element) {
+app.controller('registerController', function($scope, $http, $document, $element, $window) {
 
   // INIT MAP //
   var search = document.getElementById('search');
@@ -269,9 +269,9 @@ app.controller('registerController', function($scope, $http, $document, $element
       longitude: startLoc.lng(),
       capacity: $scope.capacity,
       reserveMax: $scope.reservable
-    }).
-    error(function(data) {
-      console.log(data);
+    })
+    .success(function(data) {
+      $window.location.href = data;
     });
   }
 });
