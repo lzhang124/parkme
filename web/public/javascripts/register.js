@@ -268,7 +268,9 @@ app.controller('registerController', function($scope, $http, $document, $element
       latitude: startLoc.lat(),
       longitude: startLoc.lng(),
       capacity: $scope.capacity,
-      reserveMax: $scope.reservable
+      reserveMax: $scope.reservable,
+      startTimes: $scope.startTimes,
+      durations: $scope.durations
     })
     .success(function(redirectURL) {
       $window.location = redirectURL;

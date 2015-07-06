@@ -3,7 +3,7 @@ var querystring = require('querystring');
 
 var url = 'http://52.25.5.25:8080/';
 
-var createNewLot = function(accountId, name, type, address, latitude, longitude, capacity, reserveMax, fn) {
+var createNewLot = function(accountId, name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations, fn) {
   var data = querystring.stringify({
     accountId: accountId,
     name: name,
@@ -12,7 +12,9 @@ var createNewLot = function(accountId, name, type, address, latitude, longitude,
     latitude: latitude,
     longitude: longitude,
     capacity: capacity,
-    reserveMax: reserveMax
+    reserveMax: reserveMax,
+    startTimes: startTimes,
+    durations: durations
   });
 
   var options = {
@@ -61,8 +63,10 @@ var newLot = function(req, res) {
   var longitude = req.body.longitude;
   var capacity = req.body.capacity;
   var reserveMax = req.body.reserveMax;
+  var startTimes = req.body.startTimes;
+  var durations = req.body.durations;
 
-  createNewLot(accountId, name, type, address, latitude, longitude, capacity, reserveMax, function(err, lot) {
+  createNewLot(accountId, name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations, function(err, lot) {
     if (err) {
       console.log('Error in creating lot: ' + err);
       throw err;
