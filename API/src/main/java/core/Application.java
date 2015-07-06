@@ -39,13 +39,8 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // clear the database
         lotRepo.deleteAll();
         accountRepo.deleteAll();
-
-        // save a couple of customers
-        template.indexOps(Lot.class).ensureIndex( new GeospatialIndex("location") );
-        lotRepo.save(new Lot("Larry's House", "residential", "2210 Tamarron Lane, Lafayette, CO 80026", 40.001930, -105.120372, 2, 2));
-        lotRepo.save(new Lot("Tia's House", "residential", "332 Morning Star Lane, Lafayette, CO 80026", 40.001248, -105.123108, 3, 3));
-        lotRepo.save(new Lot("Indian Peaks Golf Course", "parking lot", "2300 Indian Peaks Trail, Lafayette, CO 80026", 40.002670, -105.123891, 50, 5));
     }
 }

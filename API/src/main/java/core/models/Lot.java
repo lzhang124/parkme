@@ -34,7 +34,7 @@ public class Lot {
 
     public Lot() {}
 
-    public Lot(String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax) {
+    public Lot(String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, List<Long> startTimes, List<Integer> durations) {
         this.name = name;
         this.type = type;
 
@@ -58,10 +58,10 @@ public class Lot {
 
         this.spaces = new ArrayList<>();
         for (int i = 0; i < reserveMax; i ++) {
-            this.spaces.add(new Space(true));
+            this.spaces.add(new Space(true, startTimes, durations));
         }
         for (int i = 0; i < capacity-reserveMax; i++) {
-            this.spaces.add(new Space(false));
+            this.spaces.add(new Space(false, null, null));
         }
 
         this.members = new ArrayList<>();

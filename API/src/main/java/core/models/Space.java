@@ -1,6 +1,7 @@
 package core.models;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Space {
@@ -11,10 +12,16 @@ public class Space {
 
     public Space() {}
 
-    public Space(boolean reservable) {
+    public Space(boolean reservable, List<Long> startTimes, List<Integer> durations) {
         if (reservable) {
             this.reservable = true;
             this.calendar = new HashMap<>();
+            for (int i = 0; i < startTimes.size(); i++) {
+                for (int j = 0; j < durations.get(i); j++) {
+                    long time = startTimes.get(i) + j*3600000;
+                    this.calendar.put(time, null);
+                }
+            }
         }
     }
 
