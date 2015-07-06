@@ -34,7 +34,7 @@ public class Lot {
 
     public Lot() {}
 
-    public Lot(String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, List<Long> startTimes, List<Integer> durations) {
+    public Lot(String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] startTimes, int[] durations) {
         this.name = name;
         this.type = type;
 

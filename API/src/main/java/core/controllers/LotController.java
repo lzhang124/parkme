@@ -59,7 +59,7 @@ public class LotController {
     }
 
     @RequestMapping(value = "/newLot", method = RequestMethod.POST)
-    public Lot newLot(String accountId, String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, List<Long> startTimes, List<Integer> durations) {
+    public Lot newLot(String accountId, String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] startTimes, int[] durations) {
         Account account = accountRepo.findById(accountId);
         if (account == null) {
             System.out.println("Account with id " + accountId + " was not found.");
@@ -151,7 +151,7 @@ public class LotController {
     }
 
     @RequestMapping(value = "/setCalendar", method = RequestMethod.POST)
-    public Lot setCalendar(String lotId, List<Long> startTimes, List<Integer> durations) {
+    public Lot setCalendar(String lotId, long[] startTimes, int[] durations) {
         Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
             System.out.println("Lot with id " + lotId + " was not found.");
@@ -162,9 +162,9 @@ public class LotController {
         } else {
             List<Space> spaces = lot.getSpaces();
 
-            for (int i = 0; i < startTimes.size(); i++) {
-                long start = startTimes.get(i);
-                int duration = durations.get(i);
+            for (int i = 0; i < startTimes.length; i++) {
+                long start = startTimes[i];
+                int duration = durations[i];
                 for (int j = 0; j < lot.getReserveMax(); j++) {
                     Space space = spaces.get(j);
                     if (space.isReservable()) {
@@ -178,7 +178,7 @@ public class LotController {
     }
 
     @RequestMapping(value = "/reserve", method = RequestMethod.POST)
-    public Lot reserve(String lotId, String accountId, List<Long> startTimes, List<Integer> durations, String search) {
+    public Lot reserve(String lotId, String accountId, long[] startTimes, int[] durations, String search) {
         Lot lot = lotRepo.findById(lotId);
         Account account = accountRepo.findById(accountId);
         if (lot == null) {
@@ -193,9 +193,9 @@ public class LotController {
         } else {
             List<Space> spaces = lot.getSpaces();
 
-            for (int i = 0; i < startTimes.size(); i++) {
-                long start = startTimes.get(i);
-                int duration = durations.get(i);
+            for (int i = 0; i < startTimes.length; i++) {
+                long start = startTimes[i];
+                int duration = durations[i];
                 for (int j = 0; j < lot.getReserveMax(); j++) {
                     if (spaces.get(j).isAvailable(start, duration)) {
                         spaces.get(j).addReservation(start, duration, accountId);
