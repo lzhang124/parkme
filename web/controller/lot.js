@@ -1,8 +1,6 @@
 var http = require('http');
 var querystring = require('querystring');
 
-var url = 'http://52.25.5.25:8080/';
-
 var createNewLot = function(accountId, name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations, fn) {
   var data = querystring.stringify({
     accountId: accountId,
@@ -18,7 +16,8 @@ var createNewLot = function(accountId, name, type, address, latitude, longitude,
   });
 
   var options = {
-    host: '52.25.5.25',
+    // host: '52.25.5.25',
+    host: '127.0.0.1',
     port: 8080,
     path: '/newLot',
     method: 'POST',

@@ -68,24 +68,25 @@ public class LotController {
             template.indexOps(Lot.class).ensureIndex(new GeospatialIndex("location"));
 
             Lot lot = new Lot(name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations);
-            Lot duplicate = lotRepo.findByFullAddress(lot.getFullAddress());
+            Lot duplicate = lotRepo.findByAddress(lot.getAddress());
             if (duplicate != null) {
                 System.out.println("This lot already exists: " + duplicate.getId());
+                return null;
             } else {
                 lotRepo.save(lot);
                 System.out.println("New Lot:" + lot);
+
+                account.addLot(lot.getId(), "Owner");
+                accountRepo.save(account);
+                lot.addMember(accountId);
+
+                LotHistory history = new LotHistory();
+                lotHistoryRepo.save(history);
+                lot.setLotHistory(history.getId());
+
+                lotRepo.save(lot);
+                return lot;
             }
-
-            account.addLot(lot.getId(), "Owner");
-            accountRepo.save(account);
-            lot.addMember(accountId);
-
-            LotHistory history = new LotHistory();
-            lotHistoryRepo.save(history);
-            lot.setLotHistory(history.getId());
-
-            lotRepo.save(lot);
-            return lot;
         }
     }
 

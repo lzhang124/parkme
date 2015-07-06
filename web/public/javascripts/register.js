@@ -1,5 +1,4 @@
 var app = angular.module('register', []);
-var url = 'http://52.25.5.25:8080/';
 
 app.controller('registerController', function($scope, $http, $document, $element, $window) {
 

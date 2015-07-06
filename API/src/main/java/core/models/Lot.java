@@ -14,7 +14,6 @@ public class Lot {
 
     private String name;
     private String type;
-    private String fullAddress;
     private Address address;
     private double[] location;
     private Object photo;
@@ -39,7 +38,6 @@ public class Lot {
         this.name = name;
         this.type = type;
 
-        this.fullAddress = address;
         String[] splitAddress = address.split(", ");
         String street = splitAddress[0];
         String city = splitAddress[1];
@@ -91,14 +89,6 @@ public class Lot {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getFullAddress() {
-        return fullAddress;
-    }
-
-    public void setFullAddress(String fullAddress) {
-        this.fullAddress = fullAddress;
     }
 
     public Address getAddress() {
