@@ -106,7 +106,17 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
     map.panTo(startLoc);
     map.setZoom(16);
-    createMarker(startLoc.lat(), startLoc.lng(), 'Your Destination', null);
+    var startMarker = new google.maps.Marker({
+      map: map,
+      position: startLoc,
+      icon: {
+        url: 'images/star.png',
+        size: new google.maps.Size(27, 26),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(13.5, 13)
+      }
+    });
+    markers.push(startMarker);
 
     $http.get(url + 'searchNear?latitude=' + startLoc.lat() + 
                                '&longitude=' + startLoc.lng())
@@ -114,38 +124,32 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
       $scope.lots = data;
       for (var i = 0; i < data.length; i++) {
         place = data[i];
-        createMarker(place.location[1], place.location[0], place.name, place.available);
+        createMarker(place);
       }
-    })
+    });
 
     infowindow = new google.maps.InfoWindow();
   }
 
-  var createMarker = function(lat, lng, name, available) {
-    if (available === true) {
+  var createMarker = function(place) {
+    if (place.available === true) {
       var image = 'images/pin-green.png';
-    } else if (available === false) {
+    } else  {
       var image = 'images/pin-red.png';
-    } else {
-      var image = {
-        url: 'images/star.png',
-        size: new google.maps.Size(27, 26),
-        origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(13.5, 13)
-      };
     }
 
     var marker = new google.maps.Marker({
       map: map,
-      position: new google.maps.LatLng(lat, lng),
+      position: new google.maps.LatLng(place.location[1], place.location[0]),
       icon: image
     });
 
     google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent('<strong>' + name + '</strong>');
+      infowindow.setContent('<div class="infoWindow">' + place.name + '</div>');
       infowindow.open(this.map, this);
     });
 
+    place.marker = marker;
     markers.push(marker);
   }
 
@@ -154,5 +158,10 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
       markers[i].setMap(null);
     }
     markers = [];
+  }
+
+  $scope.openInfoWindow = function(e, marker){
+    e.preventDefault();
+    google.maps.event.trigger(marker, 'click');
   }
 });

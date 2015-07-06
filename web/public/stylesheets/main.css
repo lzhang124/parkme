@@ -158,6 +158,9 @@ html, body {
   .search-results .map-box #map {
     height: 100%;
     width: 100%; }
+  .search-results .map-box .infoWindow {
+    font-family: "Lato", sans-serif;
+    font-weight: 700; }
 .search-results .results {
   height: 100vh;
   width: 50vw;
@@ -194,3 +197,5 @@ html, body {
 
   .info {
     font-size: 1em; } }
+
+/*# sourceMappingURL=main.css.map */
