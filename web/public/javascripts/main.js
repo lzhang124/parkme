@@ -116,6 +116,10 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
         anchor: new google.maps.Point(13.5, 13)
       }
     });
+    google.maps.event.addListener(startMarker, 'click', function() {
+      infowindow.setContent('<div class="infoWindow">Your Destination</div>');
+      infowindow.open(this.map, this);
+    });
     markers.push(startMarker);
 
     $http.get(url + 'searchNear?latitude=' + startLoc.lat() + 
