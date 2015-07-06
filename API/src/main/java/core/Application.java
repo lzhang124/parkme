@@ -6,6 +6,8 @@ import core.models.Address;
 import core.models.Lot;
 import core.repositories.LotRepository;
 import core.repositories.AccountRepository;
+import core.repositories.data.LotHistoryRepository;
+import core.repositories.data.RawHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +23,10 @@ public class Application implements CommandLineRunner {
     private AccountRepository accountRepo;
     @Autowired
     private LotRepository lotRepo;
+    @Autowired
+    private LotHistoryRepository lotHistoryRepo;
+    @Autowired
+    private RawHistoryRepository rawHistoryRepo;
     @Autowired
     MongoTemplate template;
 
@@ -42,5 +48,7 @@ public class Application implements CommandLineRunner {
         // clear the database
         lotRepo.deleteAll();
         accountRepo.deleteAll();
+        lotHistoryRepo.deleteAll();
+        rawHistoryRepo.deleteAll();
     }
 }

@@ -16,8 +16,7 @@ var createNewLot = function(accountId, name, type, address, latitude, longitude,
   });
 
   var options = {
-    // host: '52.25.5.25',
-    host: '127.0.0.1',
+    host: '52.25.5.25',
     port: 8080,
     path: '/newLot',
     method: 'POST',

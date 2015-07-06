@@ -33,4 +33,21 @@ public class RawHistoryController {
     public List<RawHistory> rawHistoryByDate(long date) {
         return repo.findByDate(date);
     }
+
+    @RequestMapping(value = "/deleteAllRawHistory", method = RequestMethod.POST)
+    public void deleteAllRawHistory() {
+        repo.deleteAll();
+        System.out.println("All Raw History deleted.");
+    }
+
+    @RequestMapping(value = "/deleteRawHistory", method = RequestMethod.GET)
+    public void deleteRawHistory(String accountId) {
+        List<RawHistory> history = repo.findByAccountId(accountId);
+        if (history == null) {
+            System.out.println("History with accountId " + accountId + " was not found.");
+        } else {
+            repo.delete(history);
+            System.out.println("History with accountId " + accountId + " deleted.");
+        }
+    }
 }

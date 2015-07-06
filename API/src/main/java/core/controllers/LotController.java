@@ -76,7 +76,7 @@ public class LotController {
                 lotRepo.save(lot);
                 System.out.println("New Lot:" + lot);
 
-                account.addLot(lot.getId(), "Owner");
+                account.addLot(lot.getId(), "owner");
                 accountRepo.save(account);
                 lot.addMember(accountId);
 
@@ -245,7 +245,23 @@ public class LotController {
         }
     }
 
-    public LotHistory addLotHistory(Lot lot) {
+    @RequestMapping(value = "/deleteLot", method = RequestMethod.GET)
+    public void deleteLot(String lotId) {
+        Lot lot = lotRepo.findById(lotId);
+        if (lot == null) {
+            System.out.println("Lot with id " + lotId + " was not found.");
+        } else {
+            for (String memberId : lot.getMembers()) {
+                Account member = accountRepo.findById(memberId);
+                member.removeLot(lotId);
+                accountRepo.save(member);
+            }
+            lotRepo.delete(lot);
+            System.out.println("Lot with id " + lotId + " deleted");
+        }
+    }
+
+    private LotHistory addLotHistory(Lot lot) {
         String lotHistoryId = lot.getLotHistory();
         LotHistory history = lotHistoryRepo.findById(lotHistoryId);
         if (history == null) {
@@ -259,7 +275,7 @@ public class LotController {
         }
     }
 
-    public RawHistory addRawHistory(String accountId, String lotId, int space, long start, int duration, String search) {
+    private RawHistory addRawHistory(String accountId, String lotId, int space, long start, int duration, String search) {
         RawHistory history = new RawHistory(accountId, lotId, space, start, duration, search);
         rawHistoryRepo.save(history);
         return history;

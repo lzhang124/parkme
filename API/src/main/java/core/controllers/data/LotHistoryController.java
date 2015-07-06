@@ -23,10 +23,27 @@ public class LotHistoryController {
     public LotHistory lotHistory(String lotHistoryId) {
         LotHistory history = repo.findById(lotHistoryId);
         if (history == null) {
-            System.out.println("History with id " + lotHistoryId + "was not found.");
+            System.out.println("History with id " + lotHistoryId + " was not found.");
             return null;
         } else {
             return history;
+        }
+    }
+
+    @RequestMapping(value = "/deleteAllLotHistory", method = RequestMethod.POST)
+    public void deleteAllLotHistory() {
+        repo.deleteAll();
+        System.out.println("All Lot History deleted.");
+    }
+
+    @RequestMapping(value = "/deleteLotHistory", method = RequestMethod.GET)
+    public void deleteLotHistory(String lotHistoryId) {
+        LotHistory history = repo.findById(lotHistoryId);
+        if (history == null) {
+            System.out.println("History with id " + lotHistoryId + " was not found.");
+        } else {
+            repo.delete(history);
+            System.out.println("History with id " + lotHistoryId + " deleted.");
         }
     }
 }
