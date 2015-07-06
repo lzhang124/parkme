@@ -69,7 +69,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteAccount", method = RequestMethod.DELETE)
     public void deleteAccount(String accountId) {
         Account account = accountRepo.findById(accountId);
         if (account == null) {

@@ -245,7 +245,7 @@ public class LotController {
         }
     }
 
-    @RequestMapping(value = "/deleteLot", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteLot", method = RequestMethod.DELETE)
     public void deleteLot(String lotId) {
         Lot lot = lotRepo.findById(lotId);
         if (lot == null) {

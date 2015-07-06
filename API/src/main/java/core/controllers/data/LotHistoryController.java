@@ -30,13 +30,13 @@ public class LotHistoryController {
         }
     }
 
-    @RequestMapping(value = "/deleteAllLotHistory", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteAllLotHistory", method = RequestMethod.DELETE)
     public void deleteAllLotHistory() {
         repo.deleteAll();
         System.out.println("All Lot History deleted.");
     }
 
-    @RequestMapping(value = "/deleteLotHistory", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteLotHistory", method = RequestMethod.DELETE)
     public void deleteLotHistory(String lotHistoryId) {
         LotHistory history = repo.findById(lotHistoryId);
         if (history == null) {
