@@ -76,7 +76,7 @@
           <input id="search" placeholder="DESTINATION" onClick="this.select();" />
         </form>
         <div class="results-container">
-          <button ng-repeat="lot in lots" ng-click="openInfoWindow(lot.marker)">
+          <button ng-repeat="lot in lots track by $index" ng-class="{'selected': lot.marker.selected}" ng-click="openInfoWindow(lot.marker)">
             <div class="lot-name">
               <strong>{{ lot.name }}</strong>
             </div>
@@ -85,6 +85,7 @@
             </div>
             <div class="lot-free">
               Available spots: {{ lot.capacity - lot.occupied }}
+              {{lot.marker.selected}}
             </div>
           </button>
         </div>

@@ -184,6 +184,8 @@ html, body {
       margin: 5px 0;
       text-transform: none;
       color: #004869; }
+      .search-results .results .results-container button .selected {
+        background: #004869; }
     .search-results .results .results-container button:hover {
       background: #f0f0f0; }
 

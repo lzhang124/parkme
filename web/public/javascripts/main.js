@@ -72,31 +72,41 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
   // INIT MAP //
   google.maps.event.addListener(auto_search_main, 'place_changed', function() {
     var start = auto_search_main.getPlace();
+    if (start.hasOwnProperty('geometry')) {
+      $timeout(function() {
+        $rootScope.showResults = true;
+        $rootScope.showLogin = false;
+        $rootScope.showContent = false;
+        search.value = start.name;
 
-    $timeout(function() {
-      $rootScope.showResults = true;
-      $rootScope.showLogin = false;
-      $rootScope.showContent = false;
-      search.value = start.name;
+        map = new google.maps.Map(document.getElementById('map'), {
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true
+        });
 
-      map = new google.maps.Map(document.getElementById('map'), {
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true
+        searchNear(start);
       });
+    } else {
+      // REPLACE THIS
+      console.log("that's not a real place");
+    }
 
-      searchNear(start);
-    });
   });
 
 
   // NEW SEARCH //
   google.maps.event.addListener(auto_search, 'place_changed', function() {
     var start = auto_search.getPlace();
-    searchName = start.name;
-    search.value = searchName;
-    
-    deleteMarkers();
-    searchNear(start);
+    if (start.hasOwnProperty('geometry')) {
+      searchName = start.name;
+      search.value = searchName;
+      
+      deleteMarkers();
+      searchNear(start);
+    } else {
+      // REPLACE THIS
+      console.log("that's not a real place");
+    }
   });
 
 
@@ -115,7 +125,8 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
         size: new google.maps.Size(27, 26),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13.5, 13)
-      }
+      },
+      draggable: true
     });
     google.maps.event.addListener(startMarker, 'click', function() {
       infowindow.setContent('<div class="infoWindow">Your Destination</div>');
@@ -146,12 +157,14 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     var marker = new google.maps.Marker({
       map: map,
       position: new google.maps.LatLng(place.location[1], place.location[0]),
-      icon: image
+      icon: image,
     });
+    marker.selected = false;
 
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent('<div class="infoWindow">' + place.name + '</div>');
       infowindow.open(this.map, this);
+      marker.selected = true;
     });
 
     place.marker = marker;

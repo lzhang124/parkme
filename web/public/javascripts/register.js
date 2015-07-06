@@ -59,7 +59,8 @@ app.controller('registerController', function($scope, $http, $document, $element
     var marker = new google.maps.Marker({
       map: map,
       position: startLoc,
-      icon: 'images/pin-green.png'
+      icon: 'images/pin-green.png',
+      draggable: true
     });
 
     google.maps.event.addListener(marker, 'click', function() {
