@@ -185,7 +185,7 @@ html, body {
       text-transform: none;
       color: #004869; }
     .search-results .results .results-container button.selected {
-      background: red; }
+      height: 400px; }
     .search-results .results .results-container button:hover {
       background: #f0f0f0; }
 
