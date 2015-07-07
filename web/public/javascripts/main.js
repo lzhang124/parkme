@@ -57,7 +57,8 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
   var map;
   var infowindow;
-  var markers = [];
+  var currentMarker;
+  $scope.markers = [];
 
   var searchName;
   search.addEventListener('blur', function() {
@@ -129,26 +130,41 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
       draggable: true
     });
     google.maps.event.addListener(startMarker, 'click', function() {
-      infowindow.setContent('<div class="infoWindow">Your Destination</div>');
-      infowindow.open(this.map, this);
+      if (infowindow.anchor !== this) {
+        infowindow.setContent('<div class="infoWindow">Your Destination</div>');
+        infowindow.open(this.map, this);
+        currentMarker = this;
+      } else {
+        infowindow.close();
+        currentMarker = null;
+      }
     });
-    markers.push(startMarker);
+    $scope.markers.push(startMarker);
 
     $http.get(url + 'searchNear?latitude=' + startLoc.lat() + 
                                '&longitude=' + startLoc.lng())
     .success(function(data) {
       $scope.lots = data;
       for (var i = 0; i < data.length; i++) {
-        place = data[i];
-        createMarker(place);
+        lot = data[i];
+        createMarker(lot);
       }
     });
 
     infowindow = new google.maps.InfoWindow();
+
+    google.maps.event.addListener(infowindow, 'closeclick', function() {
+      $timeout(function() {
+        if (currentMarker.hasOwnProperty('lot')) {
+          currentMarker.lot.selected = false;
+        }
+        currentMarker = null;
+      });
+    });
   }
 
-  var createMarker = function(place) {
-    if (place.available === true) {
+  var createMarker = function(lot) {
+    if (lot.available === true) {
       var image = 'images/pin-green.png';
     } else  {
       var image = 'images/pin-red.png';
@@ -156,26 +172,37 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
     var marker = new google.maps.Marker({
       map: map,
-      position: new google.maps.LatLng(place.location[1], place.location[0]),
+      position: new google.maps.LatLng(lot.location[1], lot.location[0]),
       icon: image,
     });
-    marker.selected = false;
 
     google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent('<div class="infoWindow">' + place.name + '</div>');
-      infowindow.open(this.map, this);
-      marker.selected = true;
+      if (infowindow.anchor !== this) {
+        infowindow.setContent('<div class="infoWindow">' + lot.name + '</div>');
+        infowindow.open(this.map, this);
+        currentMarker = this;
+        $timeout(function() {
+          lot.selected = true;
+        });
+      } else {
+        infowindow.close();
+        currentMarker = null;
+        $timeout(function() {
+          lot.selected = false;
+        });
+      }
     });
 
-    place.marker = marker;
-    markers.push(marker);
+    lot.selected = false;
+    marker.lot = lot;
+    $scope.markers.push(marker);
   }
 
   var deleteMarkers = function() {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
+    for (var i = 0; i < $scope.markers.length; i++) {
+      $scope.markers[i].setMap(null);
     }
-    markers = [];
+    $scope.markers = [];
   }
 
   $scope.openInfoWindow = function(marker){

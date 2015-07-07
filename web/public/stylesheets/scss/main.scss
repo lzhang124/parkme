@@ -189,10 +189,10 @@ html, body {
         margin: 5px 0;
         text-transform: none;
         color: $blue;
+      }
 
-        .selected {
-          background: $blue;
-        }
+      button.selected {
+        background: red;
       }
 
       button:hover {
