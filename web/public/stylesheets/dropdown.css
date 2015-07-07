@@ -25,7 +25,7 @@ input {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
-  border-bottom: 3px solid white;
+  border-bottom: 2px solid white;
   padding: 10px 0;
   font-family: "Lato", sans-serif;
   font-weight: 300;
@@ -66,6 +66,20 @@ input::-webkit-inner-spin-button {
     z-index: 1; }
     .navbar .button-container button {
       font-size: 1.25em; }
+
+::-webkit-input-placeholder {
+  color: #969696; }
+
+:-moz-placeholder {
+  color: #969696;
+  opacity: 1; }
+
+::-moz-placeholder {
+  color: #969696;
+  opacity: 1; }
+
+:-ms-input-placeholder {
+  color: #969696; }
 
 .ui.simple.dropdown {
   min-width: 140px;

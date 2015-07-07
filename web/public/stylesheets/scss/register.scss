@@ -6,24 +6,6 @@ html, body {
   margin: 0;
 }
 
-::-webkit-input-placeholder {
-  color: $grey;;
-}
-
-:-moz-placeholder {
-  color: $grey;
-  opacity: 1;
-}
-
-::-moz-placeholder {
-  color: $grey;
-  opacity: 1;
-}
-
-:-ms-input-placeholder {
-  color: $grey;
-}
-
 .bg {
   height: 100%;
   width: 100%;
@@ -106,7 +88,7 @@ html, body {
       left: 50%;
       margin-top: -15px;
       display: inline-block;
-      border-left: 3px solid $white;
+      border: 1px solid $white;
     }
 
     .right {
@@ -178,8 +160,8 @@ html, body {
       table.calendar {
         width: 100%;
         padding: 0;
-        border-top: 3px solid $white;
-        border-bottom: 3px solid $white;
+        border-top: 2px solid $white;
+        border-bottom: 2px solid $white;
         -webkit-border-horizontal-spacing: 1px;
         -webkit-border-vertical-spacing: 1px;
 

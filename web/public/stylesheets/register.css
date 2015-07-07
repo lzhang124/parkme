@@ -25,7 +25,7 @@ input {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
-  border-bottom: 3px solid white;
+  border-bottom: 2px solid white;
   padding: 10px 0;
   font-family: "Lato", sans-serif;
   font-weight: 300;
@@ -67,11 +67,6 @@ input::-webkit-inner-spin-button {
     .navbar .button-container button {
       font-size: 1.25em; }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0; }
-
 ::-webkit-input-placeholder {
   color: #969696; }
 
@@ -85,6 +80,11 @@ html, body {
 
 :-ms-input-placeholder {
   color: #969696; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0; }
 
 .bg {
   height: 100%;
@@ -147,7 +147,7 @@ html, body {
       left: 50%;
       margin-top: -15px;
       display: inline-block;
-      border-left: 3px solid white; }
+      border: 1px solid white; }
     .register .field .right {
       height: 40px;
       width: 45%;
@@ -196,8 +196,8 @@ html, body {
       .register .calendar-container .days table.calendar {
         width: 100%;
         padding: 0;
-        border-top: 3px solid white;
-        border-bottom: 3px solid white;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
         -webkit-border-horizontal-spacing: 1px;
         -webkit-border-vertical-spacing: 1px; }
         .register .calendar-container .days table.calendar tr.r {

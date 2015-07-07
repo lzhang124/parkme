@@ -6,24 +6,6 @@ html, body {
   margin: 0;
 }
 
-::-webkit-input-placeholder {
-  color: $grey;;
-}
-
-:-moz-placeholder {
-  color: $grey;
-  opacity: 1;
-}
-
-::-moz-placeholder {
-  color: $grey;
-  opacity: 1;
-}
-
-:-ms-input-placeholder {
-  color: $grey;
-}
-
 .bg {
   height: 100%;
   width: 100%;
