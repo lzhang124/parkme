@@ -54,6 +54,22 @@ input::-webkit-inner-spin-button {
 .close:hover {
   opacity: 1; }
 
+.navbar {
+  height: 100%;
+  width: 100%;
+  position: absolute; }
+  .navbar .button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    z-index: 1; }
+    .navbar .button-container button {
+      font-size: 1.25em; }
+      .navbar .button-container button a {
+        color: white;
+        text-decoration: none; }
+
 html, body {
   height: 100%;
   width: 100%;
@@ -199,3 +215,5 @@ html, body {
     margin-bottom: 10%; }
   .register button:hover {
     color: #191919; }
+
+/*# sourceMappingURL=register.css.map */

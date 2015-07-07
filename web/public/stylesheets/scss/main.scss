@@ -7,21 +7,21 @@ html, body {
 }
 
 ::-webkit-input-placeholder {
-    color: $grey;;
+  color: $grey;;
 }
 
 :-moz-placeholder {
-   color: $grey;
-   opacity: 1;
+  color: $grey;
+  opacity: 1;
 }
 
 ::-moz-placeholder {
-   color: $grey;
-   opacity: 1;
+  color: $grey;
+  opacity: 1;
 }
 
 :-ms-input-placeholder {
-   color: $grey;
+  color: $grey;
 }
 
 .bg {
@@ -32,26 +32,6 @@ html, body {
 }
 
 .navbar {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  
-  .button-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-    z-index: 1;
-
-    button {
-      font-size: 1.25em;
-
-      a {
-        color: $white;
-        text-decoration: none;
-      }
-    }
-  }
 
   .dimmer {
     height: 100%;

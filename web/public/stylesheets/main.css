@@ -54,6 +54,22 @@ input::-webkit-inner-spin-button {
 .close:hover {
   opacity: 1; }
 
+.navbar {
+  height: 100%;
+  width: 100%;
+  position: absolute; }
+  .navbar .button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    z-index: 1; }
+    .navbar .button-container button {
+      font-size: 1.25em; }
+      .navbar .button-container button a {
+        color: white;
+        text-decoration: none; }
+
 html, body {
   height: 100%;
   width: 100%;
@@ -79,51 +95,36 @@ html, body {
   position: fixed;
   background: #004869; }
 
-.navbar {
+.navbar .dimmer {
   height: 100%;
   width: 100%;
-  position: absolute; }
-  .navbar .button-container {
+  position: absolute;
+  background: #191919;
+  z-index: 1; }
+  .navbar .dimmer .login-container, .navbar .dimmer .signup-container {
+    width: 40%;
     position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-    z-index: 1; }
-    .navbar .button-container button {
-      font-size: 1.25em; }
-      .navbar .button-container button a {
-        color: white;
-        text-decoration: none; }
-  .navbar .dimmer {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background: #191919;
-    z-index: 1; }
-    .navbar .dimmer .login-container, .navbar .dimmer .signup-container {
-      width: 40%;
-      position: absolute;
-      top: 35%;
-      margin: 0 30%;
-      text-align: center; }
-      .navbar .dimmer .login-container form, .navbar .dimmer .signup-container form {
-        width: 100%;
-        margin: auto; }
-        .navbar .dimmer .login-container form input, .navbar .dimmer .signup-container form input {
-          width: 100%; }
-        .navbar .dimmer .login-container form button, .navbar .dimmer .signup-container form button {
-          margin-top: 40px;
-          font-weight: 300; }
-        .navbar .dimmer .login-container form button:hover, .navbar .dimmer .signup-container form button:hover {
-          color: #191919; }
-    .navbar .dimmer .signup-container {
-      top: 28%; }
-      .navbar .dimmer .signup-container .left {
-        width: 45%;
-        float: left; }
-      .navbar .dimmer .signup-container .right {
-        width: 45%;
-        float: right; }
+    top: 35%;
+    margin: 0 30%;
+    text-align: center; }
+    .navbar .dimmer .login-container form, .navbar .dimmer .signup-container form {
+      width: 100%;
+      margin: auto; }
+      .navbar .dimmer .login-container form input, .navbar .dimmer .signup-container form input {
+        width: 100%; }
+      .navbar .dimmer .login-container form button, .navbar .dimmer .signup-container form button {
+        margin-top: 40px;
+        font-weight: 300; }
+      .navbar .dimmer .login-container form button:hover, .navbar .dimmer .signup-container form button:hover {
+        color: #191919; }
+  .navbar .dimmer .signup-container {
+    top: 28%; }
+    .navbar .dimmer .signup-container .left {
+      width: 45%;
+      float: left; }
+    .navbar .dimmer .signup-container .right {
+      width: 45%;
+      float: right; }
 
 .content {
   height: 75%;

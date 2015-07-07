@@ -68,3 +68,26 @@ input::-webkit-inner-spin-button {
 .close:hover {
   opacity: 1;
 }
+
+.navbar {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  
+  .button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    z-index: 1;
+
+    button {
+      font-size: 1.25em;
+
+      a {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+}
