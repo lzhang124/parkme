@@ -177,6 +177,12 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
       iw.children(':nth-child(2)').css({'display' : 'none'});
       iw.children(':nth-child(4)').css({'display' : 'none'});
 
+      // Move the close button
+      close.css({
+        right: '15px',
+        top: '45px',
+      });
+
       // Style the tail
       iw.children(':nth-child(3)').children(':nth-child(1)').css({
         height: '13px',
@@ -210,23 +216,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
         'border-bottom': '3px solid rgba(0,72,105,1)',
         '-webkit-transform': 'skewX(-45deg)',
         'box-shadow': 'none',
-      });
-
-      // Style the close button
-      close.css({
-        opacity: '1',
-        right: '0',
-        top: '20px',
-        padding: '1px',
-        border: '2px solid rgba(0,72,105,1)',
-        'border-radius': '13px',
-      });
-      close.mouseout(function(){
-        $(this).css({opacity: '1'});
-      });
-      close.children().css({
-        padding: '1px',
-        background: 'white',
       });
     });
   }
