@@ -57,7 +57,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
   var map;
   var infowindow;
-  var currentMarker;
+  var currentMarker = null;
   $scope.markers = [];
 
   var searchName;
@@ -126,17 +126,21 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
         size: new google.maps.Size(27, 26),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13.5, 13)
-      },
-      draggable: true
+      }
     });
     google.maps.event.addListener(startMarker, 'click', function() {
       if (infowindow.anchor !== this) {
         infowindow.setContent('<div class="infoWindow">Your Destination</div>');
         infowindow.open(this.map, this);
-        currentMarker = this;
+        $timeout(function() {
+          if (currentMarker !== null) {
+            console.log(currentMarker);
+            currentMarker.lot.selected = false;
+          }
+          currentMarker = null;
+        });
       } else {
         infowindow.close();
-        currentMarker = null;
       }
     });
     $scope.markers.push(startMarker);
@@ -155,7 +159,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
     google.maps.event.addListener(infowindow, 'closeclick', function() {
       $timeout(function() {
-        if (currentMarker.hasOwnProperty('lot')) {
+        if (currentMarker !== null) {
           currentMarker.lot.selected = false;
         }
         currentMarker = null;
@@ -177,12 +181,15 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     });
 
     google.maps.event.addListener(marker, 'click', function() {
-      if (infowindow.anchor !== this) {
+      if (!this.lot.selected) {
         infowindow.setContent('<div class="infoWindow">' + lot.name + '</div>');
         infowindow.open(this.map, this);
-        currentMarker = this;
         $timeout(function() {
+          if (currentMarker !== null) {
+            currentMarker.lot.selected = false;
+          }
           lot.selected = true;
+          currentMarker = marker;
         });
       } else {
         infowindow.close();
