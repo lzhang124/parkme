@@ -11,10 +11,17 @@ var isAuthenticated = function (req, res, next) {
 
 module.exports = function(passport) {
 
+  /* GET current user */
+  router.get('/currentUser', function(req, res) {
+    if (req.user) {
+      res.send(req.user);
+    }
+  });
+
   /* GET splash page. */
   router.get('/', function(req, res) {
     res.render('splash');
-  })
+  });
 
   /* GET home page. */
   router.get('/q9xwGoXLGQ', function(req, res) {
