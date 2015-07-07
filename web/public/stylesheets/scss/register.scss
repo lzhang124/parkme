@@ -77,23 +77,14 @@ html, body {
 
     .left {
       height: 40px;
-      width: 45%;
+      width: 48%;
       text-align: right;
       float: left;
     }
 
-    .vertical {
-      height: 80px;
-      position: absolute;
-      left: 50%;
-      margin-top: -15px;
-      display: inline-block;
-      border: 1px solid $white;
-    }
-
     .right {
       height: 40px;
-      width: 45%;
+      width: 48%;
       text-align: left;
       float: right;
     }

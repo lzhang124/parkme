@@ -1,8 +1,6 @@
 package core.controllers;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import core.models.Account;
 import core.models.Lot;
@@ -54,6 +52,25 @@ public class AccountController {
         accountRepo.save(account);
         System.out.println("New Account:" + account);
         return account;
+    }
+
+    @RequestMapping(value = "/getLots", method = RequestMethod.GET)
+    public Map<Lot, String> getLots(String accountId) {
+        Account account = accountRepo.findById(accountId);
+        if (account == null) {
+            System.out.println("Account with id " + accountId + " was not found.");
+            return null;
+        } else {
+            Map<Lot, String> lots = new HashMap<>();
+            for (Map.Entry<String, String> entry : account.getLots().entrySet()) {
+                String lotId = entry.getKey();
+                String role = entry.getValue();
+
+                Lot lot = lotRepo.findById(lotId);
+                lots.put(lot, role);
+            }
+            return lots;
+        }
     }
 
     @RequestMapping(value = "/addRole", method = RequestMethod.POST)

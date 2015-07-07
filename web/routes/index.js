@@ -4,8 +4,9 @@ var router = express.Router();
 var newLot = require('../controller/lot');
 
 var isAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) {
       return next();
+    }
     res.redirect('/q9xwGoXLGQ');
 }
 
@@ -15,6 +16,8 @@ module.exports = function(passport) {
   router.get('/currentUser', function(req, res) {
     if (req.user) {
       res.send(req.user);
+    } else {
+      res.send(null);
     }
   });
 
