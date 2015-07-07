@@ -175,6 +175,7 @@ html, body {
     margin: 0 25px;
     text-align: center; }
     .search-results .results .results-container button {
+      height: 140px;
       width: 100%;
       background: white;
       -webkit-border-radius: 10px;
