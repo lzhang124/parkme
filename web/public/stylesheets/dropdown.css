@@ -10,7 +10,7 @@ button {
   text-align: center;
   font-size: 2em;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: white;
   cursor: pointer;
   transition: all 300ms ease; }
@@ -31,7 +31,7 @@ input {
   font-weight: 300;
   text-align: center;
   font-size: 2em;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: white; }
 
 input:focus {
@@ -66,9 +66,6 @@ input::-webkit-inner-spin-button {
     z-index: 1; }
     .navbar .button-container button {
       font-size: 1.25em; }
-      .navbar .button-container button a {
-        color: white;
-        text-decoration: none; }
 
 .ui.simple.dropdown {
   min-width: 140px;
