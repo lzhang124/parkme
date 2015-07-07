@@ -59,10 +59,11 @@ input::-webkit-inner-spin-button {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 3%;
+  margin: 25px 0 0 30px;
   opacity: .5;
   cursor: pointer;
   transition: all 300ms ease;
+  z-index: 1;
 }
 
 .close:hover {
@@ -73,6 +74,7 @@ input::-webkit-inner-spin-button {
   height: 100%;
   width: 100%;
   position: absolute;
+  z-index: 1;
   
   .button-container {
     position: absolute;
