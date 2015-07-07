@@ -160,7 +160,20 @@ html, body {
     width: 100%; }
   .search-results .map-box .infoWindow {
     font-family: "Lato", sans-serif;
-    font-weight: 700; }
+    font-weight: 400;
+    font-size: 1.3em;
+    color: #004869; }
+    .search-results .map-box .infoWindow span#type {
+      font-weight: 300;
+      font-size: .8em;
+      text-transform: uppercase; }
+  .search-results .map-box .gm-style-iw {
+    top: 28px !important;
+    left: 0 !important;
+    padding: 8px 0 8px 20px;
+    background-color: #fff;
+    border: 2px solid #004869;
+    border-radius: 10px; }
 .search-results .results {
   height: 100vh;
   width: 50vw;
@@ -185,6 +198,8 @@ html, body {
       margin: 5px 0;
       text-transform: none;
       color: #004869; }
+      .search-results .results .results-container button .lot-name {
+        font-weight: 400; }
     .search-results .results .results-container button.selected {
       height: 400px; }
     .search-results .results .results-container button:hover {

@@ -165,6 +165,70 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
         currentMarker = null;
       });
     });
+
+    // Style the infowindow
+    google.maps.event.addListener(infowindow, 'domready', function() {
+      var iwOuter = $('.gm-style-iw');
+      var iw = iwOuter.prev();
+      var close = iwOuter.next();
+
+      // Remove the defaults
+      iw.children(':nth-child(1)').css({'display' : 'none'});
+      iw.children(':nth-child(2)').css({'display' : 'none'});
+      iw.children(':nth-child(4)').css({'display' : 'none'});
+
+      // Style the tail
+      iw.children(':nth-child(3)').children(':nth-child(1)').css({
+        height: '13px',
+        width: '13px',
+        top: '11px',
+        left: '-2px',
+        'box-shadow': 'none',
+        'z-index' : '1',
+      });
+      iw.children(':nth-child(3)').children(':nth-child(1)').children().css({
+        height: '10px',
+        width: '10px',
+        left: '0',
+        'border-left': '3px solid rgba(0,72,105,1)',
+        'border-bottom': '3px solid rgba(0,72,105,1)',
+        '-webkit-transform': 'skewX(45deg)',
+        'box-shadow': 'none',
+      });
+      iw.children(':nth-child(3)').children(':nth-child(2)').css({
+        height: '13px',
+        width: '13px',
+        top: '11px',
+        left: '11px',
+        'box-shadow': 'none',
+        'z-index' : '1',
+      });
+      iw.children(':nth-child(3)').children(':nth-child(2)').children().css({
+        height: '10px',
+        width: '10px',
+        'border-right': '3px solid rgba(0,72,105,1)',
+        'border-bottom': '3px solid rgba(0,72,105,1)',
+        '-webkit-transform': 'skewX(-45deg)',
+        'box-shadow': 'none',
+      });
+
+      // Style the close button
+      close.css({
+        opacity: '1',
+        right: '0',
+        top: '20px',
+        padding: '1px',
+        border: '2px solid rgba(0,72,105,1)',
+        'border-radius': '13px',
+      });
+      close.mouseout(function(){
+        $(this).css({opacity: '1'});
+      });
+      close.children().css({
+        padding: '1px',
+        background: 'white',
+      });
+    });
   }
 
   var createMarker = function(lot) {
@@ -182,7 +246,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
 
     google.maps.event.addListener(marker, 'click', function() {
       if (!this.lot.selected) {
-        infowindow.setContent('<div class="infoWindow">' + lot.name + '</div>');
+        infowindow.setContent('<div class="infoWindow">' + lot.name + ' <span id="type">' + lot.type + '</div>');
         infowindow.open(this.map, this);
         $timeout(function() {
           if (currentMarker !== null) {

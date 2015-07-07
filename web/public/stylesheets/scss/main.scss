@@ -156,7 +156,24 @@ html, body {
 
     .infoWindow {
       font-family: $lato;
-      font-weight: 700;
+      font-weight: 400;
+      font-size: 1.3em;
+      color: $blue;
+
+      span#type {
+        font-weight: 300;
+        font-size: .8em;
+        text-transform: uppercase;
+      }
+    }
+
+    .gm-style-iw {
+      top: 28px !important;
+      left: 0 !important;
+      padding: 8px 0 8px 20px;
+      background-color: #fff;
+      border: 2px solid $blue;
+      border-radius: 10px;
     }
   }
 
@@ -190,6 +207,10 @@ html, body {
         margin: 5px 0;
         text-transform: none;
         color: $blue;
+
+        .lot-name {
+          font-weight: 400;
+        }
       }
 
       button.selected {

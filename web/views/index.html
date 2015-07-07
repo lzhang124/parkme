@@ -78,7 +78,7 @@
         <div class="results-container">
           <button ng-repeat="lot in lots track by $index" ng-class="{'selected': lot.selected}" ng-click="openInfoWindow(markers[$index + 1])">
             <div class="lot-name">
-              <strong>{{ lot.name }}</strong>
+              {{ lot.name }}
             </div>
             <div class="lot-address">
               {{ lot.address.street }}
