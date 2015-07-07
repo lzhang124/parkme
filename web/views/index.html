@@ -20,12 +20,10 @@
   <!-- Controllers -->
   <script src="javascripts/main.js"></script>
 
-  <!-- Semantic-UI -->
-  <!-- Animate.css -->
 </head>
 <body>
   <div class="bg"></div>
-  <div class="login" ng-controller="loginController" ng-show="showLogin">
+  <div class="navbar" ng-controller="loginController" ng-show="<%= !user %> &&showLogin">
     <div class="button-container">
       <button ng-click="login()">Login</button>
       <button ng-click="signup()">Sign Up</button>
@@ -56,6 +54,13 @@
       </div>
     </div>
   </div>
+  <div class="navbar" ng-show="<%= user %>">
+    <div class="button-container">
+      <button><a href="/q9xwGoXLGQ/profile">Profile</a></button>
+      <button><a href="/logout">Logout</a></button>
+    </div>
+  </div>
+  
   <div ng-controller="searchController">
     <div class="content" ng-show="showContent">
       <img src="images/logo-white.svg"
@@ -64,7 +69,7 @@
         <input id="search-main" type="text" placeholder="DESTINATION" onClick="this.select();" autofocus />
       </form>
       <div class="info">
-        <a href="/q9xwGoXLGQ/info">Click here for more information</a>
+        <a href="/q9xwGoXLGQ/about">Click here to learn more</a>
       </div>
     </div>
     <div class="search-results" ng-show="showResults">

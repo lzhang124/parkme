@@ -10,7 +10,7 @@ var isAuthenticated = function (req, res, next) {
 }
 
 module.exports = function(passport) {
-  
+
   /* GET splash page. */
   router.get('/', function(req, res) {
     res.render('splash');
@@ -18,12 +18,12 @@ module.exports = function(passport) {
 
   /* GET home page. */
   router.get('/q9xwGoXLGQ', function(req, res) {
-    res.render('index');
+    res.render('index', { user: req.user });
   });
 
-  /* GET info page. */
-  router.get('/q9xwGoXLGQ/info', function(req, res) {
-    res.render('info');
+  /* GET about page. */
+  router.get('/q9xwGoXLGQ/about', function(req, res) {
+    res.render('about');
   });
 
   /* Sign up */
@@ -41,6 +41,18 @@ module.exports = function(passport) {
     failureFlash: true,
     successFlash: true
   }));
+
+  /* Logout */ 
+  router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/q9xwGoXLGQ');
+  });
+
+  /* GET profile page. */
+  router.get('/q9xwGoXLGQ/profile', isAuthenticated, function(req, res) {
+    res.render('profile', { user: req.user });
+  });
+
 
   /* GET register page. */
   router.get('/q9xwGoXLGQ/register', isAuthenticated, function(req, res) {

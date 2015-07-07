@@ -79,46 +79,49 @@ html, body {
   position: fixed;
   background: #004869; }
 
-.login {
+.navbar {
   height: 100%;
   width: 100%;
   position: absolute; }
-  .login .button-container {
+  .navbar .button-container {
     position: absolute;
     top: 0;
     right: 0;
     margin: 10px;
     z-index: 1; }
-    .login .button-container button {
+    .navbar .button-container button {
       font-size: 1.25em; }
-  .login .dimmer {
+      .navbar .button-container button a {
+        color: white;
+        text-decoration: none; }
+  .navbar .dimmer {
     height: 100%;
     width: 100%;
     position: absolute;
     background: #191919;
     z-index: 1; }
-    .login .dimmer .login-container, .login .dimmer .signup-container {
+    .navbar .dimmer .login-container, .navbar .dimmer .signup-container {
       width: 40%;
       position: absolute;
       top: 35%;
       margin: 0 30%;
       text-align: center; }
-      .login .dimmer .login-container form, .login .dimmer .signup-container form {
+      .navbar .dimmer .login-container form, .navbar .dimmer .signup-container form {
         width: 100%;
         margin: auto; }
-        .login .dimmer .login-container form input, .login .dimmer .signup-container form input {
+        .navbar .dimmer .login-container form input, .navbar .dimmer .signup-container form input {
           width: 100%; }
-        .login .dimmer .login-container form button, .login .dimmer .signup-container form button {
+        .navbar .dimmer .login-container form button, .navbar .dimmer .signup-container form button {
           margin-top: 40px;
           font-weight: 300; }
-        .login .dimmer .login-container form button:hover, .login .dimmer .signup-container form button:hover {
+        .navbar .dimmer .login-container form button:hover, .navbar .dimmer .signup-container form button:hover {
           color: #191919; }
-    .login .dimmer .signup-container {
+    .navbar .dimmer .signup-container {
       top: 28%; }
-      .login .dimmer .signup-container .left {
+      .navbar .dimmer .signup-container .left {
         width: 45%;
         float: left; }
-      .login .dimmer .signup-container .right {
+      .navbar .dimmer .signup-container .right {
         width: 45%;
         float: right; }
 

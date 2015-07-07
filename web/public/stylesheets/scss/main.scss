@@ -31,7 +31,7 @@ html, body {
   background: $blue;
 }
 
-.login {
+.navbar {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -45,6 +45,11 @@ html, body {
 
     button {
       font-size: 1.25em;
+
+      a {
+        color: $white;
+        text-decoration: none;
+      }
     }
   }
 
