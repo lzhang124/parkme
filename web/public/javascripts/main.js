@@ -17,6 +17,7 @@ app.factory('focus', function($timeout) {
       var element = document.getElementById(id);
       if(element)
         element.focus();
+        element.select();
     });
   }
 });
@@ -46,7 +47,14 @@ app.controller('loginController', function($scope, $rootScope, focus) {
 });
 
 
-app.controller('searchController', function($scope, $rootScope, $http, $timeout) {
+app.controller('searchController', function($scope, $rootScope, $http, $timeout, focus) {
+
+  $scope.home = function() {
+    $scope.showResults = false;
+    $rootScope.showLogin = true;
+    $rootScope.showContent = true;
+    focus('search-main');
+  }
 
   // INIT PLACES AUTOCOMPLETE //
   var search_main = document.getElementById('search-main');
@@ -75,15 +83,17 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout)
     var start = auto_search_main.getPlace();
     if (start.hasOwnProperty('geometry')) {
       $timeout(function() {
-        $rootScope.showResults = true;
+        $scope.showResults = true;
         $rootScope.showLogin = false;
         $rootScope.showContent = false;
         search.value = start.name;
 
-        map = new google.maps.Map(document.getElementById('map'), {
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          disableDefaultUI: true
-        });
+        if (!map) {
+          map = new google.maps.Map(document.getElementById('map'), {
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
+          });
+        }
 
         searchNear(start);
       });
