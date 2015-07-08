@@ -113,7 +113,7 @@ html, body {
     -webkit-border-radius: 20vw;
     -moz-border-radius: 20vw;
     border-radius: 20vw;
-    margin: 7% auto; }
+    margin: 7vh auto 5vh auto; }
   .content .profile .name {
     font-size: 3em;
     letter-spacing: 5px; }
@@ -150,3 +150,5 @@ html, body {
     margin-top: -15px;
     display: inline-block;
     border: 1px solid white; }
+
+/*# sourceMappingURL=profile.css.map */
