@@ -1,0 +1,152 @@
+button {
+  background: transparent;
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  padding: 10px 20px;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  cursor: pointer;
+  transition: all 300ms ease; }
+
+button:hover {
+  background: white;
+  color: #004869; }
+
+input {
+  background: transparent;
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-bottom: 2px solid white;
+  padding: 10px 0;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color: white; }
+
+input:focus {
+  outline: 0; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none; }
+
+.close {
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 25px 0 0 30px;
+  opacity: .5;
+  cursor: pointer;
+  transition: all 300ms ease;
+  z-index: 1; }
+
+.close:hover {
+  opacity: 1; }
+
+.navbar {
+  height: 68px;
+  width: 100%;
+  position: absolute; }
+  .navbar .button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    z-index: 1; }
+    .navbar .button-container button {
+      font-size: 1.25em; }
+
+::-webkit-input-placeholder {
+  color: #969696; }
+
+:-moz-placeholder {
+  color: #969696;
+  opacity: 1; }
+
+::-moz-placeholder {
+  color: #969696;
+  opacity: 1; }
+
+:-ms-input-placeholder {
+  color: #969696; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0; }
+
+.bg {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: #004869; }
+
+.content {
+  width: 100%;
+  position: absolute;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  color: white; }
+  .content .line {
+    width: 70%;
+    margin: 25px auto;
+    border: 1px solid white; }
+  .content .profile .photo {
+    height: 20vw;
+    width: 20vw;
+    background: #969696;
+    border: 5px solid white;
+    -webkit-border-radius: 20vw;
+    -moz-border-radius: 20vw;
+    border-radius: 20vw;
+    margin: 7% auto; }
+  .content .profile .name {
+    font-size: 3em;
+    letter-spacing: 5px; }
+  .content .profile .info .field {
+    height: 40px;
+    width: 100%;
+    margin-top: 2%;
+    font-size: 2em;
+    letter-spacing: 2px; }
+    .content .profile .info .field .left {
+      height: 40px;
+      width: 48%;
+      text-align: right;
+      float: left; }
+    .content .profile .info .field .right {
+      height: 40px;
+      width: 48%;
+      text-align: left;
+      float: right; }
+    .content .profile .info .field input {
+      height: 40px;
+      width: 67px;
+      padding: 0;
+      border-bottom: 1px solid white;
+      font-size: 100%; }
+    .content .profile .info .field .icon {
+      height: 24px;
+      width: 24px;
+      cursor: pointer; }
+  .content .profile .vertical {
+    height: 80px;
+    position: absolute;
+    left: 50%;
+    margin-top: -15px;
+    display: inline-block;
+    border: 1px solid white; }

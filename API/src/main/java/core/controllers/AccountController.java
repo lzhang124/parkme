@@ -55,19 +55,18 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/getLots", method = RequestMethod.GET)
-    public Map<Lot, String> getLots(String accountId) {
+    public List<Lot> getLots(String accountId) {
         Account account = accountRepo.findById(accountId);
         if (account == null) {
             System.out.println("Account with id " + accountId + " was not found.");
             return null;
         } else {
-            Map<Lot, String> lots = new HashMap<>();
+            List<Lot> lots = new ArrayList<>();
             for (Map.Entry<String, String> entry : account.getLots().entrySet()) {
                 String lotId = entry.getKey();
-                String role = entry.getValue();
 
                 Lot lot = lotRepo.findById(lotId);
-                lots.put(lot, role);
+                lots.add(lot);
             }
             return lots;
         }

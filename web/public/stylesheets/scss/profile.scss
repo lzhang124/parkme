@@ -1,0 +1,102 @@
+@import '_constants';
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.bg {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: $blue;
+}
+
+.content {
+  width: 100%;
+  position: absolute;
+  font-family: $lato;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  color: $white;
+
+  .line {
+    width: 70%;
+    margin: 25px auto;
+    border: 1px solid $white;
+  }
+
+  .profile {
+
+    .photo {
+      height: 20vw;
+      width: 20vw;
+      background: $grey;
+      border: 5px solid $white;
+      -webkit-border-radius: 20vw;
+      -moz-border-radius: 20vw;
+      border-radius: 20vw;
+      margin: 7% auto;
+    }
+
+    .name {
+      font-size: 3em;
+      letter-spacing: 5px;
+    }
+
+    .info {
+
+      .field {
+        height: 40px;
+        width: 100%;
+        margin-top: 2%;
+        font-size: 2em;
+        letter-spacing: 2px;
+
+        .left {
+          height: 40px;
+          width: 48%;
+          text-align: right;
+          float: left;
+        }
+
+        .right {
+          height: 40px;
+          width: 48%;
+          text-align: left;
+          float: right;
+        }
+
+        input {
+          height: 40px;
+          width: 67px;
+          padding: 0;
+          border-bottom: 1px solid $white;
+          font-size: 100%;
+        }
+
+        .icon {
+          height: 24px;
+          width: 24px;
+          cursor: pointer;
+        }
+      }
+
+    }
+
+    .vertical {
+      height: 80px;
+      position: absolute;
+      left: 50%;
+      margin-top: -15px;
+      display: inline-block;
+      border: 1px solid $white;
+    }
+  }
+
+  .lots {
+
+  }
+}
