@@ -145,7 +145,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
         infowindow.open(this.map, this);
         $timeout(function() {
           if (currentMarker !== null) {
-            console.log(currentMarker);
             currentMarker.lot.selected = false;
           }
           currentMarker = null;
