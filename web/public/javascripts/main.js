@@ -87,6 +87,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
         $rootScope.showContent = false;
         search.value = start.name;
         search_main.value = '';
+        search_main.blur();
 
         if (!map) {
           map = new google.maps.Map(document.getElementById('map'), {
