@@ -17,7 +17,6 @@ app.factory('focus', function($timeout) {
       var element = document.getElementById(id);
       if(element)
         element.focus();
-        element.select();
     });
   }
 });
@@ -87,6 +86,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
         $rootScope.showLogin = false;
         $rootScope.showContent = false;
         search.value = start.name;
+        search_main.value = '';
 
         if (!map) {
           map = new google.maps.Map(document.getElementById('map'), {

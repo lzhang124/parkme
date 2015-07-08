@@ -153,6 +153,9 @@ html, body {
     .content form button {
       margin-top: 40px; }
 
+.search-results .close {
+  opacity: 1;
+  position: fixed; }
 .search-results .map-box {
   height: 100vh;
   width: 50vw;
@@ -219,3 +222,5 @@ html, body {
 
   .info {
     font-size: 1em; } }
+
+/*# sourceMappingURL=main.css.map */
