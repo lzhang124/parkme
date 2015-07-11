@@ -4,15 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import core.models.Account;
-import core.models.Address;
 import core.models.Lot;
-import core.models.Space;
 import core.models.data.LotHistory;
-import core.models.data.RawHistory;
 import core.repositories.AccountRepository;
 import core.repositories.LotRepository;
 import core.repositories.data.LotHistoryRepository;
-import core.repositories.data.RawHistoryRepository;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
@@ -32,8 +28,6 @@ public class LotController {
     private AccountRepository accountRepo;
     @Autowired
     private LotHistoryRepository lotHistoryRepo;
-    @Autowired
-    private RawHistoryRepository rawHistoryRepo;
     @Autowired
     MongoTemplate template;
 
@@ -59,7 +53,7 @@ public class LotController {
     }
 
     @RequestMapping(value = "/newLot", method = RequestMethod.POST)
-    public Lot newLot(String accountId, String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] startTimes, int[] durations) {
+    public Lot newLot(String accountId, String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] times) {
         Account account = accountRepo.findById(accountId);
         if (account == null) {
             System.out.println("Account with id " + accountId + " was not found.");
@@ -67,7 +61,7 @@ public class LotController {
         } else {
             template.indexOps(Lot.class).ensureIndex(new GeospatialIndex("location"));
 
-            Lot lot = new Lot(name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations);
+            Lot lot = new Lot(name, type, address, latitude, longitude, capacity, reserveMax, times);
             Lot duplicate = lotRepo.findByAddress(lot.getAddress());
             if (duplicate != null) {
                 System.out.println("This lot already exists: " + duplicate.getId());
@@ -143,27 +137,8 @@ public class LotController {
         }
     }
 
-    @RequestMapping(value = "/addMember", method = RequestMethod.POST)
-    public Lot addMember(String lotId, String email, String role) {
-        Lot lot = lotRepo.findById(lotId);
-        Account account = accountRepo.findByEmail(email);
-        if (lot == null) {
-            System.out.println("Lot with id " + lotId + " was not found.");
-            return null;
-        } else if (account == null) {
-            System.out.println("Account with email " + email + " was not found.");
-            return null;
-        } else {
-            account.addLot(lotId, role);
-            accountRepo.save(account);
-            lot.addMember(account.getId());
-            lotRepo.save(lot);
-            return lot;
-        }
-    }
-
     @RequestMapping(value = "/setCalendar", method = RequestMethod.POST)
-    public Lot setCalendar(String lotId, long[] startTimes, int[] durations) {
+    public Lot setCalendar(String lotId, long[] times) {
         Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
             System.out.println("Lot with id " + lotId + " was not found.");
@@ -173,17 +148,11 @@ public class LotController {
             return null;
         } else {
             List<Space> spaces = lot.getSpaces();
-
-            for (int i = 0; i < startTimes.length; i++) {
-                long start = startTimes[i];
-                int duration = durations[i];
-                for (int j = 0; j < lot.getReserveMax(); j++) {
-                    Space space = spaces.get(j);
-                    if (space.isReservable()) {
-                        space.setCalendar(start, duration);
-                    }
-                }
+            for (int i = 0; i < lot.getReserveMax(); i++) {
+                Space space = spaces.get(i);
+                space.setCalendar(times);
             }
+
             lotRepo.save(lot);
             return lot;
         }
@@ -273,11 +242,5 @@ public class LotController {
             lotHistoryRepo.save(history);
             return history;
         }
-    }
-
-    private RawHistory addRawHistory(String accountId, String lotId, int space, long start, int duration, String search) {
-        RawHistory history = new RawHistory(accountId, lotId, space, start, duration, search);
-        rawHistoryRepo.save(history);
-        return history;
     }
 }

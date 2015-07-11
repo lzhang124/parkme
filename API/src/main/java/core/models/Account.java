@@ -2,6 +2,8 @@ package core.models;
 
 import java.util.*;
 
+import core.models.sub.Address;
+import core.models.sub.LotRole;
 import org.springframework.data.annotation.Id;
 
 public class Account {
@@ -16,13 +18,12 @@ public class Account {
     private String phone;
     private Object photo;
 
-    private List<Reservation> reservations;
     private boolean paid;
     private Address billingAddress;
     private String creditCard;
 
-    private Map<String, String> lots;
-    private List<String> roles;
+    private List<LotRole> lots;
+    private Set<String> roles;
 
     public Account() {}
 
@@ -32,9 +33,8 @@ public class Account {
         this.email = email;
         this.password = password;
 
-        this.reservations = new ArrayList<>();
-        this.lots = new HashMap<>();
-        this.roles = new ArrayList<>();
+        this.lots = new ArrayList<>();
+        this.roles = new HashSet<>();
     }
 
     public String getId() {
@@ -93,14 +93,6 @@ public class Account {
         this.photo = photo;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void addReservation(String lotId, int space, long start, int duration) {
-        this.reservations.add(new Reservation(lotId, space, start, duration));
-    }
-
     public boolean isPaid() {
         return paid;
     }
@@ -125,19 +117,19 @@ public class Account {
         this.creditCard = creditCard;
     }
 
-    public Map<String, String> getLots() {
+    public List<LotRole> getLots() {
         return lots;
     }
 
     public void addLot(String lotId, String role) {
-        this.lots.put(lotId, role);
+        this.lots.add(new LotRole(lotId, role));
     }
 
-    public void removeLot(String lotId) {
-        this.lots.remove(lotId);
+    public void removeLot(LotRole lotRole) {
+        this.lots.remove(lotRole);
     }
 
-    public List<String> getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 

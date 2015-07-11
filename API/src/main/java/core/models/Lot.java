@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
+import core.models.sub.Address;
 import org.springframework.data.annotation.Id;
 
 public class Lot {
@@ -26,15 +27,12 @@ public class Lot {
     private boolean available;
     private boolean reservable;
     private int reserveMax;
-    private List<Space> spaces;
 
-    private List<String> members;
-
-    private String lotHistoryId;
+    private List<Long> calendar;
 
     public Lot() {}
 
-    public Lot(String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] startTimes, int[] durations) {
+    public Lot(String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] times) {
         this.name = name;
         this.type = type;
 
@@ -56,15 +54,10 @@ public class Lot {
         }
         this.reserveMax = reserveMax;
 
-        this.spaces = new ArrayList<>();
-        for (int i = 0; i < reserveMax; i ++) {
-            this.spaces.add(new Space(true, startTimes, durations));
+        this.calendar = new ArrayList<>();
+        for (long time : times) {
+            this.calendar.add(time);
         }
-        for (int i = 0; i < capacity-reserveMax; i++) {
-            this.spaces.add(new Space(false, null, null));
-        }
-
-        this.members = new ArrayList<>();
     }
 
     public String getId() {
@@ -175,36 +168,12 @@ public class Lot {
         this.reserveMax = reserveMax;
     }
 
-    public List<Space> getSpaces() {
-        return spaces;
+    public List<Long> getCalendar() {
+        return calendar;
     }
 
-    public void addSpace(Space space) {
-        this.spaces.add(space);
-    }
-
-    public void removeSpace(Space space) {
-        this.spaces.remove(space);
-    }
-
-    public List<String> getMembers() {
-        return members;
-    }
-
-    public void addMember(String memberId) {
-        this.members.add(memberId);
-    }
-
-    public void removeMember(String member) {
-        this.members.remove(member);
-    }
-
-    public String getLotHistory() {
-        return lotHistoryId;
-    }
-
-    public void setLotHistory(String lotHistoryId) {
-        this.lotHistoryId = lotHistoryId;
+    public void setCalendar(List<Long> calendar) {
+        this.calendar = calendar;
     }
 
     @Override

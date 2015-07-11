@@ -2,19 +2,15 @@ package core;
 
 import java.util.Arrays;
 
-import core.models.Address;
-import core.models.Lot;
 import core.repositories.LotRepository;
 import core.repositories.AccountRepository;
 import core.repositories.data.LotHistoryRepository;
-import core.repositories.data.RawHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.index.GeospatialIndex;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {

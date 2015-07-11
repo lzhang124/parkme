@@ -1,35 +1,34 @@
 package core.models.data;
 
+import core.models.sub.LotHistoryPoint;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import core.models.Pair;
-import org.springframework.data.annotation.Id;
-
 public class LotHistory {
+    private String lotId;
+    private List<LotHistoryPoint> history;
 
-    @Id
-    private String id;
+    public LotHistory() {}
 
-    private List<Pair<Long, Integer>> history;
-
-    public LotHistory() {
+    public LotHistory(String lotId) {
+        this.lotId = lotId;
         this.history = new ArrayList<>();
     }
 
-    public String getId() {
-        return id;
+    public String getLotId() {
+        return lotId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLotId(String lotId) {
+        this.lotId = lotId;
     }
 
-    public List<Pair<Long, Integer>> getHistory() {
+    public List<LotHistoryPoint> getHistory() {
         return history;
     }
 
     public void addHistory(long date, int occupancy) {
-        this.history.add(new Pair<>(date, occupancy));
+        this.history.add(new LotHistoryPoint(date, occupancy));
     }
 }

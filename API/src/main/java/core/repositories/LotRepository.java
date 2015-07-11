@@ -2,7 +2,7 @@ package core.repositories;
 
 import java.util.List;
 
-import core.models.Address;
+import core.models.sub.Address;
 import core.models.Lot;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
