@@ -46,10 +46,10 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // clear the database
-//        accountRepo.deleteAll();
-//        lotRepo.deleteAll();
-//        reservationRepo.deleteAll();
-//        lotHistoryRepo.deleteAll();
-//        searchHistoryRepo.deleteAll();
+        accountRepo.deleteAll();
+        lotRepo.deleteAll();
+        reservationRepo.deleteAll();
+        lotHistoryRepo.deleteAll();
+        searchHistoryRepo.deleteAll();
     }
 }
