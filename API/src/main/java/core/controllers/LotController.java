@@ -1,5 +1,6 @@
 package core.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,6 +55,16 @@ public class LotController {
     @RequestMapping(value="/searchNear", method = RequestMethod.GET)
     public List<Lot> searchNear(double latitude, double longitude) {
         return lotRepo.findByLocationNear(new Point(longitude, latitude), new Distance(1, Metrics.MILES));
+    }
+
+    @RequestMapping(value = "/getMembers", method = RequestMethod.GET)
+    public List<String> getMembers(String lotId) {
+        List<String> ids = new ArrayList<>();
+        List<Account> members = accountRepo.findByLots(lotId);
+        for (Account member : members) {
+            ids.add(member.getId());
+        }
+        return ids;
     }
 
     @RequestMapping(value = "/newLot", method = RequestMethod.POST)

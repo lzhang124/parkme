@@ -81,16 +81,6 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value = "/getMembers", method = RequestMethod.GET)
-    public List<String> getMembers(String lotId) {
-        List<String> ids = new ArrayList<>();
-        List<Account> members = accountRepo.findByLots(lotId);
-        for (Account member : members) {
-            ids.add(member.getId());
-        }
-        return ids;
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Account login(String email, String password) {
         Account account = accountRepo.findByEmail(email);
