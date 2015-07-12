@@ -164,7 +164,7 @@ public class LotController {
     public void deleteLot(String lotId) {
         Lot lot = lotRepo.findById(lotId);
         lotRepo.delete(lot);
-        List<Account> accounts = accountRepo.findByLotsLotId(lotId);
+        List<Account> accounts = accountRepo.findByLots(lotId);
         for (Account account : accounts) {
             account.removeLot(lotId);
         }

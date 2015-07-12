@@ -147,7 +147,7 @@ public class AccountController {
                 Lot lot = lotRepo.findById(lotId);
                 lotRepo.delete(lot);
                 if (Objects.equals(account.getLots().get(lotId), "owner")) {
-                    List<Account> members = accountRepo.findByLotsLotId(lotId);
+                    List<Account> members = accountRepo.findByLots(lotId);
                     for (Account member: members) {
                         member.removeLot(lotId);
                     }

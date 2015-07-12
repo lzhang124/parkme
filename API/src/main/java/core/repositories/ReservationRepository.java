@@ -14,6 +14,6 @@ public interface ReservationRepository extends MongoRepository<Reservation, Stri
     List<Reservation> findByLotIdAndSpace(String lotId, int space);
     List<Reservation> findByLotIdAndSpaceAndStatus(String lotId, int space, String status);
 
-    @Query("{lotId : ?0, space : ?1, $or : [{start : {$gte : ?2, $lt : ?3}}, {end : {$gt : ?2, $lte : ?3}]}")
+    @Query("{lotId : ?0, space : ?1, $or : [{start : {$gte : ?2, $lt : ?3}}, {end : {$gt : ?2, $lte : ?3}}]}")
     Reservation checkAvailable(String lotId, int space, long start, long end);
 }
