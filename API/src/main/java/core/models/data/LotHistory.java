@@ -28,7 +28,7 @@ public class LotHistory {
         return history;
     }
 
-    public void addHistory(long date, int occupancy) {
-        this.history.add(new LotHistoryPoint(date, occupancy));
+    public void addHistory(long date, int occupied) {
+        this.history.add(new LotHistoryPoint(date, occupied));
     }
 }

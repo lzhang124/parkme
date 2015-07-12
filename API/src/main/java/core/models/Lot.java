@@ -28,11 +28,11 @@ public class Lot {
     private boolean reservable;
     private int reserveMax;
 
-    private List<Long> calendar;
+    private long[] calendar;
 
     public Lot() {}
 
-    public Lot(String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] times) {
+    public Lot(String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] calendar) {
         this.name = name;
         this.type = type;
 
@@ -49,14 +49,11 @@ public class Lot {
         this.rateRatio = 1.0;
         this.capacity = capacity;
         this.available = true;
-        if (reserveMax > 0) {
-            this.reservable = true;
-        }
         this.reserveMax = reserveMax;
 
-        this.calendar = new ArrayList<>();
-        for (long time : times) {
-            this.calendar.add(time);
+        if (reserveMax > 0) {
+            this.reservable = true;
+            this.calendar = calendar;
         }
     }
 
@@ -168,11 +165,11 @@ public class Lot {
         this.reserveMax = reserveMax;
     }
 
-    public List<Long> getCalendar() {
+    public long[] getCalendar() {
         return calendar;
     }
 
-    public void setCalendar(List<Long> calendar) {
+    public void setCalendar(long[] calendar) {
         this.calendar = calendar;
     }
 

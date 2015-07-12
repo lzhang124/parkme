@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 import core.repositories.LotRepository;
 import core.repositories.AccountRepository;
+import core.repositories.ReservationRepository;
 import core.repositories.data.LotHistoryRepository;
+import core.repositories.data.SearchHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,9 +22,11 @@ public class Application implements CommandLineRunner {
     @Autowired
     private LotRepository lotRepo;
     @Autowired
+    private ReservationRepository reservationRepo;
+    @Autowired
     private LotHistoryRepository lotHistoryRepo;
     @Autowired
-    private RawHistoryRepository rawHistoryRepo;
+    private SearchHistoryRepository searchHistoryRepo;
     @Autowired
     MongoTemplate template;
 
@@ -42,9 +46,10 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // clear the database
-//        lotRepo.deleteAll();
-//        accountRepo.deleteAll();
-//        lotHistoryRepo.deleteAll();
-//        rawHistoryRepo.deleteAll();
+        accountRepo.deleteAll();
+        lotRepo.deleteAll();
+        reservationRepo.deleteAll();
+        lotHistoryRepo.deleteAll();
+        searchHistoryRepo.deleteAll();
     }
 }

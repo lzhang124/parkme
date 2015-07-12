@@ -5,9 +5,11 @@ import java.util.List;
 
 import core.models.Account;
 import core.models.Lot;
+import core.models.Reservation;
 import core.models.data.LotHistory;
 import core.repositories.AccountRepository;
 import core.repositories.LotRepository;
+import core.repositories.ReservationRepository;
 import core.repositories.data.LotHistoryRepository;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
@@ -23,9 +25,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LotController {
 
     @Autowired
+    private AccountRepository accountRepo;
+    @Autowired
     private LotRepository lotRepo;
     @Autowired
-    private AccountRepository accountRepo;
+    private ReservationRepository reservationRepo;
     @Autowired
     private LotHistoryRepository lotHistoryRepo;
     @Autowired
@@ -53,7 +57,7 @@ public class LotController {
     }
 
     @RequestMapping(value = "/newLot", method = RequestMethod.POST)
-    public Lot newLot(String accountId, String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] times) {
+    public Lot newLot(String accountId, String name, String type, String address, double latitude, double longitude, int capacity, int reserveMax, long[] calendar) {
         Account account = accountRepo.findById(accountId);
         if (account == null) {
             System.out.println("Account with id " + accountId + " was not found.");
@@ -61,24 +65,21 @@ public class LotController {
         } else {
             template.indexOps(Lot.class).ensureIndex(new GeospatialIndex("location"));
 
-            Lot lot = new Lot(name, type, address, latitude, longitude, capacity, reserveMax, times);
+            Lot lot = new Lot(name, type, address, latitude, longitude, capacity, reserveMax, calendar);
             Lot duplicate = lotRepo.findByAddress(lot.getAddress());
             if (duplicate != null) {
                 System.out.println("This lot already exists: " + duplicate.getId());
                 return null;
             } else {
-                lotRepo.save(lot);
                 System.out.println("New Lot:" + lot);
+                lotRepo.save(lot);
 
                 account.addLot(lot.getId(), "owner");
                 accountRepo.save(account);
-                lot.addMember(accountId);
 
-                LotHistory history = new LotHistory();
+                LotHistory history = new LotHistory(lot.getId());
                 lotHistoryRepo.save(history);
-                lot.setLotHistory(history.getId());
 
-                lotRepo.save(lot);
                 return lot;
             }
         }
@@ -90,15 +91,16 @@ public class LotController {
         if (lot == null) {
             System.out.println("Lot with id " + lotId + " was not found.");
             return null;
-        } else if (lot.getOccupied() == lot.getCapacity() - lot.getReserveMax()) {
+        } else if (!lot.isAvailable()) {
             System.out.println("Lot " + lot + " is full.");
-            lot.setAvailable(false);
-            lotRepo.save(lot);
             return null;
         } else {
             lot.setOccupied(lot.getOccupied() + 1);
+            if (lot.getOccupied() == lot.getCapacity()) {
+                lot.setAvailable(false);
+            }
             lotRepo.save(lot);
-            addLotHistory(lot);
+            addLotHistory(lotId, lot.getOccupied());
             return lot;
         }
     }
@@ -113,10 +115,12 @@ public class LotController {
             System.out.println("Lot " + lot + " is empty.");
             return null;
         } else {
+            if (lot.getOccupied() == lot.getCapacity()) {
+                lot.setAvailable(true);
+            }
             lot.setOccupied(lot.getOccupied() - 1);
-            lot.setAvailable(true);
             lotRepo.save(lot);
-            addLotHistory(lot);
+            addLotHistory(lotId, lot.getOccupied());
             return lot;
         }
     }
@@ -131,6 +135,9 @@ public class LotController {
             lot.setReserveMax(reserveMax);
             if (reserveMax == 0) {
                 lot.setReservable(false);
+                lot.setCalendar(null);
+            } else {
+                lot.setReservable(true);
             }
             lotRepo.save(lot);
             return lot;
@@ -138,7 +145,7 @@ public class LotController {
     }
 
     @RequestMapping(value = "/setCalendar", method = RequestMethod.POST)
-    public Lot setCalendar(String lotId, long[] times) {
+    public Lot setCalendar(String lotId, long[] calendar) {
         Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
             System.out.println("Lot with id " + lotId + " was not found.");
@@ -147,68 +154,7 @@ public class LotController {
             System.out.println("Lot with id " + lotId + " is not reservable.");
             return null;
         } else {
-            List<Space> spaces = lot.getSpaces();
-            for (int i = 0; i < lot.getReserveMax(); i++) {
-                Space space = spaces.get(i);
-                space.setCalendar(times);
-            }
-
-            lotRepo.save(lot);
-            return lot;
-        }
-    }
-
-    @RequestMapping(value = "/reserve", method = RequestMethod.POST)
-    public Lot reserve(String lotId, String accountId, long[] startTimes, int[] durations, String search) {
-        Lot lot = lotRepo.findById(lotId);
-        Account account = accountRepo.findById(accountId);
-        if (lot == null) {
-            System.out.println("Lot with lotId " + lotId + " was not found.");
-            return null;
-        } else if (account == null){
-            System.out.println("Account with lotId " + accountId + " was not found.");
-            return null;
-        } else if (!lot.isReservable()) {
-            System.out.println("Lot with lotId " + lotId + " is not reservable.");
-            return null;
-        } else {
-            List<Space> spaces = lot.getSpaces();
-
-            for (int i = 0; i < startTimes.length; i++) {
-                long start = startTimes[i];
-                int duration = durations[i];
-                for (int j = 0; j < lot.getReserveMax(); j++) {
-                    if (spaces.get(j).isAvailable(start, duration)) {
-                        spaces.get(j).addReservation(start, duration, accountId);
-                        account.addReservation(lotId, j, start, duration);
-                        addRawHistory(accountId, lotId, j, start, duration, search);
-                        break;
-                    }
-                }
-            }
-            lotRepo.save(lot);
-            accountRepo.save(account);
-            return lot;
-        }
-    }
-
-    @RequestMapping(value = "/clearReservations", method = RequestMethod.POST)
-    public Lot clearReservations(String lotId) {
-        Lot lot = lotRepo.findById(lotId);
-        if (lot == null) {
-            System.out.println("Lot with id " + lotId + " was not found.");
-            return null;
-        } else if (!lot.isReservable()) {
-            System.out.println("Lot with id " + lotId + " is not reservable.");
-            return null;
-        } else {
-            List<Space> spaces = lot.getSpaces();
-            for (int i = 0; i < lot.getReserveMax(); i++) {
-                Space space = spaces.get(i);
-                if (space.isReservable()) {
-                    space.clearReservations();
-                }
-            }
+            lot.setCalendar(calendar);
             lotRepo.save(lot);
             return lot;
         }
@@ -217,30 +163,32 @@ public class LotController {
     @RequestMapping(value = "/deleteLot", method = RequestMethod.DELETE)
     public void deleteLot(String lotId) {
         Lot lot = lotRepo.findById(lotId);
-        if (lot == null) {
-            System.out.println("Lot with id " + lotId + " was not found.");
-        } else {
-            for (String memberId : lot.getMembers()) {
-                Account member = accountRepo.findById(memberId);
-                member.removeLot(lotId);
-                accountRepo.save(member);
-            }
-            lotRepo.delete(lot);
-            System.out.println("Lot with id " + lotId + " deleted");
+        lotRepo.delete(lot);
+        List<Account> accounts = accountRepo.findByLotsLotId(lotId);
+        for (Account account : accounts) {
+            account.removeLot(lotId);
         }
+        accountRepo.save(accounts);
+
+        for (int i = 0; i < lot.getReserveMax(); i++) {
+            List<Reservation> reservations = reservationRepo.findByLotIdAndSpaceAndStatus(lotId, i, "active");
+            for (Reservation reservation : reservations) {
+                reservation.setStatus("deleted");
+            }
+            reservationRepo.save(reservations);
+        }
+
+        System.out.println("Lot with id " + lotId + " deleted.");
     }
 
-    private LotHistory addLotHistory(Lot lot) {
-        String lotHistoryId = lot.getLotHistory();
-        LotHistory history = lotHistoryRepo.findById(lotHistoryId);
+    private void addLotHistory(String lotId, int occupied) {
+        LotHistory history = lotHistoryRepo.findByLotId(lotId);
         if (history == null) {
-            System.out.println("History with id " + lotHistoryId + " was not found.");
-            return null;
+            System.out.println("History with lot " + lotId + " was not found.");
         } else {
-            Long date = new Date().getTime();
-            history.addHistory(date, lot.getOccupied());
+            long date = new Date().getTime();
+            history.addHistory(date, occupied);
             lotHistoryRepo.save(history);
-            return history;
         }
     }
 }

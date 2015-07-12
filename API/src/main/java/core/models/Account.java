@@ -3,7 +3,6 @@ package core.models;
 import java.util.*;
 
 import core.models.sub.Address;
-import core.models.sub.LotRole;
 import org.springframework.data.annotation.Id;
 
 public class Account {
@@ -22,7 +21,7 @@ public class Account {
     private Address billingAddress;
     private String creditCard;
 
-    private List<LotRole> lots;
+    private Map<String, String> lots;
     private Set<String> roles;
 
     public Account() {}
@@ -33,7 +32,7 @@ public class Account {
         this.email = email;
         this.password = password;
 
-        this.lots = new ArrayList<>();
+        this.lots = new HashMap<>();
         this.roles = new HashSet<>();
     }
 
@@ -117,16 +116,16 @@ public class Account {
         this.creditCard = creditCard;
     }
 
-    public List<LotRole> getLots() {
+    public Map<String, String> getLots() {
         return lots;
     }
 
     public void addLot(String lotId, String role) {
-        this.lots.add(new LotRole(lotId, role));
+        this.lots.put(lotId, role);
     }
 
-    public void removeLot(LotRole lotRole) {
-        this.lots.remove(lotRole);
+    public void removeLot(String lotId) {
+        this.lots.remove(lotId);
     }
 
     public Set<String> getRoles() {
