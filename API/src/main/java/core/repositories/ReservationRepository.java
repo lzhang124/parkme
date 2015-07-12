@@ -3,8 +3,8 @@ package core.repositories;
 import java.util.List;
 
 import core.models.Reservation;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 public interface ReservationRepository extends MongoRepository<Reservation, String> {
 
