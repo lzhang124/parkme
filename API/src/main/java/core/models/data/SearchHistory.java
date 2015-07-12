@@ -5,13 +5,13 @@ import java.util.List;
 
 public class SearchHistory {
     private String accountId;
-    private List<double[]> location;
+    private List<double[]> locations;
 
     public SearchHistory() {}
 
     public SearchHistory(String accountId) {
         this.accountId = accountId;
-        this.location = new ArrayList<>();
+        this.locations = new ArrayList<>();
     }
 
     public String getAccountId() {
@@ -22,11 +22,11 @@ public class SearchHistory {
         this.accountId = accountId;
     }
 
-    public List<double[]> getLocation() {
-        return location;
+    public List<double[]> getLocations() {
+        return locations;
     }
 
-    public void addLocation(double[] location) {
-        this.location.add(location);
+    public void addLocation(double latitude, double longitude) {
+        this.locations.add(new double[] {longitude, latitude});
     }
 }

@@ -31,13 +31,13 @@ public class SearchHistoryController {
     }
 
     @RequestMapping(value = "/addSearchHistory", method = RequestMethod.POST)
-    public SearchHistory addSearchHistory(String accountId, double[] location) {
+    public SearchHistory addSearchHistory(String accountId, double latitude, double longitude) {
         SearchHistory history = repo.findByAccountId(accountId);
         if (history == null) {
             System.out.println("History for account " + accountId + " was not found.");
             return null;
         } else {
-            history.addLocation(location);
+            history.addLocation(latitude, longitude);
             repo.save(history);
             return history;
         }
