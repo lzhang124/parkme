@@ -262,7 +262,7 @@ app.controller('registerController', function($scope, $http, $document, $element
   // CREATE NEW LOT //
   $scope.register = function() {
     scheduleTimes();
-    $http.post('/newLot', {
+    $http.post('/api/newLot', {
       type: 'residential',
       address: start.formatted_address,
       latitude: startLoc.lat(),

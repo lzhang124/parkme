@@ -32,14 +32,14 @@
       <img src="images/close.svg" ng-click="hideDimmer()"
            onerror="this.onerror=null; this.src='images/close.png'" class="close">
       <div class="login-container" ng-show="LoginForm">
-        <form action="/login" method="POST">
+        <form action="/auth/login" method="POST">
           <input id="login" name="email" type="email" placeholder="EMAIL" autofocus />
           <input name="password" type="password" placeholder="PASSWORD" />
           <button>Login</button>
         </form>
       </div>
       <div class="signup-container" ng-show="SignupForm">
-        <form action="/signup" method="POST">
+        <form action="/auth/signup" method="POST">
           <div class="left">
             <input id="signup" name="firstName" type="text" placeholder="FIRST NAME" autofocus />
           </div>

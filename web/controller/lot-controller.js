@@ -1,7 +1,8 @@
 var http = require('http');
 var querystring = require('querystring');
+var LotController = {};
 
-var createNewLot = function(accountId, name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations, fn) {
+LotController.createNewLot = function(accountId, name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations, fn) {
   var data = querystring.stringify({
     accountId: accountId,
     name: name,
@@ -74,4 +75,4 @@ var newLot = function(req, res) {
   });
 }
 
-module.exports = newLot;
+module.exports = LotController;
