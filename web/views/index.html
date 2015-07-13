@@ -87,11 +87,17 @@
             <div class="lot-name">
               {{ lot.name }}
             </div>
+            <div class="lot-type">
+              {{ lot.type }}
+            </div>
             <div class="lot-address">
               {{ lot.address.street }}
             </div>
+            <div class="lot-price">
+              {{ lot.price.hour || currency }}
+            </div>
             <div class="lot-free">
-              Available spots: {{ lot.capacity - lot.occupied }}
+              {{ lot.capacity - lot.occupied }} spots
             </div>
           </button>
         </div>

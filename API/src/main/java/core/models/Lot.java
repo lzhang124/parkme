@@ -19,8 +19,8 @@ public class Lot {
     private double[] location;
     private Object photo;
 
-    private Map<String, Double> rate;
-    private double rateRatio;
+    private Map<String, Double> price;
+    private double priceRatio;
 
     private int capacity;
     private int occupied;
@@ -44,9 +44,9 @@ public class Lot {
         this.address = new Address(street, city, state, zipcode);
 
         this.location = new double[] {longitude, latitude};
-        this.rate = new HashMap<>();
-        this.rate.put("hour", 2.25);
-        this.rateRatio = 1.0;
+        this.price = new HashMap<>();
+        this.price.put("hour", 2.25);
+        this.priceRatio = 1.0;
         this.capacity = capacity;
         this.available = true;
         this.reserveMax = reserveMax;
@@ -105,24 +105,24 @@ public class Lot {
         this.photo = photo;
     }
 
-    public Map<String, Double> getRate() {
-        return rate;
+    public Map<String, Double> getPrice() {
+        return price;
     }
 
-    public void addRate(String rateType, Double price) {
-        this.rate.put(rateType, price);
+    public void addPrice(String priceType, Double price) {
+        this.price.put(priceType, price);
     }
 
-    public void removeRate(String rateType) {
-        this.rate.remove(rateType);
+    public void removePrice(String priceType) {
+        this.price.remove(priceType);
     }
 
-    public double getRateRatio() {
-        return rateRatio;
+    public double getPriceRatio() {
+        return priceRatio;
     }
 
-    public void setRateRatio(double rateRatio) {
-        this.rateRatio = rateRatio;
+    public void setPriceRatio(double priceRatio) {
+        this.priceRatio = priceRatio;
     }
 
     public int getCapacity() {

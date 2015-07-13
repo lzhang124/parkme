@@ -196,18 +196,28 @@ html, body {
     margin: 0 25px;
     text-align: center; }
     .search-results .results .results-container button {
-      height: 140px;
+      height: 110px;
       width: 100%;
       background: white;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       border-radius: 10px;
-      padding: 10px 20px;
+      padding: 5px 10px;
       margin: 5px 0;
+      text-align: left;
       text-transform: none;
       color: #004869; }
       .search-results .results .results-container button .lot-name {
-        font-weight: 400; }
+        font-weight: 400;
+        display: inline-block; }
+      .search-results .results .results-container button .lot-type {
+        font-size: .8em;
+        text-transform: uppercase;
+        display: inline-block; }
+      .search-results .results .results-container button .lot-prices {
+        display: inline-block; }
+      .search-results .results .results-container button .lot-free {
+        display: inline-block; }
     .search-results .results .results-container button.selected {
       height: 400px; }
     .search-results .results .results-container button:hover {
