@@ -6,27 +6,29 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 
+var routes = require('./routes/index');
+var api = require('./routes/api');
+var auth = require('./routes/auth');
+
 var app = express();
+
+var expressSession = require('express-session');
+var passport = require('passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// uncomment after testing
+// remove after testing
 app.use('/q9xwGoXLGQ', express.static(path.join(__dirname, 'public')));
 app.use('/q9xwGoXLGQ', express.static(path.join(__dirname)));
-
-// passport config
-var passport = require('passport');
-var expressSession = require('express-session');
 
 app.use(expressSession({
     secret: 'thisisasecret',
@@ -37,19 +39,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-// passport init
-var initPassport = require('./controller/passport');
-initPassport(passport);
-
 // routes
-var routes = require('./routes/index')(passport);
 app.use('/', routes);
+app.use('/api', api);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+    res.render('404');
 });
 
 // error handlers

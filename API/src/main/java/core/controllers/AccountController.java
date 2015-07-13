@@ -51,16 +51,6 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value = "/checkAccount", method = RequestMethod.GET)
-    public boolean checkAccount(String email) {
-        Account account = accountRepo.findByEmail(email);
-        if (account == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     @RequestMapping(value = "/getLots", method = RequestMethod.GET)
     public List<Lot> getLots(String accountId) {
         Account account = accountRepo.findById(accountId);
@@ -82,7 +72,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Account login(String email, String password) {
+    public Object login(String email, String password) {
         Account account = accountRepo.findByEmail(email);
         if (account == null) {
             System.out.println("Account with email " + email + " was not found.");
@@ -92,7 +82,7 @@ public class AccountController {
             return account;
         } else {
             System.out.println("Incorrect password.");
-            return null;
+            return false;
         }
     }
 
