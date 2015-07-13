@@ -16,7 +16,7 @@ button {
   font-family: $lato;
   font-weight: 300;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: $white;
@@ -40,7 +40,7 @@ input {
   font-family: $lato;
   font-weight: 300;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   letter-spacing: 2px;
   color: $white;
 }
@@ -55,7 +55,7 @@ input::-webkit-inner-spin-button {
 }
 
 .close {
-  height: 25px;
+  height: 20px;
   position: absolute;
   top: 0;
   left: 0;

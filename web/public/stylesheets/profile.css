@@ -8,7 +8,7 @@ button {
   font-family: "Lato", sans-serif;
   font-weight: 300;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: white;
@@ -30,7 +30,7 @@ input {
   font-family: "Lato", sans-serif;
   font-weight: 300;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   letter-spacing: 2px;
   color: white; }
 
@@ -42,7 +42,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none; }
 
 .close {
-  height: 25px;
+  height: 20px;
   position: absolute;
   top: 0;
   left: 0;
@@ -115,40 +115,29 @@ html, body {
     border-radius: 20vw;
     margin: 7vh auto 5vh auto; }
   .content .profile .name {
-    font-size: 3em;
+    font-size: 2.5em;
     letter-spacing: 5px; }
   .content .profile .info .field {
-    height: 40px;
+    height: 32px;
     width: 100%;
-    margin-top: 2%;
-    font-size: 2em;
+    margin-top: 1%;
+    font-size: 1.5em;
     letter-spacing: 2px; }
     .content .profile .info .field .left {
-      height: 40px;
+      height: 32px;
       width: 48%;
       text-align: right;
       float: left; }
     .content .profile .info .field .right {
-      height: 40px;
+      height: 32px;
       width: 48%;
       text-align: left;
       float: right; }
     .content .profile .info .field input {
-      height: 40px;
+      height: 32px;
       width: 67px;
       padding: 0;
       border-bottom: 1px solid white;
-      font-size: 100%; }
-    .content .profile .info .field .icon {
-      height: 24px;
-      width: 24px;
-      cursor: pointer; }
-  .content .profile .vertical {
-    height: 80px;
-    position: absolute;
-    left: 50%;
-    margin-top: -15px;
-    display: inline-block;
-    border: 1px solid white; }
+      font-size: 110%; }
 
 /*# sourceMappingURL=profile.css.map */

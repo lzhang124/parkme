@@ -8,7 +8,7 @@ button {
   font-family: "Lato", sans-serif;
   font-weight: 300;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: white;
@@ -30,7 +30,7 @@ input {
   font-family: "Lato", sans-serif;
   font-weight: 300;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   letter-spacing: 2px;
   color: white; }
 
@@ -42,7 +42,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none; }
 
 .close {
-  height: 25px;
+  height: 20px;
   position: absolute;
   top: 0;
   left: 0;
@@ -100,19 +100,20 @@ html, body {
   background: #191919;
   z-index: 1; }
   .navbar .dimmer .login-container, .navbar .dimmer .signup-container {
-    width: 40%;
+    width: 30%;
     position: absolute;
     top: 35%;
-    margin: 0 30%;
+    margin: 0 35%;
     text-align: center; }
     .navbar .dimmer .login-container form, .navbar .dimmer .signup-container form {
       width: 100%;
       margin: auto; }
       .navbar .dimmer .login-container form input, .navbar .dimmer .signup-container form input {
-        width: 100%; }
+        width: 100%;
+        font-weight: 100; }
       .navbar .dimmer .login-container form button, .navbar .dimmer .signup-container form button {
         margin-top: 40px;
-        font-weight: 300; }
+        font-weight: 100; }
       .navbar .dimmer .login-container form button:hover, .navbar .dimmer .signup-container form button:hover {
         color: #191919; }
   .navbar .dimmer .signup-container {
@@ -137,7 +138,7 @@ html, body {
     width: 40%;
     margin-bottom: 50px; }
   .content .tagline {
-    font-size: 2em;
+    font-size: 1.5em;
     text-transform: uppercase;
     letter-spacing: 2px; }
   .content .info {
@@ -158,7 +159,7 @@ html, body {
   position: fixed; }
 .search-results .map-box {
   height: 100vh;
-  width: 50vw;
+  width: 70vw;
   position: fixed; }
   .search-results .map-box #map {
     height: 100%;
@@ -183,8 +184,8 @@ html, body {
     border-radius: 10px; }
 .search-results .results {
   height: 100vh;
-  width: 50vw;
-  left: 50vw;
+  width: 30vw;
+  left: 70vw;
   position: absolute; }
   .search-results .results form {
     margin: 0 25px 10px 25px; }

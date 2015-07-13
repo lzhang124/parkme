@@ -78,13 +78,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
   $scope.markers = [];
 
   var searchName;
-  search.addEventListener('blur', function() {
-    if (searchName) {
-      setTimeout(function() {
-        search.value = searchName;
-      }, 1);
-    }
-  });
 
 
   // INIT MAP //
@@ -96,8 +89,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
         $rootScope.showLogin = false;
         $rootScope.showContent = false;
         search.value = start.name;
-        search_main.value = '';
-        search_main.blur();
 
         if (!map) {
           map = new google.maps.Map(document.getElementById('map'), {

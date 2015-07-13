@@ -10,15 +10,6 @@ app.controller('registerController', function($scope, $http, $document, $element
   var infowindow;
   var markers = [];
 
-  var searchName;
-  search.addEventListener('blur', function() {
-    if (searchName) {
-      setTimeout(function() {
-        search.value = searchName;
-      }, 1);
-    }
-  });
-
   map = new google.maps.Map(document.getElementById('map'), {
     scrollwheel: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -48,8 +39,6 @@ app.controller('registerController', function($scope, $http, $document, $element
   google.maps.event.addListener(auto_search, 'place_changed', function() {
     start = auto_search.getPlace();
     startLoc = start.geometry.location;
-    searchName = start.name;
-    search.value = searchName;
 
     deleteMarkers();
 
