@@ -14,11 +14,11 @@ router.get('/currentUser', function(req, res) {
   if (req.user) {
     res.send(req.user);
   } else {
-    res.send(null);
+    res.send(false);
   }
 });
 
 /* Create new lot */ 
-router.post('/newLot', isAuthenticated, newLot);
+router.post('/newLot', isAuthenticated, LotController.newLot);
 
 module.exports = router;

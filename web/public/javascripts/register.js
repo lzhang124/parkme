@@ -230,30 +230,12 @@ app.controller('registerController', function($scope, $http, $document, $element
     var offset = new Date().getTimezoneOffset()*60*1000;
     var date = Math.floor(new Date()/604800000)*604800000 - 345600000;
 
-    $scope.startTimes = [];
-    $scope.durations = [];
-    var block = false;
-    var duration;
+    $scope.calendar = [];
     for (var day = 0; day < 7; day++) {
       for (var hour = 0; hour < 24; hour++) {
         if ($scope.schedule[day][hour] === 1) {
-          if (block) {
-            duration++;
-          } else {
-            $scope.startTimes.push(date + day*86400000 + hour*3600000);
-            block = true;
-            duration = 1;
-          }
-        } else {
-          if (block) {
-            $scope.durations.push(duration);
-            block = false;
-          }
+          $scope.calendar.push(date + day*86400000 + hour*3600000);
         }
-      }
-      if (block) {
-        $scope.durations.push(duration);
-        block = false;
       }
     }
   }
@@ -269,11 +251,13 @@ app.controller('registerController', function($scope, $http, $document, $element
       longitude: startLoc.lng(),
       capacity: $scope.capacity,
       reserveMax: $scope.reservable,
-      startTimes: $scope.startTimes,
-      durations: $scope.durations
+      calendar: $scope.calendar,
     })
     .success(function(redirectURL) {
       $window.location = redirectURL;
+    })
+    .error(function(err) {
+      $window.alert(err.error);
     });
   }
 });

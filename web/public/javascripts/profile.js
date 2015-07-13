@@ -10,12 +10,7 @@ app.controller('profileController', function($scope, $http) {
     $scope.user = user;
     $http.get(url + '/getLots?accountId=' + $scope.user.id)
     .success(function(lots) {
-      for (var i = 0; i < lots.length; i++) {
-        var lot = lots[i];
-        lot.role = $scope.user.lots[lot.id];
-      }
       $scope.lots = lots;
-      console.log(lots);
     });
   })
   .finally(function() {

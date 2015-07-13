@@ -23,8 +23,8 @@
 </head>
 <body>
   <div class="bg"></div>
-  <div class="navbar" ng-controller="loginController" ng-show="<%= (user === undefined) %> && showLogin">
-    <div class="button-container">
+  <div class="navbar" ng-controller="loginController">
+    <div class="button-container" ng-show="!user && showLogin  && !loading">
       <button ng-click="login()">Login</button>
       <button ng-click="signup()">Sign Up</button>
     </div>
@@ -53,20 +53,18 @@
         </form>
       </div>
     </div>
-  </div>
-  <div class="navbar" ng-show="<%= (user !== undefined) %> && showLogin">
-    <div class="button-container">
+    <div class="button-container" ng-show="user && showLogin && !loading">
       <a href="/q9xwGoXLGQ/profile"><button>Profile</button></a>
-      <a href="/logout"><button>Logout</button></a>
+      <a href="/auth/logout"><button>Logout</button></a>
     </div>
   </div>
   
   <div ng-controller="searchController">
-    <div class="content" ng-show="showContent">
+    <div class="content" ng-show="showContent && !loading">
       <img src="images/logo-white.svg"
            onerror="this.onerror=null; this.src='images/logo-white.png'" class="logo">
       <form>
-        <input id="search-main" type="text" placeholder="DESTINATION" onClick="this.select();" autofocus />
+        <input id="search-main" type="text" placeholder="DESTINATION" autofocus />
       </form>
       <div class="info">
         <a href="/q9xwGoXLGQ/about">Click here to learn more</a>
@@ -82,7 +80,7 @@
       </div>
       <div class="results">
         <form>
-          <input id="search" placeholder="DESTINATION" onClick="this.select();" />
+          <input id="search" placeholder="DESTINATION"/>
         </form>
         <div class="results-container">
           <button ng-repeat="lot in lots track by $index" ng-class="{'selected': lot.selected}" ng-click="openInfoWindow(markers[$index + 1])">

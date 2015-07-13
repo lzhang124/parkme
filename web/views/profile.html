@@ -23,7 +23,7 @@
   <div class="navbar">
     <div class="button-container">
       <a><button>History</button></a>
-      <a href="/logout"><button>Logout</button></a>
+      <a href="/auth/logout"><button>Logout</button></a>
     </div>
     <a href="/q9xwGoXLGQ">
       <img src="images/back.svg"
@@ -69,7 +69,7 @@
     <div class="lots" ng-repeat="lot in lots">
       {{ lot.address.street }}<br/>
       {{ lot.occupied }}<br/>
-      {{ lot.role }}<br/><br/>
+      {{ user.lots[lot.id] }}<br/><br/>
     </div>
   </div>
 </body>

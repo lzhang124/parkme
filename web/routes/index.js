@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var newLot = require('../controller/lot');
-
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) {
     return next();

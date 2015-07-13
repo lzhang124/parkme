@@ -8,11 +8,13 @@ var querystring = require('querystring');
 var url = 'http://127.0.0.1:8080';
 
 passport.serializeUser(function(user, done) {
-    done(null, user);
+  console.log('serializing:' +  user.firstName);
+  done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
-    done(null, obj);
+passport.deserializeUser(function(user, done) {
+  console.log('deserializing:' +  user.firstName);
+  done(null, user);
 });
 
 // SIGNUP
@@ -30,7 +32,7 @@ var signup = function(firstName, lastName, email, password, fn) {
     path: '/signup',
     method: 'POST',
     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
   };
 
@@ -71,7 +73,7 @@ passport.use('signup', new LocalStrategy({
       if (err) {
         console.log('Error in signup: ' + err);
         return done(err);
-      };
+      }
       if (user === null) {
         console.log('User already exists with email: ' + email);
         return done(null, false, req.flash( 'message', 'User already exists with email: ' + email ));
@@ -84,11 +86,27 @@ passport.use('signup', new LocalStrategy({
 
 // LOGIN
 var login = function(email, password, fn) {
-  http.get(url + '/login?email=' + email + 'password=' + password, function(res) {
+  var data = querystring.stringify({
+    email: email,
+    password: password
+  });
+
+  var options = {
+    host: '127.0.0.1',
+    port: 8080,
+    path: '/login',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  };
+
+  var req = http.request(options, function(res) {
+    res.setEncoding('utf8');
     var data = '';
 
     res.on('data', function(chunk) {
-      data += chunk;
+      data += chunk
     });
 
     res.on('end', function() {
@@ -98,10 +116,14 @@ var login = function(email, password, fn) {
       var user = JSON.parse(data);
       return fn(null, user);
     });
-  }).on('error', function(e) {
+  });
+  req.on('error', function(e) {
     console.log('Error: ', e);
     return fn(e, null);
   });
+
+  req.write(data);
+  req.end();
 };
 
 passport.use('login', new LocalStrategy({
@@ -131,7 +153,7 @@ passport.use('login', new LocalStrategy({
 /* Sign up */
 router.post('/signup', passport.authenticate('signup', {
   successRedirect: '/q9xwGoXLGQ/register',
-  failureRedirect: '/q9xwGoXLGQ/signup',
+  failureRedirect: '/q9xwGoXLGQ',
   failureFlash: true,
   successFlash: true
 }));
@@ -139,15 +161,15 @@ router.post('/signup', passport.authenticate('signup', {
 /* Login */ 
 router.post('/login', passport.authenticate('login', {
   successRedirect: '/q9xwGoXLGQ',
-  failureRedirect: '/q9xwGoXLGQ/login',
+  failureRedirect: '/q9xwGoXLGQ',
   failureFlash: true,
   successFlash: true
 }));
 
 /* Logout */ 
 router.get('/logout', function(req, res) {
-  req.logout();
   req.session.destroy();
+  req.logout();
   res.redirect('/q9xwGoXLGQ');
 });
 

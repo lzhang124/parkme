@@ -2,7 +2,7 @@ var http = require('http');
 var querystring = require('querystring');
 var LotController = {};
 
-LotController.createNewLot = function(accountId, name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations, fn) {
+var createNewLot = function(accountId, name, type, address, latitude, longitude, capacity, reserveMax, calendar, fn) {
   var data = querystring.stringify({
     accountId: accountId,
     name: name,
@@ -12,12 +12,10 @@ LotController.createNewLot = function(accountId, name, type, address, latitude, 
     longitude: longitude,
     capacity: capacity,
     reserveMax: reserveMax,
-    startTimes: startTimes,
-    durations: durations
+    calendar: calendar,
   });
-
   var options = {
-    host: '52.25.5.25',
+    host: '127.0.0.1',
     port: 8080,
     path: '/newLot',
     method: 'POST',
@@ -35,8 +33,11 @@ LotController.createNewLot = function(accountId, name, type, address, latitude, 
     });
 
     res.on('end', function() {
-      var lot = JSON.parse(data);
-      return fn(null, lot);
+      if (data === '') {
+        return fn(null, null);
+      }
+      var user = JSON.parse(data);
+      return fn(null, user);
     });
   });
   req.on('error', function(e) {
@@ -46,9 +47,9 @@ LotController.createNewLot = function(accountId, name, type, address, latitude, 
 
   req.write(data);
   req.end();
-};
+}
 
-var newLot = function(req, res) {
+LotController.newLot = function(req, res) {
   var accountId = req.user.id;
   var name;
   var type = req.body.type;
@@ -62,16 +63,24 @@ var newLot = function(req, res) {
   var longitude = req.body.longitude;
   var capacity = req.body.capacity;
   var reserveMax = req.body.reserveMax;
-  var startTimes = req.body.startTimes;
-  var durations = req.body.durations;
-
-  createNewLot(accountId, name, type, address, latitude, longitude, capacity, reserveMax, startTimes, durations, function(err, lot) {
+  var calendar = req.body.calendar;
+  createNewLot(accountId, name, type, address, latitude, longitude, capacity, reserveMax, calendar, function(err, user) {
     if (err) {
       console.log('Error in creating lot: ' + err);
       throw err;
-    };
-    console.log('New lot ' + lot.name);
-    res.send('/q9xwGoXLGQ');
+    }
+    if (user === null) {
+      console.log('This lot already exists.');
+      res.status(409).send({ "error": "This lot already exists." });
+    } else {
+      req.login(user, function(error) {
+        if (error) {
+          console.log(error);
+        }
+      });
+      console.log('New lot created!');
+      res.send('/q9xwGoXLGQ');
+    }
   });
 }
 
