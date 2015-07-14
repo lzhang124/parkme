@@ -21,7 +21,7 @@ public class SearchHistoryController {
     }
 
     @RequestMapping(value = "/searchHistory", method = RequestMethod.GET)
-    public SearchHistory searchHistory(@RequestParam(value="accountId", required=false) String accountId) {
+    public SearchHistory searchHistory(String accountId) {
         SearchHistory history = repo.findByAccountId(accountId);
         if (history == null) {
             System.out.println("History for account " + accountId + " was not found.");
@@ -32,7 +32,7 @@ public class SearchHistoryController {
     }
 
     @RequestMapping(value = "/addSearchHistory", method = RequestMethod.POST)
-    public SearchHistory addSearchHistory(String accountId, double latitude, double longitude) {
+    public SearchHistory addSearchHistory(@RequestParam(value="accountId", required=false) String accountId, double latitude, double longitude) {
         SearchHistory history = repo.findByAccountId(accountId);
         if (history == null) {
             System.out.println("History for account " + accountId + " was not found.");

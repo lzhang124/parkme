@@ -51,5 +51,7 @@ public class Application implements CommandLineRunner {
         reservationRepo.deleteAll();
         lotHistoryRepo.deleteAll();
         searchHistoryRepo.deleteAll();
+
+        // init
     }
 }
