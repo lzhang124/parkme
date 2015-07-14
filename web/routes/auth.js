@@ -5,7 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var http = require('http');
 var querystring = require('querystring');
 
-var url = 'http://127.0.0.1:8080';
+var url = 'http://52.25.5.25:8080';
 
 passport.serializeUser(function(user, done) {
   console.log('serializing:' +  user.firstName);
@@ -27,7 +27,7 @@ var signup = function(firstName, lastName, email, password, fn) {
   });
 
   var options = {
-    host: '127.0.0.1',
+    host: '52.25.5.25',
     port: 8080,
     path: '/signup',
     method: 'POST',
@@ -92,7 +92,7 @@ var login = function(email, password, fn) {
   });
 
   var options = {
-    host: '127.0.0.1',
+    host: '52.25.5.25',
     port: 8080,
     path: '/login',
     method: 'POST',

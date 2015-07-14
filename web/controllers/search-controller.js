@@ -16,7 +16,7 @@ SearchController.newHistory = function(req, res) {
     });
   }
   var options = {
-    host: '127.0.0.1',
+    host: '52.25.5.25',
     port: 8080,
     path: '/addSearchHistory',
     method: 'POST',
