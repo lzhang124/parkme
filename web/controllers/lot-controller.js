@@ -21,7 +21,7 @@ LotController.newLot = function(req, res) {
     calendar: req.body.calendar
   });
   var options = {
-    host: '52.25.5.25',
+    host: '127.0.0.1',
     port: 8080,
     path: '/newLot',
     method: 'POST',
