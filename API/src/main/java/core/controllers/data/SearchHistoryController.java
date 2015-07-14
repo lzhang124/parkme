@@ -33,6 +33,9 @@ public class SearchHistoryController {
 
     @RequestMapping(value = "/addSearchHistory", method = RequestMethod.POST)
     public SearchHistory addSearchHistory(@RequestParam(value="accountId", required=false) String accountId, double latitude, double longitude) {
+        if (accountId == null) {
+            accountId = "0";
+        }
         SearchHistory history = repo.findByAccountId(accountId);
         if (history == null) {
             System.out.println("History for account " + accountId + " was not found.");

@@ -7,7 +7,6 @@ import org.springframework.data.annotation.Id;
 public class SearchHistory {
 
     @Id
-    private String id;
     private String accountId;
     private List<double[]> locations;
 
@@ -18,14 +17,6 @@ public class SearchHistory {
     public SearchHistory(String accountId) {
         this.accountId = accountId;
         this.locations = new ArrayList<>();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getAccountId() {

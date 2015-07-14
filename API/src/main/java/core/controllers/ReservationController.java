@@ -101,6 +101,12 @@ public class ReservationController {
             System.out.println("Lot with lot id " + lotId + " was not found.");
             return null;
         } else {
+            for (int i = 0; i < duration; i++) {
+                if (!lot.getCalendar().contains(start + i * 3600000)) {
+                    System.out.println("Lot is not available at this time.");
+                    return null;
+                }
+            }
             for (int i = 0; i < lot.getReserveMax(); i++) {
                 Reservation conflict = reservationRepo.checkAvailable(lotId, i, start, start + duration * 3600000);
                 if (conflict == null) {

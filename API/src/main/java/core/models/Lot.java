@@ -1,9 +1,6 @@
 package core.models;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 import core.models.sub.Address;
 import org.springframework.data.annotation.Id;
@@ -28,7 +25,7 @@ public class Lot {
     private boolean reservable;
     private int reserveMax;
 
-    private long[] calendar;
+    private Set<Long> calendar;
 
     public Lot() {}
 
@@ -53,7 +50,10 @@ public class Lot {
 
         if (reserveMax > 0) {
             this.reservable = true;
-            this.calendar = calendar;
+            this.calendar = new HashSet<>();
+            for (long time : calendar) {
+                this.calendar.add(time);
+            }
         }
     }
 
@@ -165,12 +165,14 @@ public class Lot {
         this.reserveMax = reserveMax;
     }
 
-    public long[] getCalendar() {
+    public Set<Long> getCalendar() {
         return calendar;
     }
 
     public void setCalendar(long[] calendar) {
-        this.calendar = calendar;
+        for (long time : calendar) {
+            this.calendar.add(time);
+        }
     }
 
     @Override

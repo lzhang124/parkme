@@ -118,6 +118,11 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
     if (start.hasOwnProperty('geometry')) {
       search.value = start.name;
       
+      $http.post('/api/search', {
+        latitude: start.geometry.location.lat(),
+        longitude: start.geometry.location.lng()
+      });
+      
       deleteMarkers();
       searchNear(start);
     } else {

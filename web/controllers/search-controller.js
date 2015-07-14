@@ -3,13 +3,18 @@ var querystring = require('querystring');
 var SearchController = {};
 
 SearchController.newHistory = function(req, res) {
-  console.log('test');
-  var search = querystring.stringify({
-    accountId: req.user.id,
-    latitude: req.body.latitude,
-    longitude: req.body.longitude
-  });
-  console.log(search);
+  if (req.user) {
+    var search = querystring.stringify({
+      accountId: req.user.id,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude
+    });
+  } else {
+    var search = querystring.stringify({
+      latitude: req.body.latitude,
+      longitude: req.body.longitude
+    });
+  }
   var options = {
     host: '127.0.0.1',
     port: 8080,
@@ -21,19 +26,15 @@ SearchController.newHistory = function(req, res) {
   };
 
   var request = http.request(options, function(response) {
-    console.log('hi');
     response.setEncoding('utf8');
     var data = '';
 
     response.on('data', function(chunk) {
-      console.log('hi');
       data += chunk;
     });
 
     response.on('end', function() {
-      console.log('hello');
       if (data === '') {
-        console.log('blank');
         res.status(500).send('error');
         return;
       }

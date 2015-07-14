@@ -5,9 +5,11 @@ import java.util.*;
 import core.models.Account;
 import core.models.Lot;
 import core.models.Reservation;
+import core.models.data.SearchHistory;
 import core.repositories.AccountRepository;
 import core.repositories.LotRepository;
 import core.repositories.ReservationRepository;
+import core.repositories.data.SearchHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,8 @@ public class AccountController {
     private LotRepository lotRepo;
     @Autowired
     private ReservationRepository reservationRepo;
+    @Autowired
+    private SearchHistoryRepository searchHistoryRepo;
 
     @RequestMapping(value = "/listAccounts", method = RequestMethod.GET)
     public List<Account> listAccounts() {
@@ -94,6 +98,7 @@ public class AccountController {
             Account newAccount = new Account(firstName, lastName, email, pw);
             accountRepo.save(newAccount);
             System.out.println("New Account:" + newAccount);
+            searchHistoryRepo.save(new SearchHistory(newAccount.getId()));
             return newAccount;
         } else {
             System.out.println("Account with email " + email + " already exists.");

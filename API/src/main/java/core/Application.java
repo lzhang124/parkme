@@ -2,6 +2,7 @@ package core;
 
 import java.util.Arrays;
 
+import core.models.data.SearchHistory;
 import core.repositories.LotRepository;
 import core.repositories.AccountRepository;
 import core.repositories.ReservationRepository;
@@ -52,6 +53,7 @@ public class Application implements CommandLineRunner {
         lotHistoryRepo.deleteAll();
         searchHistoryRepo.deleteAll();
 
-        // init
+        // init no-account search history
+        searchHistoryRepo.save(new SearchHistory("0"));
     }
 }

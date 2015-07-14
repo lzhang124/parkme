@@ -88,8 +88,7 @@ public class LotController {
                 account.addLot(lot.getId(), "owner");
                 accountRepo.save(account);
 
-                LotHistory history = new LotHistory(lot.getId());
-                lotHistoryRepo.save(history);
+                lotHistoryRepo.save(new LotHistory(lot.getId()));
 
                 return account;
             }
