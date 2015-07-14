@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <title>AVOKTECH</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  
+  <!-- Styling -->
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
+  <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
+
+</head>
+</body>
+  <div class="bg"></div>
+  <div class="content" style="font-size: 2em">
+    Name: <%= lot.name %><br/>
+    Address: <%= lot.address.street %>, <%= lot.address.city %>, <%= lot.address.state %> <%= lot.address.zipcode %><br/>
+    Total spaces: <%= lot.capacity-lot.reserveMax %><br/>
+    <strong>Current occupancy: <%= lot.occupied %><br/></strong>
+  </div>
+</body>
+</html>

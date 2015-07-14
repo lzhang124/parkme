@@ -34,10 +34,6 @@ SearchController.newHistory = function(req, res) {
     });
 
     response.on('end', function() {
-      if (data === '') {
-        res.status(500).send('error');
-        return;
-      }
       var history = JSON.parse(data);
       res.send('success');
     });

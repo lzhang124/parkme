@@ -29,6 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // remove after testing
 app.use('/q9xwGoXLGQ', express.static(path.join(__dirname, 'public')));
 app.use('/q9xwGoXLGQ', express.static(path.join(__dirname)));
+app.use('/DJYWcyUqGV', express.static(path.join(__dirname, 'public')));
+app.use('/DJYWcyUqGV', express.static(path.join(__dirname)));
 
 app.use(expressSession({
     secret: 'thisisasecret',
