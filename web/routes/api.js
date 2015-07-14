@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var LotController = require('../controllers/lot-controller');
+var SearchController = require('../controllers/search-controller');
 
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) {
@@ -17,6 +18,9 @@ router.get('/currentUser', function(req, res) {
     res.send(false);
   }
 });
+
+/* Add search history */ 
+router.post('/search', SearchController.newHistory);
 
 /* Create new lot */ 
 router.post('/newLot', isAuthenticated, LotController.newLot);

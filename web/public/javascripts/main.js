@@ -77,8 +77,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
   var currentMarker = null;
   $scope.markers = [];
 
-  var searchName;
-
 
   // INIT MAP //
   google.maps.event.addListener(auto_search_main, 'place_changed', function() {
@@ -89,6 +87,8 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
         $rootScope.showLogin = false;
         $rootScope.showContent = false;
         search.value = start.name;
+        search_main.blur();
+        search_main.value = "";
 
         if (!map) {
           map = new google.maps.Map(document.getElementById('map'), {
@@ -96,6 +96,11 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
             disableDefaultUI: true
           });
         }
+
+        $http.post('/api/search', {
+          latitude: start.geometry.location.lat(),
+          longitude: start.geometry.location.lng()
+        });
 
         searchNear(start);
       });
@@ -111,8 +116,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
   google.maps.event.addListener(auto_search, 'place_changed', function() {
     var start = auto_search.getPlace();
     if (start.hasOwnProperty('geometry')) {
-      searchName = start.name;
-      search.value = searchName;
+      search.value = start.name;
       
       deleteMarkers();
       searchNear(start);

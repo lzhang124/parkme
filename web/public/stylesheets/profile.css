@@ -131,6 +131,7 @@ html, body {
     .content .profile .info .field .right {
       height: 32px;
       width: 48%;
+      text-transform: lowercase;
       text-align: left;
       float: right; }
     .content .profile .info .field input {
