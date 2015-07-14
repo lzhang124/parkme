@@ -178,10 +178,7 @@ html, body {
     left: 0 !important;
     padding: 10px 10px 10px 15px;
     background-color: #fff;
-    border: 2px solid #004869;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px; }
+    border: 2px solid #004869; }
 .search-results .results {
   height: 100vh;
   width: 30vw;

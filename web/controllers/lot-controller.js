@@ -9,7 +9,7 @@ LotController.newLot = function(req, res) {
   } else {
     var name = 'PARKING LOT'
   }
-  var data = querystring.stringify({
+  var lot = querystring.stringify({
     accountId: req.user.id,
     name: name,
     type: type,
@@ -35,7 +35,7 @@ LotController.newLot = function(req, res) {
     var data = '';
 
     response.on('data', function(chunk) {
-      data += chunk
+      data += chunk;
     });
 
     response.on('end', function() {
@@ -54,12 +54,12 @@ LotController.newLot = function(req, res) {
       res.send('/q9xwGoXLGQ');
     });
   });
-  request.on('error', function(e) {
+  request.on('error', function(err) {
     console.log('Error in creating lot: ' + err);
     throw err;
   });
 
-  request.write(data);
+  request.write(lot);
   request.end();
 }
 

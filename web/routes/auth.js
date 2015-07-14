@@ -41,7 +41,7 @@ var signup = function(firstName, lastName, email, password, fn) {
     var data = '';
 
     res.on('data', function(chunk) {
-      data += chunk
+      data += chunk;
     });
 
     res.on('end', function() {
@@ -106,7 +106,7 @@ var login = function(email, password, fn) {
     var data = '';
 
     res.on('data', function(chunk) {
-      data += chunk
+      data += chunk;
     });
 
     res.on('end', function() {

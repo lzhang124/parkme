@@ -7,6 +7,7 @@ import core.repositories.data.SearchHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
@@ -20,7 +21,7 @@ public class SearchHistoryController {
     }
 
     @RequestMapping(value = "/searchHistory", method = RequestMethod.GET)
-    public SearchHistory searchHistory(String accountId) {
+    public SearchHistory searchHistory(@RequestParam(value="accountId", required=false) String accountId) {
         SearchHistory history = repo.findByAccountId(accountId);
         if (history == null) {
             System.out.println("History for account " + accountId + " was not found.");
