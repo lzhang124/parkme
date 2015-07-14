@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
 
 /* GET parth's page. */
 router.get('/DJYWcyUqGV', function(req, res) {
-  http.get('http://52.25.5.25:8080/lotById?lotId=559a2799e4b07b965fbdf711', function(response) {
+  http.get('http://52.25.5.25:8080/lotById?lotId=55a58121e4b081c25a7efae0', function(response) {
       var body = '';
       response.on('data', function(d) {
         body += d;
