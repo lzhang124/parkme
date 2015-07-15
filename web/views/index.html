@@ -84,20 +84,26 @@
         </form>
         <div class="results-container">
           <button ng-repeat="lot in lots track by $index" ng-class="{'selected': lot.selected}" ng-click="openInfoWindow(markers[$index + 1])">
-            <div class="lot-name">
-              {{ lot.name }}
+            <div class="status-container">
+              <div class="status" ng-class="{'green': lot.available, 'red': !lot.available}"></div>
             </div>
-            <div class="lot-type">
-              {{ lot.type }}
-            </div>
-            <div class="lot-address">
-              {{ lot.address.street }}
-            </div>
-            <div class="lot-price">
-              {{ lot.price.hour || currency }} per hour
-            </div>
-            <div class="lot-free">
-              {{ lot.capacity - lot.occupied }} spots
+            <div class="block">
+              <div class="line">
+                <div class="lot-address">
+                  {{ lot.address.street }}
+                </div>
+                <div class="lot-type">
+                  {{ lot.type }}
+                </div>
+              </div>
+              <div class="line">
+                <div class="lot-free">
+                  {{ lot.capacity - lot.occupied }} <span id="caps">spots</span>
+                </div>
+                <div class="lot-price">
+                  {{ lot.price.hour | currency }} <span id="caps">per hr</span>
+                </div>
+              </div>
             </div>
           </button>
         </div>

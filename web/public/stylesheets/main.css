@@ -192,27 +192,52 @@ html, body {
   .search-results .results .results-container {
     padding-left: 2px; }
     .search-results .results .results-container button {
-      height: 100px;
+      height: 70px;
       width: 100%;
       background: white;
-      padding: 5px 10px;
+      padding: 5px 15px 5px 15px;
       margin: 1px 0;
       text-transform: none;
       text-align: left;
+      letter-spacing: 1px;
       color: #004869; }
-      .search-results .results .results-container button .lot-name {
+      .search-results .results .results-container button .status-container {
+        height: 0;
+        width: 0; }
+        .search-results .results .results-container button .status-container .status {
+          height: 10px;
+          width: 10px;
+          margin: 25px 0;
+          border-radius: 5px;
+          display: inline-block; }
+        .search-results .results .results-container button .status-container .green {
+          background-color: #00c940; }
+        .search-results .results .results-container button .status-container .red {
+          background-color: #e3001b; }
+      .search-results .results .results-container button .line {
+        margin: 3px 0 3px 25px;
+        font-size: .9em; }
+      .search-results .results .results-container button .lot-address {
         font-weight: 400;
         display: inline-block; }
       .search-results .results .results-container button .lot-type {
-        font-size: .8em;
+        margin-top: 3px;
+        font-size: .6em;
         text-transform: uppercase;
-        display: inline-block; }
-      .search-results .results .results-container button .lot-price {
+        float: right;
         display: inline-block; }
       .search-results .results .results-container button .lot-free {
+        font-weight: 400;
+        display: inline-block; }
+      .search-results .results .results-container button .lot-price {
+        font-weight: 400;
         display: inline-block;
         text-align: right;
         float: right; }
+      .search-results .results .results-container button span#caps {
+        font-weight: 300;
+        font-size: .7em;
+        text-transform: uppercase; }
     .search-results .results .results-container button.selected {
       height: 400px; }
     .search-results .results .results-container button:hover {
