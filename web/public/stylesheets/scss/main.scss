@@ -257,6 +257,17 @@ html, body {
             background: $blue;
             color: $white;
           }
+
+          button:disabled {
+            border-color: $grey;
+            color: $grey;
+          }
+
+          button:disabled:hover {
+            background: transparent;
+            border-color: $grey;
+            color: $grey;
+          }
         }
       }
 

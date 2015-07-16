@@ -256,6 +256,13 @@ html, body {
         .search-results .results .results-container .result-button .results-content button:hover {
           background: #004869;
           color: white; }
+        .search-results .results .results-container .result-button .results-content button:disabled {
+          border-color: #969696;
+          color: #969696; }
+        .search-results .results .results-container .result-button .results-content button:disabled:hover {
+          background: transparent;
+          border-color: #969696;
+          color: #969696; }
     .search-results .results .results-container .selected {
       height: 110px; }
     .search-results .results .results-container .result:hover {
