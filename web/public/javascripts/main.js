@@ -108,7 +108,6 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
       // REPLACE THIS
       console.log("that's not a real place");
     }
-
   });
 
 
@@ -116,6 +115,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
   google.maps.event.addListener(auto_search, 'place_changed', function() {
     var start = auto_search.getPlace();
     if (start.hasOwnProperty('geometry')) {
+      search.blur();
       search.value = start.name;
       
       $http.post('/api/search', {
@@ -156,6 +156,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
         $timeout(function() {
           if (currentMarker !== null) {
             currentMarker.lot.selected = false;
+            currentMarker.lot.showContent = false;
           }
           currentMarker = null;
         });
@@ -181,6 +182,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
       $timeout(function() {
         if (currentMarker !== null) {
           currentMarker.lot.selected = false;
+          currentMarker.lot.showContent = false;
         }
         currentMarker = null;
       });
@@ -193,9 +195,9 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
       var close = iwOuter.next();
 
       // Remove the defaults
-      iw.children(':nth-child(1)').css({'display' : 'none'});
-      iw.children(':nth-child(2)').css({'display' : 'none'});
-      iw.children(':nth-child(4)').css({'display' : 'none'});
+      iw.children(':nth-child(1)').css({'display': 'none'});
+      iw.children(':nth-child(2)').css({'display': 'none'});
+      iw.children(':nth-child(4)').css({'display': 'none'});
 
       // Move the close button
       close.css({
@@ -260,20 +262,26 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
         $timeout(function() {
           if (currentMarker !== null) {
             currentMarker.lot.selected = false;
+            currentMarker.lot.showContent = false;
           }
           lot.selected = true;
           currentMarker = marker;
         });
+        $timeout(function() {
+          lot.showContent = true;
+        }, 300);
       } else {
         infowindow.close();
         currentMarker = null;
         $timeout(function() {
           lot.selected = false;
+          lot.showContent = false;
         });
       }
     });
 
     lot.selected = false;
+    lot.showContent = false;
     marker.lot = lot;
     $scope.markers.push(marker);
   }

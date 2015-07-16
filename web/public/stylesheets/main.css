@@ -183,64 +183,82 @@ html, body {
   height: 100vh;
   width: 30vw;
   left: 70vw;
-  position: absolute; }
+  position: absolute;
+  font-family: "Lato", sans-serif;
+  font-weight: 300; }
   .search-results .results form {
     margin: 0 25px 10px 25px; }
     .search-results .results form #search {
       width: 100%;
       font-size: 1.5em; }
   .search-results .results .results-container {
+    width: 100%;
     padding-left: 2px; }
-    .search-results .results .results-container button {
-      height: 80px;
+    .search-results .results .results-container .result-button {
+      height: 50px;
       width: 100%;
       background: white;
-      padding: 8px 15px 10px 15px;
+      padding: 4px 0 10px 0;
       margin: 1px 0;
+      font-size: 1.25em;
       text-transform: none;
       text-align: left;
       letter-spacing: 1px;
-      color: #004869; }
-      .search-results .results .results-container button .status-container {
+      color: #004869;
+      cursor: pointer;
+      transition: all 300ms ease; }
+      .search-results .results .results-container .result-button .status-container {
         height: 0;
         width: 0; }
-        .search-results .results .results-container button .status-container .status {
+        .search-results .results .results-container .result-button .status-container .status {
           height: 10px;
           width: 10px;
-          margin: 25px 0;
+          margin: 24px 0 0 15px;
           border-radius: 5px;
           display: inline-block; }
-        .search-results .results .results-container button .status-container .green {
+        .search-results .results .results-container .result-button .status-container .green {
           background-color: #00c940; }
-        .search-results .results .results-container button .status-container .red {
+        .search-results .results .results-container .result-button .status-container .red {
           background-color: #e3001b; }
-      .search-results .results .results-container button .line {
-        margin: 3px 0 3px 25px;
-        font-size: .9em; }
-      .search-results .results .results-container button .lot-address {
+      .search-results .results .results-container .result-button .line {
+        width: auto;
+        margin: 3px 15px 3px 40px; }
+      .search-results .results .results-container .result-button .lot-address {
         font-weight: 400;
         display: inline-block; }
-      .search-results .results .results-container button .lot-type {
+      .search-results .results .results-container .result-button .lot-type {
         margin-top: 3px;
-        font-size: .6em;
+        font-size: .7em;
         text-transform: uppercase;
         float: right;
         display: inline-block; }
-      .search-results .results .results-container button .lot-free {
+      .search-results .results .results-container .result-button .lot-free {
         font-weight: 400;
         display: inline-block; }
-      .search-results .results .results-container button .lot-price {
+      .search-results .results .results-container .result-button .lot-price {
         font-weight: 400;
         display: inline-block;
         text-align: right;
         float: right; }
-      .search-results .results .results-container button span#caps {
+      .search-results .results .results-container .result-button span#caps {
         font-weight: 300;
         font-size: .7em;
         text-transform: uppercase; }
-    .search-results .results .results-container button.selected {
-      height: 400px; }
-    .search-results .results .results-container button:hover {
+      .search-results .results .results-container .result-button .results-content {
+        width: 100%;
+        margin-top: 10px;
+        text-align: center; }
+        .search-results .results .results-container .result-button .results-content button {
+          border: 2px solid #004869;
+          font-size: .75em;
+          font-weight: 400;
+          color: #004869; }
+        .search-results .results .results-container .result-button .results-content button:hover {
+          background: #004869;
+          color: white; }
+    .search-results .results .results-container .selected {
+      height: 110px; }
+    .search-results .results .results-container .result:hover {
       background: #f0f0f0; }
 
 /* Mobile */
