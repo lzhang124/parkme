@@ -3,11 +3,20 @@ var url = 'http://127.0.0.1:8080';
 
 
 // SET CONSTANTS //
-app.run(function($rootScope) {
+app.run(function($rootScope, $http) {
   $rootScope.loading = true;
   $rootScope.showContent = true;
   $rootScope.showLogin = true;
   $rootScope.showResults = false;
+
+  // GET CURRENT USER
+  $http.get('/api/currentUser')
+  .success(function(user) {
+    $rootScope.user = user;
+  })
+  .finally(function() {
+    $rootScope.loading = false;
+  });
 });
 
 
@@ -23,16 +32,7 @@ app.factory('focus', function($timeout) {
 });
 
 
-app.controller('loginController', function($scope, $rootScope, $http, focus) {
-
-  // GET CURRENT USER
-  $http.get('/api/currentUser')
-  .success(function(user) {
-    $scope.user = user;
-  })
-  .finally(function() {
-    $rootScope.loading = false;
-  });
+app.controller('loginController', function($scope, $rootScope, focus) {
 
   // LOGIN //
   $scope.login = function() {

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var http = require('http');
-var ReservationController = require('../controllers/reservation-controller');
 
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) {
@@ -49,7 +48,14 @@ router.get('/q9xwGoXLGQ/register', isAuthenticated, function(req, res) {
   res.render('register');
 });
 
+/* redirect reservations page. */
+router.get('/q9xwGoXLGQ/reservations', isAuthenticated, function(req, res) {
+  res.redirect('/q9xwGoXLGQ');
+});
+
 /* GET reservations page. */
-router.get('/q9xwGoXLGQ/reservations/:lotId', isAuthenticated, ReservationController.getReservations);
+router.get('/q9xwGoXLGQ/reservations/:lotId', isAuthenticated, function(req, res) {
+  res.render('reserve');
+});
 
 module.exports = router;

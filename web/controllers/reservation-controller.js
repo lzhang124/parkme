@@ -5,7 +5,7 @@ var ReservationController = {};
 var url = 'http://127.0.0.1:8080';
 
 ReservationController.getReservations = function(req, res) {
-  http.get(url + '/activeReservationsByLotId?lotId=' + req.params.lotId, function(response) {
+  http.get(url + '/activeReservationsByLotId?lotId=' + req.body.lotId, function(response) {
     var data = '';
     response.on('data', function(d) {
       data += d;
