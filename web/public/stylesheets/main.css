@@ -265,7 +265,7 @@ html, body {
           color: #969696; }
     .search-results .results .results-container .selected {
       height: 110px; }
-    .search-results .results .results-container .result:hover {
+    .search-results .results .results-container .result-button:hover {
       background: #f0f0f0; }
 
 /* Mobile */
