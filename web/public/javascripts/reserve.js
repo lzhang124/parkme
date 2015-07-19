@@ -3,11 +3,12 @@ var url = 'http://127.0.0.1:8080';
 
 
 // SET CONSTANTS //
-app.run(function($rootScope, $http, $location) {  
+app.run(function($rootScope, $http, $location, $window) {  
   $rootScope.loading = true;
 
   console.log($location.path());
   console.log($location.url());
+  console.log($window.location.pathname);
   var lotId = $location.url().split('/')[2]; // CHANGE THIS AFTER TESTING
   $http.get(url + '/lotById?lotId=' + lotId)
   .success(function(lot) {
