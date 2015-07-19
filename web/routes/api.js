@@ -21,9 +21,6 @@ router.get('/currentUser', function(req, res) {
 });
 
 /* Add search history */ 
-router.get('/getReservations', isAuthenticated, ReservationController.getReservations);
-
-/* Add search history */ 
 router.post('/search', SearchController.newHistory);
 
 /* Create new lot */ 

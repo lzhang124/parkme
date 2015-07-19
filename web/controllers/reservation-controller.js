@@ -4,19 +4,6 @@ var ReservationController = {};
 
 var url = 'http://127.0.0.1:8080';
 
-ReservationController.getReservations = function(req, res) {
-  http.get(url + '/activeReservationsByLotId?lotId=' + req.body.lotId, function(response) {
-    var data = '';
-    response.on('data', function(d) {
-      data += d;
-    });
-    response.on('end', function() {
-      var reservations = JSON.parse(data);
-      res.send(reservations);
-    });
-  });
-}
-
 ReservationController.newReservation = function(req, res) {
   var type = req.body.type;
   if (type === 'residential') {

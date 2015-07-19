@@ -1,4 +1,55 @@
 var app = angular.module('reserve', []);
+var url = 'http://127.0.0.1:8080';
+
+
+// SET CONSTANTS //
+app.run(function($rootScope, $http, $location) {  
+  $rootScope.loading = true;
+
+  var lotId = $location.path().split('/')[2]; // CHANGE THIS AFTER TESTING
+  $http.get(url + '/lotById?lotId=' + lotId)
+  .success(function(lot) {
+    $rootScope.lot = lot;
+  })
+
+  http.get(url + '/lotById?lotId=') + req.body.lotId, function(response) {
+    var data = '';
+    response.on('data', function(d) {
+      data += d;
+    });
+    response.on('end', function() {
+      var reservations = JSON.parse(data);
+
+      // GET RESERVATIONS
+      http.get(url + '/activeReservationsByLotId?lotId=' + req.body.lotId, function(response) {
+        var data = '';
+        response.on('data', function(d) {
+          data += d;
+        });
+        response.on('end', function() {
+          var reservations = JSON.parse(data);
+          res.send(reservations);
+        });
+      });
+
+      res.send(reservations);
+    });
+  });
+
+
+
+
+  $http.get('/api/getReservations', {
+    lotId: $location.path().split('/')[2] // CHANGE THIS AFTER TESTING
+  })
+  .success(function(reservations) {
+    $scope.reservations = reservations;
+  })
+  .finally(function() {
+    $rootScope.loading = false;
+  });
+});
+
 
 app.controller('reserveController', function($scope, $http, $document, $element, $window) {
 
