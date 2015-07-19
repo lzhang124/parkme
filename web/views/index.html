@@ -2,7 +2,7 @@
 <html ng-app="main">
 <head lang="en">
   <title>AVOKTECH</title>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 
   <!-- Styling -->
@@ -22,8 +22,8 @@
 </head>
 <body>
   <div class="bg"></div>
-  <div class="navbar" ng-controller="loginController">
-    <div class="button-container" ng-show="!user && showLogin  && !loading">
+  <div class="navbar" ng-controller="loginController" ng-show="showLogin && !loading">
+    <div class="button-container" ng-show="!user">
       <button ng-click="login()">Login</button>
       <button ng-click="signup()">Sign Up</button>
     </div>
@@ -52,7 +52,7 @@
         </form>
       </div>
     </div>
-    <div class="button-container" ng-show="user && showLogin && !loading">
+    <div class="button-container" ng-show="user">
       <a href="/q9xwGoXLGQ/profile"><button>Profile</button></a>
       <a href="/auth/logout"><button>Logout</button></a>
     </div>

@@ -77,6 +77,7 @@ public class AccountController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(String email, String password) {
+        email = email.toLowerCase();
         Account account = accountRepo.findByEmail(email);
         if (account == null) {
             System.out.println("Account with email " + email + " was not found.");
@@ -92,6 +93,7 @@ public class AccountController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public Account signup(String firstName, String lastName, String email, String password) {
+        email = email.toLowerCase();
         Account account = accountRepo.findByEmail(email);
         if (account == null) {
             String pw = BCrypt.hashpw(password, BCrypt.gensalt(8));

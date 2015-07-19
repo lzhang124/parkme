@@ -27,15 +27,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // remove after testing
-app.use('/q9xwGoXLGQ', express.static(path.join(__dirname, 'public')));
-app.use('/q9xwGoXLGQ', express.static(path.join(__dirname)));
 app.use('/DJYWcyUqGV', express.static(path.join(__dirname, 'public')));
-app.use('/DJYWcyUqGV', express.static(path.join(__dirname)));
+app.use('/q9xwGoXLGQ', express.static(path.join(__dirname, 'public')));
+app.use('/q9xwGoXLGQ/reservations', express.static(path.join(__dirname, 'public')));
 
 app.use(expressSession({
-    secret: 'thisisasecret',
-    resave: false,
-    saveUninitialized: true
+  secret: 'thisisasecret',
+  resave: false,
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -56,24 +55,24 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 app.set('port', process.env.PORT || 3000);

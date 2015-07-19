@@ -6,298 +6,277 @@ var url = 'http://127.0.0.1:8080';
 app.run(function($rootScope, $http, $location) {  
   $rootScope.loading = true;
 
-  var lotId = $location.path().split('/')[2]; // CHANGE THIS AFTER TESTING
+  console.log($location.path());
+  console.log($location.url());
+  var lotId = $location.url().split('/')[2]; // CHANGE THIS AFTER TESTING
   $http.get(url + '/lotById?lotId=' + lotId)
   .success(function(lot) {
     $rootScope.lot = lot;
   })
-
-  http.get(url + '/lotById?lotId=') + req.body.lotId, function(response) {
-    var data = '';
-    response.on('data', function(d) {
-      data += d;
-    });
-    response.on('end', function() {
-      var reservations = JSON.parse(data);
-
-      // GET RESERVATIONS
-      http.get(url + '/activeReservationsByLotId?lotId=' + req.body.lotId, function(response) {
-        var data = '';
-        response.on('data', function(d) {
-          data += d;
-        });
-        response.on('end', function() {
-          var reservations = JSON.parse(data);
-          res.send(reservations);
-        });
-      });
-
-      res.send(reservations);
-    });
+  .finally(function() {
+    if ($rootScope.lot && $rootScope.reservations) {
+      $rootScope.loading = false;
+    }
   });
-
-
-
-
-  $http.get('/api/getReservations', {
-    lotId: $location.path().split('/')[2] // CHANGE THIS AFTER TESTING
-  })
+  $http.get(url + '/activeReservationsByLotId?lotId=' + lotId)
   .success(function(reservations) {
-    $scope.reservations = reservations;
+    $rootScope.reservations = reservations;
   })
   .finally(function() {
-    $rootScope.loading = false;
+    if ($rootScope.lot && $rootScope.reservations) {
+      $rootScope.loading = false;
+    }
   });
 });
 
 
 app.controller('reserveController', function($scope, $http, $document, $element, $window) {
 
-  // INIT MAP //
-  var search = document.getElementById('search');
-  var auto_search = new google.maps.places.Autocomplete(search);
+  // // INIT MAP //
+  // var search = document.getElementById('search');
+  // var auto_search = new google.maps.places.Autocomplete(search);
 
-  var map;
-  var infowindow;
-  var markers = [];
+  // var map;
+  // var infowindow;
+  // var markers = [];
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    scrollwheel: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    disableDefaultUI: true
-  });
+  // map = new google.maps.Map(document.getElementById('map'), {
+  //   scrollwheel: false,
+  //   mapTypeId: google.maps.MapTypeId.ROADMAP,
+  //   disableDefaultUI: true
+  // });
 
-  var US = {
-    NorthEast: {
-      lat: 49.38,
-      lng: -66.94
-    },
-    SouthWest: {
-      lat: 25.82,
-      lng: -124.39
-    }
-  }
-  var USbounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(US.SouthWest.lat, US.SouthWest.lng),
-    new google.maps.LatLng(US.NorthEast.lat, US.NorthEast.lng)
-  );
-  map.fitBounds(USbounds);
+  // var US = {
+  //   NorthEast: {
+  //     lat: 49.38,
+  //     lng: -66.94
+  //   },
+  //   SouthWest: {
+  //     lat: 25.82,
+  //     lng: -124.39
+  //   }
+  // }
+  // var USbounds = new google.maps.LatLngBounds(
+  //   new google.maps.LatLng(US.SouthWest.lat, US.SouthWest.lng),
+  //   new google.maps.LatLng(US.NorthEast.lat, US.NorthEast.lng)
+  // );
+  // map.fitBounds(USbounds);
 
 
-  // MAPS SEARCH //
-  var start;
-  var startLoc;
-  google.maps.event.addListener(auto_search, 'place_changed', function() {
-    start = auto_search.getPlace();
-    startLoc = start.geometry.location;
+  // // MAPS SEARCH //
+  // var start;
+  // var startLoc;
+  // google.maps.event.addListener(auto_search, 'place_changed', function() {
+  //   start = auto_search.getPlace();
+  //   startLoc = start.geometry.location;
 
-    deleteMarkers();
+  //   deleteMarkers();
 
-    map.panTo(startLoc);
-    map.setZoom(17);
+  //   map.panTo(startLoc);
+  //   map.setZoom(17);
     
-    var marker = new google.maps.Marker({
-      map: map,
-      position: startLoc,
-      icon: 'images/pin-green.png',
-      draggable: true
-    });
+  //   var marker = new google.maps.Marker({
+  //     map: map,
+  //     position: startLoc,
+  //     icon: 'images/pin-green.png',
+  //     draggable: true
+  //   });
 
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent('<strong>' + start.name + '</strong>');
-      infowindow.open(this.map, this);
-    });
+  //   google.maps.event.addListener(marker, 'click', function() {
+  //     infowindow.setContent('<strong>' + start.name + '</strong>');
+  //     infowindow.open(this.map, this);
+  //   });
 
-    markers.push(marker);
-    infowindow = new google.maps.InfoWindow();
-  });
+  //   markers.push(marker);
+  //   infowindow = new google.maps.InfoWindow();
+  // });
 
-  var deleteMarkers = function() {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
-    }
-    markers = [];
-  }
-
-
-  // CAPACITY FIELD //
-  $scope.capacity = 1;
-  $scope.plusCapacity = function() {
-    if ($scope.capacity > 0) {
-      $scope.capacity += 1;
-    } else {
-      $scope.capacity = 1;
-    }
-    if ($scope.capacity === $scope.reservable + 1) {
-      $scope.reservable = $scope.capacity;
-    }
-  }
-  $scope.minusCapacity = function() {
-    if ($scope.capacity > 1) {
-      $scope.capacity -= 1;
-    } else {
-      $scope.capacity = 1;
-    }
-    if ($scope.capacity === $scope.reservable - 1) {
-      $scope.reservable = $scope.capacity;
-    }
-  }
+  // var deleteMarkers = function() {
+  //   for (var i = 0; i < markers.length; i++) {
+  //     markers[i].setMap(null);
+  //   }
+  //   markers = [];
+  // }
 
 
-  // RESERVABLE FIELD //
-  $scope.reservable = 1;
-  $scope.plusReserve = function() {
-    if ($scope.reservable >= 0) {
-      $scope.reservable += 1;
-    } else {
-      $scope.reservable = $scope.capacity;
-    }
-    if ($scope.reservable > $scope.capacity) {
-      $scope.reservable = $scope.capacity;
-    }
-  }
-  $scope.minusReserve = function() {
-    if ($scope.reservable > 0) {
-      $scope.reservable -= 1;
-    } else {
-      $scope.reservable = 0;
-    }
-  }
-
-  // CALENDAR DATA //
-  $scope.week = [
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat'
-  ];
-  $scope.times = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11'
-  ];
+  // // CAPACITY FIELD //
+  // $scope.capacity = 1;
+  // $scope.plusCapacity = function() {
+  //   if ($scope.capacity > 0) {
+  //     $scope.capacity += 1;
+  //   } else {
+  //     $scope.capacity = 1;
+  //   }
+  //   if ($scope.capacity === $scope.reservable + 1) {
+  //     $scope.reservable = $scope.capacity;
+  //   }
+  // }
+  // $scope.minusCapacity = function() {
+  //   if ($scope.capacity > 1) {
+  //     $scope.capacity -= 1;
+  //   } else {
+  //     $scope.capacity = 1;
+  //   }
+  //   if ($scope.capacity === $scope.reservable - 1) {
+  //     $scope.reservable = $scope.capacity;
+  //   }
+  // }
 
 
-  // INIT CALENDAR //
-  var hours = 24;
-  var days = 7;
-  $scope.schedule = new Array(days);
-  for (var i = 0; i < days; i++) {
-    $scope.schedule[i] = new Array(hours);
-  }
+  // // RESERVABLE FIELD //
+  // $scope.reservable = 1;
+  // $scope.plusReserve = function() {
+  //   if ($scope.reservable >= 0) {
+  //     $scope.reservable += 1;
+  //   } else {
+  //     $scope.reservable = $scope.capacity;
+  //   }
+  //   if ($scope.reservable > $scope.capacity) {
+  //     $scope.reservable = $scope.capacity;
+  //   }
+  // }
+  // $scope.minusReserve = function() {
+  //   if ($scope.reservable > 0) {
+  //     $scope.reservable -= 1;
+  //   } else {
+  //     $scope.reservable = 0;
+  //   }
+  // }
+
+  // // CALENDAR DATA //
+  // $scope.week = [
+  //   'Sun',
+  //   'Mon',
+  //   'Tue',
+  //   'Wed',
+  //   'Thu',
+  //   'Fri',
+  //   'Sat'
+  // ];
+  // $scope.times = [
+  //   '1',
+  //   '2',
+  //   '3',
+  //   '4',
+  //   '5',
+  //   '6',
+  //   '7',
+  //   '8',
+  //   '9',
+  //   '10',
+  //   '11',
+  //   '12',
+  //   '1',
+  //   '2',
+  //   '3',
+  //   '4',
+  //   '5',
+  //   '6',
+  //   '7',
+  //   '8',
+  //   '9',
+  //   '10',
+  //   '11'
+  // ];
 
 
-  // DRAG TO SELECT //
-  var startCell = null;
-  var dragging = false;
+  // // INIT CALENDAR //
+  // var hours = 24;
+  // var days = 7;
+  // $scope.schedule = new Array(days);
+  // for (var i = 0; i < days; i++) {
+  //   $scope.schedule[i] = new Array(hours);
+  // }
 
-  function mouseUp(el) {
-    startCell = null;
-    dragging = false;
-  }
+
+  // // DRAG TO SELECT //
+  // var startCell = null;
+  // var dragging = false;
+
+  // function mouseUp(el) {
+  //   startCell = null;
+  //   dragging = false;
+  // }
   
-  function mouseDown(el) {
-    dragging = true;
+  // function mouseDown(el) {
+  //   dragging = true;
 
-    var cell = getCoords(el);
-    if ($scope.schedule[cell.day][cell.hour] === 1) {
-      $scope.schedule[cell.day][cell.hour] = null;
-    } else {
-      $scope.schedule[cell.day][cell.hour] = 1;
-    }
-    startCell = cell;
-  }
+  //   var cell = getCoords(el);
+  //   if ($scope.schedule[cell.day][cell.hour] === 1) {
+  //     $scope.schedule[cell.day][cell.hour] = null;
+  //   } else {
+  //     $scope.schedule[cell.day][cell.hour] = 1;
+  //   }
+  //   startCell = cell;
+  // }
 
-  function mouseEnter(el) {
-    if (!dragging) return;
+  // function mouseEnter(el) {
+  //   if (!dragging) return;
     
-    var cell = getCoords(el);
-    if ($scope.schedule[startCell.day][startCell.hour] === 1) {
-      $scope.schedule[cell.day][cell.hour] = 1;
-    } else {
-      $scope.schedule[cell.day][cell.hour] = null;
-    }
-  }
+  //   var cell = getCoords(el);
+  //   if ($scope.schedule[startCell.day][startCell.hour] === 1) {
+  //     $scope.schedule[cell.day][cell.hour] = 1;
+  //   } else {
+  //     $scope.schedule[cell.day][cell.hour] = null;
+  //   }
+  // }
         
-  function getCoords(cell) {
-    var column = cell[0].cellIndex;
-    var row = cell.parent()[0].rowIndex;
-    return {
-      day: column,
-      hour: row
-    };
-  }
+  // function getCoords(cell) {
+  //   var column = cell[0].cellIndex;
+  //   var row = cell.parent()[0].rowIndex;
+  //   return {
+  //     day: column,
+  //     hour: row
+  //   };
+  // }
   
-  function wrap(fn) {
-    return function() {
-      var el = angular.element(this);
-      $scope.$apply(function() {
-        fn(el);
-      });
-    }
-  }
+  // function wrap(fn) {
+  //   return function() {
+  //     var el = angular.element(this);
+  //     $scope.$apply(function() {
+  //       fn(el);
+  //     });
+  //   }
+  // }
   
-  $element.delegate('td', 'mousedown', wrap(mouseDown));
-  $element.delegate('td', 'mouseenter', wrap(mouseEnter));
-  $document.delegate('body', 'mouseup', wrap(mouseUp));
+  // $element.delegate('td', 'mousedown', wrap(mouseDown));
+  // $element.delegate('td', 'mouseenter', wrap(mouseEnter));
+  // $document.delegate('body', 'mouseup', wrap(mouseUp));
 
 
-  // CALCULATE TIMES //
-  var scheduleTimes = function() {
-    var offset = new Date().getTimezoneOffset()*60*1000;
-    var date = Math.floor(new Date()/604800000)*604800000 - 345600000;
+  // // CALCULATE TIMES //
+  // var scheduleTimes = function() {
+  //   var offset = new Date().getTimezoneOffset()*60*1000;
+  //   var date = Math.floor(new Date()/604800000)*604800000 - 345600000;
 
-    $scope.calendar = [];
-    for (var day = 0; day < 7; day++) {
-      for (var hour = 0; hour < 24; hour++) {
-        if ($scope.schedule[day][hour] === 1) {
-          $scope.calendar.push(date + day*86400000 + hour*3600000);
-        }
-      }
-    }
-  }
+  //   $scope.calendar = [];
+  //   for (var day = 0; day < 7; day++) {
+  //     for (var hour = 0; hour < 24; hour++) {
+  //       if ($scope.schedule[day][hour] === 1) {
+  //         $scope.calendar.push(date + day*86400000 + hour*3600000);
+  //       }
+  //     }
+  //   }
+  // }
 
 
-  // CREATE NEW LOT //
-  $scope.register = function() {
-    scheduleTimes();
-    $http.post('/api/newLot', {
-      type: 'residential',
-      address: start.formatted_address,
-      latitude: startLoc.lat(),
-      longitude: startLoc.lng(),
-      capacity: $scope.capacity,
-      reserveMax: $scope.reservable,
-      calendar: $scope.calendar,
-    })
-    .success(function(redirectURL) {
-      $window.location = redirectURL;
-    })
-    .error(function(err) {
-      $window.alert(err.error);
-    });
-  }
+  // // CREATE NEW LOT //
+  // $scope.register = function() {
+  //   scheduleTimes();
+  //   $http.post('/api/newLot', {
+  //     type: 'residential',
+  //     address: start.formatted_address,
+  //     latitude: startLoc.lat(),
+  //     longitude: startLoc.lng(),
+  //     capacity: $scope.capacity,
+  //     reserveMax: $scope.reservable,
+  //     calendar: $scope.calendar,
+  //   })
+  //   .success(function(redirectURL) {
+  //     $window.location = redirectURL;
+  //   })
+  //   .error(function(err) {
+  //     $window.alert(err.error);
+  //   });
+  // }
 });

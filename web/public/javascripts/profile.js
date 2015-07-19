@@ -11,9 +11,9 @@ app.controller('profileController', function($scope, $http) {
     $http.get(url + '/getLots?accountId=' + $scope.user.id)
     .success(function(lots) {
       $scope.lots = lots;
+    })
+    .finally(function() {
+      $scope.loading = false;
     });
-  })
-  .finally(function() {
-    $scope.loading = false;
   });
 });
