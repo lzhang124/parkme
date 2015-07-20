@@ -129,7 +129,7 @@ app.controller('reserveController', function($scope, $http, $document, $element,
 
     var cell = getCoords(el);
     if (!$scope.schedule[cell.day][cell.hour]) return;
-    if ($scope.reserved[cell.day][cell.hour] == $lot.reserveMax) return;
+    if ($scope.reserved[cell.day][cell.hour] == $scope.lot.reserveMax) return;
 
     if ($scope.reservation[cell.day][cell.hour] === 1) {
       $scope.reservation[cell.day][cell.hour] = null;
@@ -145,7 +145,7 @@ app.controller('reserveController', function($scope, $http, $document, $element,
     
     var cell = getCoords(el);
     if (!$scope.schedule[startCell.day][cell.hour]) return;
-    if ($scope.reserved[startCell.day][cell.hour] == $lot.reserveMax) return;
+    if ($scope.reserved[startCell.day][cell.hour] == $scope.lot.reserveMax) return;
 
     if ($scope.reservation[startCell.day][startCell.hour] === 1) {
       for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {
