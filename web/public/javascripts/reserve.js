@@ -53,8 +53,8 @@ app.run(function($rootScope, $http, $window) {
   // GET CURRENT USER
   $http.get('/api/currentUser')
   .success(function(user) {
-    var accountId = user.id;
 
+    // GET RESERVATIONS
     $http.get(url + '/activeReservationsByLotId?lotId=' + lotId)
     .success(function(reservations) {
       $rootScope.reservations = reservations;
@@ -67,7 +67,7 @@ app.run(function($rootScope, $http, $window) {
         if (reservation.start > today && reservation.end < nextSunday) {
           var day = new Date(reservation.start).getDay();
           var hour = new Date(reservation.start).getHours();
-          if (reservation.accountId === accountId) {
+          if (reservation.accountId === user.id) {
             for (var j = 0; j < reservation.duration; j++) {
               $rootScope.past[day][hour + j] = 1;
             }

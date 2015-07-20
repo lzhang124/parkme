@@ -93,7 +93,7 @@ html, body {
   position: fixed;
   background: #191919; }
 
-.reserve {
+.reservations {
   width: 100%;
   position: absolute;
   font-family: "Lato", sans-serif;
@@ -101,26 +101,26 @@ html, body {
   text-transform: uppercase;
   text-align: center;
   color: white; }
-  .reserve .title {
+  .reservations .title {
     margin-top: 5vh;
     font-size: 2.25em;
     letter-spacing: 5px; }
-  .reserve .subtitle {
+  .reservations .subtitle {
     margin-top: 15px;
     font-size: 1.25em;
     letter-spacing: 0; }
-  .reserve .calendar-container {
+  .reservations .calendar-container {
     width: 43%;
     padding: 2% 30% 5% 27%;
     color: white; }
-    .reserve .calendar-container .r {
+    .reservations .calendar-container .r {
       height: 20px;
       width: 100%; }
-      .reserve .calendar-container .r .c {
+      .reservations .calendar-container .r .c {
         height: 100%;
         width: 14.285%;
         float: left; }
-    .reserve .calendar-container .times {
+    .reservations .calendar-container .times {
       width: 3%;
       margin-top: 35px;
       margin-bottom: 12px;
@@ -128,28 +128,28 @@ html, body {
       float: left;
       text-align: right;
       font-size: .75em; }
-      .reserve .calendar-container .times .r {
+      .reservations .calendar-container .times .r {
         margin: 1px 0; }
-    .reserve .calendar-container .days {
+    .reservations .calendar-container .days {
       width: 95%;
       float: right;
       text-align: center;
       font-size: 1em; }
-      .reserve .calendar-container .days .r {
+      .reservations .calendar-container .days .r {
         height: 22px; }
-      .reserve .calendar-container .days table.calendar {
+      .reservations .calendar-container .days table.calendar {
         width: 100%;
         padding: 0;
         border-top: 2px solid white;
         border-bottom: 2px solid white;
         -webkit-border-horizontal-spacing: 1px;
         -webkit-border-vertical-spacing: 1px; }
-        .reserve .calendar-container .days table.calendar tr.r {
+        .reservations .calendar-container .days table.calendar tr.r {
           height: 20px; }
-          .reserve .calendar-container .days table.calendar tr.r td.c {
+          .reservations .calendar-container .days table.calendar tr.r td.c {
             padding: 10px 0;
             outline: 1px solid #969696; }
-          .reserve .calendar-container .days table.calendar tr.r .c.reservation {
+          .reservations .calendar-container .days table.calendar tr.r .c.reservation {
             background: #004869; }
 
 /*# sourceMappingURL=reservations.css.map */

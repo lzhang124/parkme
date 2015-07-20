@@ -121,6 +121,10 @@ public class ReservationController {
                         reservations.add(reservation);
                         break;
                     } else {
+                        if (conflict.getAccountId() == accountId) {
+                            System.out.println("Account " + accountId + " already reserved this time");
+                            break;
+                        }
                         System.out.println("Cannot reserve in space " + j + ".");
                     }
                 }

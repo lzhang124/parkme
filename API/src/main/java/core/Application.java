@@ -49,7 +49,7 @@ public class Application implements CommandLineRunner {
 //        // clear the database
 //        accountRepo.deleteAll();
 //        lotRepo.deleteAll();
-//        reservationRepo.deleteAll();
+        reservationRepo.deleteAll();
 //        lotHistoryRepo.deleteAll();
 //        searchHistoryRepo.deleteAll();
 //
