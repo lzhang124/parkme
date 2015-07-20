@@ -197,7 +197,7 @@ html, body {
           .register .calendar-container .days table.calendar tr.r td.c {
             padding: 10px 0;
             outline: 1px solid #969696; }
-          .register .calendar-container .days table.calendar tr.r .selected {
+          .register .calendar-container .days table.calendar tr.r .c.selected {
             background: #004869; }
   .register button {
     margin: 10vh auto 15vh auto; }

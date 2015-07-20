@@ -117,12 +117,18 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
     if (!startCell) return;
     
     var cell = getCoords(el);
-    if (!$scope.schedule[cell.day][cell.hour]) return;
+    if (!$scope.schedule[startCell.day][cell.hour]) return;
 
     if ($scope.reservation[startCell.day][startCell.hour] === 1) {
-      $scope.reservation[cell.day][cell.hour] = 1;
+      for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {
+        $scope.reservation[startCell.day][hour] = 1;
+        console.log(hour);
+      }
     } else {
-      $scope.reservation[cell.day][cell.hour] = null;
+      for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {
+        $scope.reservation[startCell.day][hour] = null;
+        console.log(hour);
+      }
     }
   }
         

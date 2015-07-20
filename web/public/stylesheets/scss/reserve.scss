@@ -88,19 +88,19 @@ html, body {
           td.c {
             padding: 10px 0;
             outline: 1px solid $grey;
+            background: $dark
           }
 
-          .available {
-            // outline: 1px solid $grey;
-            background: $blue
+          .c.available {
+            background: $dimmer;
           }
 
-          .reserved {
+          .c.reserved {
             background: $red;
           }
 
-          .selected {
-            background: $green;
+          .c.selected {
+            background: $blue;
           }
         }
       }

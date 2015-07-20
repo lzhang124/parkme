@@ -148,13 +148,14 @@ html, body {
           height: 20px; }
           .reserve .calendar-container .days table.calendar tr.r td.c {
             padding: 10px 0;
-            outline: 1px solid #969696; }
-          .reserve .calendar-container .days table.calendar tr.r .available {
-            background: #004869; }
-          .reserve .calendar-container .days table.calendar tr.r .reserved {
+            outline: 1px solid #969696;
+            background: #323232; }
+          .reserve .calendar-container .days table.calendar tr.r .c.available {
+            background: #191919; }
+          .reserve .calendar-container .days table.calendar tr.r .c.reserved {
             background: #e3001b; }
-          .reserve .calendar-container .days table.calendar tr.r .selected {
-            background: #00c940; }
+          .reserve .calendar-container .days table.calendar tr.r .c.selected {
+            background: #004869; }
   .reserve button {
     margin: 5vh auto; }
   .reserve button:hover {
