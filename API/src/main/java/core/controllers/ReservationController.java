@@ -95,31 +95,37 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/reserve", method = RequestMethod.POST)
-    public Reservation reserve(String accountId, String lotId, long start, int duration) {
+    public List<Reservation> reserve(String accountId, String lotId, long[] startTimes, int[] durations) {
+        List<Reservation> reservations = new ArrayList<>();
         Lot lot = lotRepo.findById(lotId);
         if (lot == null) {
             System.out.println("Lot with lot id " + lotId + " was not found.");
             return null;
         } else {
-            for (int i = 0; i < duration; i++) {
-                if (!lot.getCalendar().contains(start + i * 3600000)) {
-                    System.out.println("Lot is not available at this time.");
-                    return null;
+            for (int i = 0; i < startTimes.length; i++) {
+                long start = startTimes[i];
+                int duration = durations[i];
+
+                for (int j = 0; j < duration; j++) {
+                    if (!lot.getCalendar().contains(start + j * 3600000)) {
+                        System.out.println("Lot is not available at this time.");
+                        return null;
+                    }
                 }
-            }
-            for (int i = 0; i < lot.getReserveMax(); i++) {
-                Reservation conflict = reservationRepo.checkAvailable(lotId, i, start, start + duration * 3600000);
-                if (conflict == null) {
-                    Account account = accountRepo.findById(accountId);
-                    Reservation reservation = new Reservation(accountId, account.getFirstName(), account.getLastName(), lotId, i, start, duration);
-                    reservationRepo.save(reservation);
-                    return reservation;
-                } else {
-                    System.out.println("Cannot reserve in space " + i + ".");
+                for (int j = 0; j < lot.getReserveMax(); j++) {
+                    Reservation conflict = reservationRepo.checkAvailable(lotId, j, start, start + duration * 3600000);
+                    if (conflict == null) {
+                        Account account = accountRepo.findById(accountId);
+                        Reservation reservation = new Reservation(accountId, account.getFirstName(), account.getLastName(), lotId, j, start, duration);
+                        reservationRepo.save(reservation);
+                        reservations.add(reservation);
+                    } else {
+                        System.out.println("Cannot reserve in space " + j + ".");
+                    }
                 }
+                System.out.println("Lot is busy, cannot make reservation at time " + start + ", " + duration + ".");
             }
-            System.out.println("Lot is busy, cannot make reservation.");
-            return null;
+            return reservations;
         }
     }
 
