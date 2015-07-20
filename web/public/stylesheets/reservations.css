@@ -148,19 +148,8 @@ html, body {
           height: 20px; }
           .reserve .calendar-container .days table.calendar tr.r td.c {
             padding: 10px 0;
-            outline: 1px solid #969696;
-            background: #323232; }
-          .reserve .calendar-container .days table.calendar tr.r .c.available {
-            background: #191919; }
-          .reserve .calendar-container .days table.calendar tr.r .c.reserved {
-            background: #e3001b; }
-          .reserve .calendar-container .days table.calendar tr.r .c.selected {
+            outline: 1px solid #969696; }
+          .reserve .calendar-container .days table.calendar tr.r .c.reservation {
             background: #004869; }
-          .reserve .calendar-container .days table.calendar tr.r .c.past {
-            background: #004869; }
-  .reserve button {
-    margin: 5vh auto; }
-  .reserve button:hover {
-    color: #191919; }
 
-/*# sourceMappingURL=reserve.css.map */
+/*# sourceMappingURL=reservations.css.map */

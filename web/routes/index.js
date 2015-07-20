@@ -50,7 +50,7 @@ router.get('/q9xwGoXLGQ/register', isAuthenticated, function(req, res) {
 
 /* redirect reservations page. */
 router.get('/q9xwGoXLGQ/reservations', isAuthenticated, function(req, res) {
-  res.redirect('/q9xwGoXLGQ');
+  res.render('/reservations');
 });
 
 /* GET reservations page. */

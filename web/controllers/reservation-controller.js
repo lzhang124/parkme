@@ -32,7 +32,7 @@ ReservationController.reserve = function(req, res) {
     response.on('end', function() {
       if (data === '') {
         console.log('Conflict.');
-        res.status(409).send({ 'error': 'Conflict.' });
+        res.status(409).send({ 'error': 'Could not make reservations.' });
         return;
       }
       console.log(JSON.parse(data));
@@ -45,8 +45,13 @@ ReservationController.reserve = function(req, res) {
     throw err;
   });
 
-  request.write(reservation);
-  request.end();
+  // NO NEW RESERVATIONS
+  if (req.body.startTimes.length === 0) {
+    res.send('/q9xwGoXLGQ');
+  } else {
+    request.write(reservation);
+    request.end();
+  }
 }
 
 module.exports = ReservationController;

@@ -21,6 +21,10 @@ app.run(function($rootScope, $http, $window) {
   for (var i = 0; i < days; i++) {
     $rootScope.reserved[i] = new Array(hours);
   }
+  $rootScope.past = new Array(days);
+  for (var i = 0; i < days; i++) {
+    $rootScope.past[i] = new Array(hours);
+  }
 
   var lotId = $window.location.pathname.split('/')[3]; // CHANGE THIS AFTER TESTING
   var today = new Date();
@@ -46,32 +50,44 @@ app.run(function($rootScope, $http, $window) {
     }
   });
 
-  $http.get(url + '/activeReservationsByLotId?lotId=' + lotId)
-  .success(function(reservations) {
-    $rootScope.reservations = reservations;
+  // GET CURRENT USER
+  $http.get('/api/currentUser')
+  .success(function(user) {
+    var accountId = user.id;
 
-    // CHECK FOR CONFLICTS
-    var offset = new Date().getTimezoneOffset()*60000;
-    var nextSunday = Math.floor((new Date().getTime() + 345600000)/604800000)*604800000 + 259200000 + offset;
-    for (var i = 0; i < reservations.length; i++) {
-      var reservation = reservations[i];
-      if (reservation.start > today && reservation.end < nextSunday) {
-        var day = new Date(reservation.start).getDay();
-        var hour = new Date(reservation.start).getHours();
-        for (var j = 0; j < reservation.duration; j++) {
-          if ($rootScope.reserved[day][hour + j] == undefined) {
-            $rootScope.reserved[day][hour + j] = 1;
+    $http.get(url + '/activeReservationsByLotId?lotId=' + lotId)
+    .success(function(reservations) {
+      $rootScope.reservations = reservations;
+
+      // CHECK FOR CONFLICTS
+      var offset = new Date().getTimezoneOffset()*60000;
+      var nextSunday = Math.floor((new Date().getTime() + 345600000)/604800000)*604800000 + 259200000 + offset;
+      for (var i = 0; i < reservations.length; i++) {
+        var reservation = reservations[i];
+        if (reservation.start > today && reservation.end < nextSunday) {
+          var day = new Date(reservation.start).getDay();
+          var hour = new Date(reservation.start).getHours();
+          if (reservation.accountId === accountId) {
+            for (var j = 0; j < reservation.duration; j++) {
+              $rootScope.past[day][hour + j] = 1;
+            }
           } else {
-            $rootScope.reserved[day][hour + j] += 1;
+            for (var j = 0; j < reservation.duration; j++) {
+              if ($rootScope.reserved[day][hour + j] == undefined) {
+                $rootScope.reserved[day][hour + j] = 1;
+              } else {
+                $rootScope.reserved[day][hour + j] += 1;
+              }
+            }
           }
         }
       }
-    }
-  })
-  .finally(function() {
-    if ($rootScope.lot && $rootScope.reservations) {
-      $rootScope.loading = false;
-    }
+    })
+    .finally(function() {
+      if ($rootScope.lot && $rootScope.reservations) {
+        $rootScope.loading = false;
+      }
+    });  
   });
 });
 
@@ -130,6 +146,7 @@ app.controller('reserveController', function($scope, $http, $document, $element,
     var cell = getCoords(el);
     if (!$scope.schedule[cell.day][cell.hour]) return;
     if ($scope.reserved[cell.day][cell.hour] == $scope.lot.reserveMax) return;
+    if ($scope.past[cell.day][cell.hour]) return;
 
     if ($scope.reservation[cell.day][cell.hour] === 1) {
       $scope.reservation[cell.day][cell.hour] = null;
@@ -146,6 +163,7 @@ app.controller('reserveController', function($scope, $http, $document, $element,
     var cell = getCoords(el);
     if (!$scope.schedule[startCell.day][cell.hour]) return;
     if ($scope.reserved[startCell.day][cell.hour] == $scope.lot.reserveMax) return;
+    if ($scope.past[cell.day][cell.hour]) return;
 
     if ($scope.reservation[startCell.day][startCell.hour] === 1) {
       for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {
