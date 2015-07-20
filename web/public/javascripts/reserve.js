@@ -5,14 +5,23 @@ var url = 'http://127.0.0.1:8080';
 // SET CONSTANTS //
 app.run(function($rootScope, $http, $window) {  
   $rootScope.loading = true;
+  
+  // INIT ARRAYS
   var hours = 24;
   var days = 7;
   $rootScope.schedule = new Array(days);
   for (var i = 0; i < days; i++) {
     $rootScope.schedule[i] = new Array(hours);
   }
-  $rootScope.reservation = $rootScope.schedule.slice(0);
-  $rootScope.reserved = $rootScope.schedule.slice(0);
+  $rootScope.reservation = new Array(days);
+  for (var i = 0; i < days; i++) {
+    $rootScope.reservation[i] = new Array(hours);
+  }
+  $rootScope.reserved = new Array(days);
+  for (var i = 0; i < days; i++) {
+    $rootScope.reserved[i] = new Array(hours);
+  }
+
   var lotId = $window.location.pathname.split('/')[3]; // CHANGE THIS AFTER TESTING
   var today = new Date();
 
@@ -43,10 +52,20 @@ app.run(function($rootScope, $http, $window) {
 
     // CHECK FOR CONFLICTS
     var offset = new Date().getTimezoneOffset()*60000;
-    var sunday = Math.floor((new Date().getTime() + 345600000)/604800000)*604800000 - 345600000 + offset;
+    var nextSunday = Math.floor((new Date().getTime() + 345600000)/604800000)*604800000 + 259200000 + offset;
     for (var i = 0; i < reservations.length; i++) {
       var reservation = reservations[i];
-      if (reservation.start > today && reservation.start < 
+      if (reservation.start > today && reservation.end < nextSunday) {
+        var day = new Date(reservation.start).getDay();
+        var hour = new Date(reservation.start).getHours();
+        for (var j = 0; j < reservation.duration; j++) {
+          if ($rootScope.reserved[day][hour + j] == undefined) {
+            $rootScope.reserved[day][hour + j] = 1;
+          } else {
+            $rootScope.reserved[day][hour + j] += 1;
+          }
+        }
+      }
     }
   })
   .finally(function() {
@@ -57,7 +76,7 @@ app.run(function($rootScope, $http, $window) {
 });
 
 
-app.controller('reserveController', function($scope, $rootScope, $http, $document, $element, $window) {
+app.controller('reserveController', function($scope, $http, $document, $element, $window) {
 
   // CALENDAR DATA //
   $scope.week = [
@@ -110,6 +129,7 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
 
     var cell = getCoords(el);
     if (!$scope.schedule[cell.day][cell.hour]) return;
+    if ($scope.reserved[cell.day][cell.hour]) return;
 
     if ($scope.reservation[cell.day][cell.hour] === 1) {
       $scope.reservation[cell.day][cell.hour] = null;
@@ -125,6 +145,7 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
     
     var cell = getCoords(el);
     if (!$scope.schedule[startCell.day][cell.hour]) return;
+    if ($scope.reserved[startCell.day][cell.hour]) return;
 
     if ($scope.reservation[startCell.day][startCell.hour] === 1) {
       for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {

@@ -48,7 +48,7 @@
         </div>
         <table class="calendar">
           <tr class="r" ng-repeat="hour in reservation[0] track by $index">
-            <td class="c" ng-repeat="day in reservation track by $index" ng-class="{'selected': reservation[$index][$parent.$index] === 1, 'available': schedule[$index][$parent.$index] === 1, 'reserved': reserved[$index][$parent.$index] === lot.reserveMax && schedule[$index][$parent.$index] === 1}">
+            <td class="c" ng-repeat="day in reservation track by $index" ng-class="{'selected': reservation[$index][$parent.$index] === 1, 'available': schedule[$index][$parent.$index] === 1, 'reserved': reserved[$index][$parent.$index] === lot.reserveMax}">
             </td>
           </tr>
         </table>

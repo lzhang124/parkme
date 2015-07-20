@@ -125,7 +125,11 @@ public class ReservationController {
                 }
                 System.out.println("Lot is busy, cannot make reservation at time " + start + ", " + duration + ".");
             }
-            return reservations;
+            if (reservations.size() == 0) {
+                return null;
+            } else {
+                return reservations;
+            }
         }
     }
 
