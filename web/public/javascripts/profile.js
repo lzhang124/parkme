@@ -1,5 +1,5 @@
 var app = angular.module('profile', []);
-var url = 'http://127.0.0.1:8080';
+var url = 'http://52.25.5.25:8080';
 
 app.controller('profileController', function($scope, $http) {
   
