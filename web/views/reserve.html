@@ -24,18 +24,42 @@
   <div class="bg"></div>
 
   <div class="reserve" ng-controller="reserveController" ng-hide="loading">
-    {{lot}}<br/>
-    {{reservations}}
-  </div>
-
-  <!-- <div class="register" ng-controller="registerController">
     <a href="/q9xwGoXLGQ">
       <img src="images/close.svg" ng-click="hideDimmer()"
            onerror="this.onerror=null; this.src='images/close.png'" class="close">
     </a>
     <div class="title">
-      Register a Lot
+      {{ lot.address.street }}, {{ lot.address.city }}
     </div>
+    <div class="subtitle">
+      Choose a time:
+    </div>
+    <div class="calendar-container">
+      <div class="times">
+        <div class="r" ng-repeat="time in times track by $index">
+          {{ time }}
+        </div>
+      </div>
+      <div class="days">
+        <div class="r">
+          <div class="c" ng-repeat="day in week">
+            {{ day }}
+          </div>
+        </div>
+        <table class="calendar">
+          <tr class="r" ng-repeat="hour in reservation[0] track by $index">
+            <td class="c" ng-repeat="day in reservation track by $index" ng-class="{'selected': reservation[$index][$parent.$index] === 1, 'available': schedule[$index][$parent.$index] === 1}">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <button ng-click="reserve()">Reserve</button>
+
+  </div>
+
+  <!-- <div class="register" ng-controller="registerController">
+    
     <div class="map-container">
       <form>
         <input id="search" placeholder="ADDRESS" autofocus />

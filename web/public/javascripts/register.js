@@ -215,23 +215,24 @@ app.controller('registerController', function($scope, $http, $document, $element
 
   // CALCULATE TIMES //
   var scheduleTimes = function() {
-    var offset = new Date().getTimezoneOffset()*60*1000;
-    var date = Math.floor(new Date()/604800000)*604800000 - 345600000;
+    var offset = new Date().getTimezoneOffset()*60000;
+    var sunday = Math.floor(new Date()/604800000)*604800000 + 259200000 + offset;
 
-    $scope.calendar = [];
+    var calendar = [];
     for (var day = 0; day < 7; day++) {
       for (var hour = 0; hour < 24; hour++) {
         if ($scope.schedule[day][hour] === 1) {
-          $scope.calendar.push(date + day*86400000 + hour*3600000);
+          calendar.push(sunday + day*86400000 + hour*3600000);
         }
       }
     }
+    return calendar;
   }
 
 
   // CREATE NEW LOT //
   $scope.register = function() {
-    scheduleTimes();
+    var calendar = scheduleTimes();
     $http.post('/api/newLot', {
       type: 'residential',
       address: start.formatted_address,
@@ -239,7 +240,7 @@ app.controller('registerController', function($scope, $http, $document, $element
       longitude: startLoc.lng(),
       capacity: $scope.capacity,
       reserveMax: $scope.reservable,
-      calendar: $scope.calendar,
+      calendar: calendar,
     })
     .success(function(redirectURL) {
       $window.location = redirectURL;
