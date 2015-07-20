@@ -111,7 +111,9 @@ public class ReservationController {
                 Reservation conflict = reservationRepo.checkAvailable(lotId, i, start, start + duration * 3600000);
                 if (conflict == null) {
                     Account account = accountRepo.findById(accountId);
-                    return new Reservation(accountId, account.getFirstName(), account.getLastName(), lotId, i, start, duration);
+                    Reservation reservation = new Reservation(accountId, account.getFirstName(), account.getLastName(), lotId, i, start, duration);
+                    reservationRepo.save(reservation);
+                    return reservation;
                 } else {
                     System.out.println("Cannot reserve in space " + i + ".");
                 }

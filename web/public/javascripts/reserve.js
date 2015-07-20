@@ -107,6 +107,11 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
   function mouseDown(el) {
     dragging = true;
 
+    // RESET THE CALENDAR
+    for (var i = 0; i < days; i++) {
+      $scope.reservation[i] = new Array(hours);
+    }
+
     var cell = getCoords(el);
     if (!$scope.schedule[cell.day][cell.hour]) return;
 
@@ -164,36 +169,49 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
     var offset = new Date().getTimezoneOffset()*60000;
     var sunday = Math.floor(new Date()/604800000)*604800000 + 259200000 + offset;
 
-    var reservation = [];
+    var start;
+    var duration;
+    var block = false;
     for (var day = 0; day < 7; day++) {
       for (var hour = 0; hour < 24; hour++) {
         if ($scope.reservation[day][hour] === 1) {
-          reservation.push(sunday + day*86400000 + hour*3600000);
+          if (block) {
+            duration++;
+          } else {
+            start = sunday + day*86400000 + hour*3600000;
+            block = true;
+            duration = 1;
+          }
+        } else {
+          if (block) {
+            block = false;
+          }
         }
       }
+      if (block) {
+        block = false;
+      }
     }
-    return reservation;
+    return [start, duration];
   }
 
 
   // MAKE RESERVATION //
   $scope.reserve = function() {
-    var reservation = reservationTimes();
+    var reservations = reservationTimes();
+    var start = reservations[0];
+    var duration = reservations[1];
 
-    // $http.post('/api/newLot', {
-    //   type: 'residential',
-    //   address: start.formatted_address,
-    //   latitude: startLoc.lat(),
-    //   longitude: startLoc.lng(),
-    //   capacity: $scope.capacity,
-    //   reserveMax: $scope.reservable,
-    //   calendar: $scope.calendar,
-    // })
-    // .success(function(redirectURL) {
-    //   $window.location = redirectURL;
-    // })
-    // .error(function(err) {
-    //   $window.alert(err.error);
-    // });
+    $http.post('/api/reserve', {
+      lotId: $scope.lot.id,
+      start: start,
+      duration: duration
+    })
+    .success(function(redirectURL) {
+      $window.location = redirectURL;
+    })
+    .error(function(err) {
+      $window.alert(err.error);
+    });
   }
 });

@@ -26,4 +26,7 @@ router.post('/search', SearchController.newHistory);
 /* Create new lot */ 
 router.post('/newLot', isAuthenticated, LotController.newLot);
 
+/* New reservation */
+router.post('/reserve', isAuthenticated, ReservationController.reserve);
+
 module.exports = router;

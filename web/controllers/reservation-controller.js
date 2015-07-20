@@ -4,28 +4,17 @@ var ReservationController = {};
 
 var url = 'http://127.0.0.1:8080';
 
-ReservationController.newReservation = function(req, res) {
-  var type = req.body.type;
-  if (type === 'residential') {
-    var name = req.user.firstName + "'s House";
-  } else {
-    var name = 'PARKING LOT'
-  }
-  var lot = querystring.stringify({
+ReservationController.reserve = function(req, res) {
+  var reservation = querystring.stringify({
     accountId: req.user.id,
-    name: name,
-    type: type,
-    address: req.body.address,
-    latitude: req.body.latitude,
-    longitude: req.body.longitude,
-    capacity: req.body.capacity,
-    reserveMax: req.body.reserveMax,
-    calendar: req.body.calendar
+    lotId: req.body.lotId,
+    start: req.body.start,
+    duration: req.body.duration
   });
   var options = {
     host: '127.0.0.1',
     port: 8080,
-    path: '/newLot',
+    path: '/reserve',
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -42,26 +31,21 @@ ReservationController.newReservation = function(req, res) {
 
     response.on('end', function() {
       if (data === '') {
-        console.log('This lot already exists.');
-        res.status(409).send({ 'error': 'This lot already exists.' });
+        console.log('Conflict.');
+        res.status(409).send({ 'error': 'Conflict.' });
         return;
       }
-      var user = JSON.parse(data);
-      req.login(user, function(error) {
-        if (error) {
-          console.log(error);
-        }
-      });
-      console.log('New lot created!');
+      console.log(JSON.parse(data));
+      console.log('Reservation created!');
       res.send('/q9xwGoXLGQ');
     });
   });
   request.on('error', function(err) {
-    console.log('Error in creating lot: ' + err);
+    console.log('Error in making reservation: ' + err);
     throw err;
   });
 
-  request.write(lot);
+  request.write(reservation);
   request.end();
 }
 
