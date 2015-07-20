@@ -43,7 +43,7 @@ app.run(function($rootScope, $http, $window) {
     // CHECK FOR CONFLICTS
     for (var i = 0; i < reservations.length; i++) {
       var reservation = reservations[i];
-      
+
     }
   })
   .finally(function() {
@@ -167,43 +167,46 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
     var offset = new Date().getTimezoneOffset()*60000;
     var sunday = Math.floor(new Date()/604800000)*604800000 + 259200000 + offset;
 
-    var start;
-    var duration;
+    var startTimes = [];
+    var durations = [];
     var block = false;
+    var duration;
     for (var day = 0; day < 7; day++) {
       for (var hour = 0; hour < 24; hour++) {
         if ($scope.reservation[day][hour] === 1) {
           if (block) {
             duration++;
           } else {
-            start = sunday + day*86400000 + hour*3600000;
+            startTimes.push(sunday + day*86400000 + hour*3600000);
             block = true;
             duration = 1;
           }
         } else {
           if (block) {
+            durations.push(duration);
             block = false;
           }
         }
       }
       if (block) {
+        durations.push(duration);
         block = false;
       }
     }
-    return [start, duration];
+    return [startTimes, durations];
   }
 
 
   // MAKE RESERVATION //
   $scope.reserve = function() {
     var reservations = reservationTimes();
-    var start = reservations[0];
-    var duration = reservations[1];
+    var startTimes = reservations[0];
+    var durations = reservations[1];
 
     $http.post('/api/reserve', {
       lotId: $scope.lot.id,
-      start: start,
-      duration: duration
+      startTimes: startTimes,
+      durations: durations
     })
     .success(function(redirectURL) {
       $window.location = redirectURL;

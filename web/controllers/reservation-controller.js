@@ -8,8 +8,8 @@ ReservationController.reserve = function(req, res) {
   var reservation = querystring.stringify({
     accountId: req.user.id,
     lotId: req.body.lotId,
-    start: req.body.start,
-    duration: req.body.duration
+    startTimes: req.body.startTimes,
+    durations: req.body.durations
   });
   var options = {
     host: '127.0.0.1',
