@@ -5,6 +5,14 @@ var url = 'http://127.0.0.1:8080';
 // SET CONSTANTS //
 app.run(function($rootScope, $http, $window) {  
   $rootScope.loading = true;
+  var hours = 24;
+  var days = 7;
+  $rootScope.schedule = new Array(days);
+  for (var i = 0; i < days; i++) {
+    $rootScope.schedule[i] = new Array(hours);
+  }
+  $rootScope.reservation = $rootScope.schedule.slice(0);
+  $rootScope.reserved = $rootScope.schedule.slice(0);
 
   var lotId = $window.location.pathname.split('/')[3]; // CHANGE THIS AFTER TESTING
   $http.get(url + '/lotById?lotId=' + lotId)
@@ -12,12 +20,6 @@ app.run(function($rootScope, $http, $window) {
     $rootScope.lot = lot;
     
     // SET CALENDAR
-    var hours = 24;
-    var days = 7;
-    $rootScope.schedule = new Array(days);
-    for (var i = 0; i < days; i++) {
-      $rootScope.schedule[i] = new Array(hours);
-    }
     for (var i = 0; i < lot.calendar.length; i++) {
       var date = new Date(lot.calendar[i]);
       var today = new Date();
@@ -37,6 +39,12 @@ app.run(function($rootScope, $http, $window) {
   $http.get(url + '/activeReservationsByLotId?lotId=' + lotId)
   .success(function(reservations) {
     $rootScope.reservations = reservations;
+
+    // CHECK FOR CONFLICTS
+    for (var i = 0; i < reservations.length; i++) {
+      var reservation = reservations[i];
+      
+    }
   })
   .finally(function() {
     if ($rootScope.lot && $rootScope.reservations) {
@@ -83,16 +91,6 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
     '10',
     '11'
   ];
-
-
-  // INIT CALENDAR //
-  var hours = 24;
-  var days = 7;
-
-  $scope.reservation = new Array(days);
-  for (var i = 0; i < days; i++) {
-    $scope.reservation[i] = new Array(hours);
-  }
 
 
   // DRAG TO SELECT //
