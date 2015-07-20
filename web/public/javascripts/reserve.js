@@ -56,6 +56,7 @@ app.run(function($rootScope, $http, $window) {
     for (var i = 0; i < reservations.length; i++) {
       var reservation = reservations[i];
       if (reservation.start > today && reservation.end < nextSunday) {
+        console.log(reservation);
         var day = new Date(reservation.start).getDay();
         var hour = new Date(reservation.start).getHours();
         for (var j = 0; j < reservation.duration; j++) {
@@ -67,6 +68,7 @@ app.run(function($rootScope, $http, $window) {
         }
       }
     }
+    console.log($rootScope.reserved);
   })
   .finally(function() {
     if ($rootScope.lot && $rootScope.reservations) {

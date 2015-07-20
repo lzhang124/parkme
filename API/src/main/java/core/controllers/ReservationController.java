@@ -119,6 +119,7 @@ public class ReservationController {
                         Reservation reservation = new Reservation(accountId, account.getFirstName(), account.getLastName(), lotId, j, start, duration);
                         reservationRepo.save(reservation);
                         reservations.add(reservation);
+                        break;
                     } else {
                         System.out.println("Cannot reserve in space " + j + ".");
                     }

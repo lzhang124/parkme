@@ -183,13 +183,13 @@ app.controller('registerController', function($scope, $http, $document, $element
     if (!dragging) return;
     
     var cell = getCoords(el);
-    if ($scope.reservation[startCell.day][startCell.hour] === 1) {
+    if ($scope.schedule[startCell.day][startCell.hour] === 1) {
       for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {
-        $scope.reservation[startCell.day][hour] = 1;
+        $scope.schedule[startCell.day][hour] = 1;
       }
     } else {
       for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {
-        $scope.reservation[startCell.day][hour] = null;
+        $scope.schedule[startCell.day][hour] = null;
       }
     }
   }
