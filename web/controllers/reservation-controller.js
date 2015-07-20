@@ -21,34 +21,34 @@ ReservationController.reserve = function(req, res) {
     }
   };
 
-  var request = http.request(options, function(response) {
-    response.setEncoding('utf8');
-    var data = '';
-
-    response.on('data', function(chunk) {
-      data += chunk;
-    });
-
-    response.on('end', function() {
-      if (data === '') {
-        console.log('Conflict.');
-        res.status(409).send({ 'error': 'Could not make reservations.' });
-        return;
-      }
-      console.log(JSON.parse(data));
-      console.log('Reservation created!');
-      res.send('/q9xwGoXLGQ');
-    });
-  });
-  request.on('error', function(err) {
-    console.log('Error in making reservation: ' + err);
-    throw err;
-  });
-
   // NO NEW RESERVATIONS
   if (req.body.startTimes.length === 0) {
     res.send('/q9xwGoXLGQ');
   } else {
+    var request = http.request(options, function(response) {
+      response.setEncoding('utf8');
+      var data = '';
+
+      response.on('data', function(chunk) {
+        data += chunk;
+      });
+
+      response.on('end', function() {
+        if (data === '') {
+          console.log('Conflict.');
+          res.status(409).send({ 'error': 'Could not make reservations.' });
+          return;
+        }
+        console.log(JSON.parse(data));
+        console.log('Reservation created!');
+        res.send('/q9xwGoXLGQ');
+      });
+    });
+    request.on('error', function(err) {
+      console.log('Error in making reservation: ' + err);
+      throw err;
+    });
+    
     request.write(reservation);
     request.end();
   }

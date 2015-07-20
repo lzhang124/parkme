@@ -85,16 +85,7 @@ app.controller('reservationsController', function($scope, $http, $document, $ele
     var cell = getCoords(el);
     if (!$scope.reservations[cell.day][cell.hour]) return;
 
-
-    if ($scope.reservations[cell.day][cell.hour] === 1) {
-      for (var hour = Math.min(cell.hour, cell.hour); hour < Math.max(cell.hour, cell.hour) + 1; hour++) {
-        $scope.reservations[cell.day][hour] = 1;
-      }
-    } else {
-      for (var hour = Math.min(cell.hour, cell.hour); hour < Math.max(cell.hour, cell.hour) + 1; hour++) {
-        $scope.reservations[cell.day][hour] = null;
-      }
-    }
+    // console.log($scope.reservations[cell.day][cell.hour].lot);
   }
         
   function getCoords(cell) {
