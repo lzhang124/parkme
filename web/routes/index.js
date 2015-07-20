@@ -54,7 +54,7 @@ router.get('/q9xwGoXLGQ/reservations', isAuthenticated, function(req, res) {
 });
 
 /* GET reservations page. */
-router.get('/q9xwGoXLGQ/reservations/:lotId', function(req, res) { //ADD BACK ISAUTHENTICATED
+router.get('/q9xwGoXLGQ/reservations/:lotId', isAuthenticated, function(req, res) {
   res.render('reserve');
 });
 

@@ -20,7 +20,13 @@ app.run(function($rootScope, $http, $window) {
     }
     for (var i = 0; i < lot.calendar.length; i++) {
       var date = new Date(lot.calendar[i]);
-      $rootScope.schedule[date.getDay()][date.getHours()] = 1;
+      var today = new Date();
+      if (date.getDay() === today.getDay() && date.getHours() > today.getHours()) {
+        $rootScope.schedule[date.getDay()][date.getHours()] = 1;
+      }
+      if (date.getDay() > today.getDay()) {
+        $rootScope.schedule[date.getDay()][date.getHours()] = 1;
+      }
     }
   })
   .finally(function() {
@@ -122,12 +128,10 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
     if ($scope.reservation[startCell.day][startCell.hour] === 1) {
       for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {
         $scope.reservation[startCell.day][hour] = 1;
-        console.log(hour);
       }
     } else {
       for (var hour = Math.min(startCell.hour, cell.hour); hour < Math.max(startCell.hour, cell.hour) + 1; hour++) {
         $scope.reservation[startCell.day][hour] = null;
-        console.log(hour);
       }
     }
   }
@@ -160,22 +164,22 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
     var offset = new Date().getTimezoneOffset()*60000;
     var sunday = Math.floor(new Date()/604800000)*604800000 + 259200000 + offset;
 
-    var calendar = [];
+    var reservation = [];
     for (var day = 0; day < 7; day++) {
       for (var hour = 0; hour < 24; hour++) {
         if ($scope.reservation[day][hour] === 1) {
-          calendar.push(sunday + day*86400000 + hour*3600000);
+          reservation.push(sunday + day*86400000 + hour*3600000);
         }
       }
     }
-    return calendar;
+    return reservation;
   }
 
 
   // MAKE RESERVATION //
   $scope.reserve = function() {
-    console.log('reserve');
-    // var calendar = scheduleTimes();
+    var reservation = reservationTimes();
+
     // $http.post('/api/newLot', {
     //   type: 'residential',
     //   address: start.formatted_address,
