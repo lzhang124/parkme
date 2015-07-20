@@ -13,8 +13,9 @@ app.run(function($rootScope, $http, $window) {
   }
   $rootScope.reservation = $rootScope.schedule.slice(0);
   $rootScope.reserved = $rootScope.schedule.slice(0);
-
   var lotId = $window.location.pathname.split('/')[3]; // CHANGE THIS AFTER TESTING
+  var today = new Date();
+
   $http.get(url + '/lotById?lotId=' + lotId)
   .success(function(lot) {
     $rootScope.lot = lot;
@@ -22,7 +23,6 @@ app.run(function($rootScope, $http, $window) {
     // SET CALENDAR
     for (var i = 0; i < lot.calendar.length; i++) {
       var date = new Date(lot.calendar[i]);
-      var today = new Date();
       if (date.getDay() === today.getDay() && date.getHours() > today.getHours()) {
         $rootScope.schedule[date.getDay()][date.getHours()] = 1;
       }
@@ -36,14 +36,17 @@ app.run(function($rootScope, $http, $window) {
       $rootScope.loading = false;
     }
   });
+
   $http.get(url + '/activeReservationsByLotId?lotId=' + lotId)
   .success(function(reservations) {
     $rootScope.reservations = reservations;
 
     // CHECK FOR CONFLICTS
+    var offset = new Date().getTimezoneOffset()*60000;
+    var sunday = Math.floor((new Date().getTime() + 345600000)/604800000)*604800000 - 345600000 + offset;
     for (var i = 0; i < reservations.length; i++) {
       var reservation = reservations[i];
-
+      if (reservation.start > today && reservation.start < 
     }
   })
   .finally(function() {
@@ -105,11 +108,6 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
   function mouseDown(el) {
     dragging = true;
 
-    // RESET THE CALENDAR
-    for (var i = 0; i < days; i++) {
-      $scope.reservation[i] = new Array(hours);
-    }
-
     var cell = getCoords(el);
     if (!$scope.schedule[cell.day][cell.hour]) return;
 
@@ -165,7 +163,7 @@ app.controller('reserveController', function($scope, $rootScope, $http, $documen
   // CALCULATE TIMES //
   var reservationTimes = function() {
     var offset = new Date().getTimezoneOffset()*60000;
-    var sunday = Math.floor(new Date()/604800000)*604800000 + 259200000 + offset;
+    var sunday = Math.floor((new Date().getTime() + 345600000)/604800000)*604800000 - 345600000 + offset;
 
     var startTimes = [];
     var durations = [];

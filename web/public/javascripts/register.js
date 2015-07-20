@@ -220,7 +220,7 @@ app.controller('registerController', function($scope, $http, $document, $element
   // CALCULATE TIMES //
   var scheduleTimes = function() {
     var offset = new Date().getTimezoneOffset()*60000;
-    var sunday = Math.floor(new Date()/604800000)*604800000 + 259200000 + offset;
+    var sunday = Math.floor((new Date().getTime() + 345600000)/604800000)*604800000 - 345600000 + offset;
 
     var calendar = [];
     for (var day = 0; day < 7; day++) {
