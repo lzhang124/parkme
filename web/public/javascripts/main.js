@@ -257,7 +257,7 @@ app.controller('searchController', function($scope, $rootScope, $http, $timeout,
 
     google.maps.event.addListener(marker, 'click', function() {
       if (!this.lot.selected) {
-        infowindow.setContent('<div class="infoWindow">' + lot.name + ' <span id="type">' + lot.type + '</div>');
+        infowindow.setContent('<div class="infoWindow">' + lot.address.street + ' <span id="type">' + lot.type + '</div>');
         infowindow.open(this.map, this);
         $timeout(function() {
           if (currentMarker !== null) {
