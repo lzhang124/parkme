@@ -33,9 +33,9 @@ router.get('/q9xwGoXLGQ', function(req, res) {
   res.render('index');
 });
 
-/* GET about page. */
-router.get('/q9xwGoXLGQ/about', function(req, res) {
-  res.render('about');
+/* GET info page. */
+router.get('/q9xwGoXLGQ/info', function(req, res) {
+  res.render('info');
 });
 
 /* GET profile page. */
