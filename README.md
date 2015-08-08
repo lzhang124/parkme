@@ -10,7 +10,8 @@ The source tree structure will be composed of multiple projects:
 - *API*: this is the spring boot container with the API and core engine.
 - *web*: this contains the web server (MEAN).
 - *firmware*: this will contain the Arduino project code for the firmware running on the Arduino controller.
-- *mobile*: this will contain the mobile appication code.
+- *mobile*: this contains the mobile appication code.
+- *vehicle_counter*: this contains the Visual Studio project for a simple vehicle counter.
 - *deployment*: this will contain the scripts for deployment once a datacenter is setup.
 
 
