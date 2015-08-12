@@ -51,7 +51,7 @@ LotController.newLot = function(req, res) {
         }
       });
       console.log('New lot created!');
-      res.send('/q9xwGoXLGQ');
+      res.send('/miidUx5rtG');
     });
   });
   request.on('error', function(err) {

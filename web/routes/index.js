@@ -6,7 +6,7 @@ var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/q9xwGoXLGQ');
+  res.redirect('/miidUx5rtG');
 }
 
 /* GET splash page. */
@@ -29,32 +29,32 @@ router.get('/DJYWcyUqGV', function(req, res) {
 });
 
 /* GET home page. */
-router.get('/q9xwGoXLGQ', function(req, res) {
+router.get('/miidUx5rtG', function(req, res) {
   res.render('index');
 });
 
 /* GET info page. */
-router.get('/q9xwGoXLGQ/info', function(req, res) {
+router.get('/miidUx5rtG/info', function(req, res) {
   res.render('info');
 });
 
 /* GET profile page. */
-router.get('/q9xwGoXLGQ/profile', isAuthenticated, function(req, res) {
+router.get('/miidUx5rtG/profile', isAuthenticated, function(req, res) {
   res.render('profile');
 });
 
 /* GET register page. */
-router.get('/q9xwGoXLGQ/register', isAuthenticated, function(req, res) {
+router.get('/miidUx5rtG/register', isAuthenticated, function(req, res) {
   res.render('register');
 });
 
 /* redirect reservations page. */
-router.get('/q9xwGoXLGQ/reservations', isAuthenticated, function(req, res) {
+router.get('/miidUx5rtG/reservations', isAuthenticated, function(req, res) {
   res.render('reservations');
 });
 
 /* GET reservations page. */
-router.get('/q9xwGoXLGQ/reservations/:lotId', isAuthenticated, function(req, res) {
+router.get('/miidUx5rtG/reservations/:lotId', isAuthenticated, function(req, res) {
   res.render('reserve');
 });
 

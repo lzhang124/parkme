@@ -8,7 +8,7 @@ var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/q9xwGoXLGQ');
+  res.redirect('/miidUx5rtG');
 }
 
 /* GET current user */

@@ -152,16 +152,16 @@ passport.use('login', new LocalStrategy({
 
 /* Sign up */
 router.post('/signup', passport.authenticate('signup', {
-  successRedirect: '/q9xwGoXLGQ/register',
-  failureRedirect: '/q9xwGoXLGQ',
+  successRedirect: '/miidUx5rtG/register',
+  failureRedirect: '/miidUx5rtG',
   failureFlash: true,
   successFlash: true
 }));
 
 /* Login */ 
 router.post('/login', passport.authenticate('login', {
-  successRedirect: '/q9xwGoXLGQ',
-  failureRedirect: '/q9xwGoXLGQ',
+  successRedirect: '/miidUx5rtG',
+  failureRedirect: '/miidUx5rtG',
   failureFlash: true,
   successFlash: true
 }));
@@ -170,7 +170,7 @@ router.post('/login', passport.authenticate('login', {
 router.get('/logout', function(req, res) {
   req.session.destroy();
   req.logout();
-  res.redirect('/q9xwGoXLGQ');
+  res.redirect('/miidUx5rtG');
 });
 
 module.exports = router;

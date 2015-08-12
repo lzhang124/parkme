@@ -28,8 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // remove after testing
 app.use('/DJYWcyUqGV', express.static(path.join(__dirname, 'public')));
-app.use('/q9xwGoXLGQ', express.static(path.join(__dirname, 'public')));
-app.use('/q9xwGoXLGQ/reservations', express.static(path.join(__dirname, 'public')));
+app.use('/miidUx5rtG', express.static(path.join(__dirname, 'public')));
+app.use('/miidUx5rtG/reservations', express.static(path.join(__dirname, 'public')));
 
 app.use(expressSession({
   secret: 'thisisasecret',

@@ -23,7 +23,7 @@ ReservationController.reserve = function(req, res) {
 
   // NO NEW RESERVATIONS
   if (req.body.startTimes.length === 0) {
-    res.send('/q9xwGoXLGQ');
+    res.send('/miidUx5rtG');
   } else {
     var request = http.request(options, function(response) {
       response.setEncoding('utf8');
@@ -41,7 +41,7 @@ ReservationController.reserve = function(req, res) {
         }
         console.log(JSON.parse(data));
         console.log('Reservation created!');
-        res.send('/q9xwGoXLGQ');
+        res.send('/miidUx5rtG');
       });
     });
     request.on('error', function(err) {
